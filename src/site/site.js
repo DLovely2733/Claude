@@ -11,6 +11,8 @@ import { DEMO_OUTCOME_ID } from '../demo/politicalSystemUnit.js';
 import { ACTIVITIES, reviewQuiz } from './activities.js';
 import { renderEscape } from './escape/engine.js';
 import { ESCAPE_GAME } from './escape/rooms.js';
+import { renderQuest, allMissions } from '../quest/app.js';
+import { WORLDS, WORLD_STATUS } from '../quest/worlds.js';
 
 const app = document.getElementById('site');
 let view = { name: 'home' };
@@ -54,6 +56,7 @@ const TOKENS = {
   activities: () => ({ name: 'home', anchor: 'activities' }),
   teachers: () => ({ name: 'teachers' }),
   escape: () => ({ name: 'escape' }),
+  quest: () => ({ name: 'quest', start: { view: 'hub' } }),
 };
 
 function tokenFor(v) {
@@ -61,11 +64,16 @@ function tokenFor(v) {
   if (v.name === 'activity') return v.id.replace(/^act-/, '');
   if (v.name === 'teachers') return 'teachers';
   if (v.name === 'escape') return 'escape';
+  if (v.name === 'quest') return v.start?.view === 'mission' ? `mission-${v.start.missionId}` : v.start?.view === 'world' ? `world-${v.start.worldId}` : 'quest';
   return v.anchor || 'home';
 }
 
 function fromToken(token) {
   if (TOKENS[token]) return TOKENS[token]();
+  const qm = token.match(/^mission-(.+)$/);
+  if (qm && allMissions().some((x) => x.id === qm[1])) return { name: 'quest', start: { view: 'mission', missionId: qm[1] } };
+  const qw = token.match(/^world-(.+)$/);
+  if (qw && WORLDS.some((x) => x.id === qw[1])) return { name: 'quest', start: { view: 'world', worldId: qw[1] } };
   const m = token.match(/^lesson-(\d)$/);
   if (m && lessons()[Number(m[1]) - 1]) return { name: 'lesson', id: lessons()[Number(m[1]) - 1].id };
   if (activities().some((a) => a.id === `act-${token}`)) return { name: 'activity', id: `act-${token}` };
@@ -98,6 +106,7 @@ function header() {
         h('span', { class: 'brand-mark', 'aria-hidden': 'true' }, h('i', { class: 'm-crown' }), h('i', { class: 'm-senate' }), h('i', { class: 'm-commons' })),
         h('span', { class: 'brand-text' }, h('strong', {}, 'Canada’s Political System'), h('small', {}, 'Grade 9 Social Studies'))),
       h('nav', { class: 'site-nav', 'aria-label': 'Site' },
+        link('Canada Quest', { name: 'quest', start: { view: 'hub' } }, view.name === 'quest'),
         link('Lessons', { name: 'home', anchor: 'lessons' }, view.name === 'lesson'),
         link('Escape room', { name: 'escape' }, view.name === 'escape'),
         link('Activities', { name: 'home', anchor: 'activities' }, view.name === 'activity'),
@@ -122,9 +131,11 @@ function home() {
         h('h1', {}, 'Who has power in Canada, and how do they use it?'),
         h('p', { class: 'lede' }, 'Five lessons and five activities about who makes decisions, how laws are made and how rights are protected.'),
         h('div', { class: 'hero-actions' },
-          next ? h('button', { class: 'btn primary big', onclick: () => navigate({ name: 'lesson', id: next.id }) }, nextIndex > 0 && bestStars({ lessonId: ls[0].id }) ? `Continue: Lesson ${nextIndex + 1}` : 'Start Lesson 1', ' →') : null,
-          h('button', { class: 'btn ghost big', onclick: () => navigate({ name: 'escape' }) }, 'Play the escape room'))),
+          h('button', { class: 'btn primary big', onclick: () => navigate({ name: 'quest', start: { view: 'hub' } }) }, 'Enter Canada Quest →'),
+          next ? h('button', { class: 'btn ghost big', onclick: () => navigate({ name: 'lesson', id: next.id }) }, nextIndex > 0 && bestStars({ lessonId: ls[0].id }) ? `Continue: Lesson ${nextIndex + 1}` : 'Start Lesson 1') : null)),
       parliament()),
+
+    questFeature(),
 
     escapeFeature(),
 
@@ -143,6 +154,18 @@ function home() {
       h('div', { class: 'strip-actions' },
         h('button', { class: 'btn ghost', onclick: () => navigate({ name: 'teachers' }) }, 'Curriculum connections'),
         h('a', { class: 'btn ghost', href: 'teacher.html' }, 'Open teacher tools'))));
+}
+
+function questFeature() {
+  return h('section', { class: 'quest-feature', 'aria-labelledby': 'quest-feat-h' },
+    h('div', { class: 'quest-feature-copy' },
+      h('p', { class: 'eyebrow' }, '3D adventure'),
+      h('h2', { id: 'quest-feat-h' }, 'Canada Quest: Explore, Discover, Learn'),
+      h('p', {}, 'Walk through a 3D Canadian world. Visit Parliament, tap the map of Canada, raise flags on government buildings and move a bill along the path to become a law. A guide reads everything aloud, and every mission also works in 2D.'),
+      h('div', { class: 'hero-actions' },
+        h('button', { class: 'btn primary big', onclick: () => navigate({ name: 'quest', start: { view: 'hub' } }) }, 'Enter Canada Quest →'),
+        h('button', { class: 'btn ghost big', onclick: () => navigate({ name: 'quest', start: { view: 'world', worldId: 'government' } }) }, 'Go to Inside Canadian Government'))),
+    h('ul', { class: 'quest-worlds' }, WORLDS.map((w) => h('li', {}, h('span', { 'aria-hidden': 'true' }, w.icon), h('span', {}, w.name), h('span', { class: `q-badge ${WORLD_STATUS[w.status].tone}` }, WORLD_STATUS[w.status].label)))));
 }
 
 function escapeFeature() {
@@ -329,6 +352,7 @@ function render() {
     const a = activities().find((x) => x.id === view.id);
     app.append(a ? playView(a, true) : home());
   } else if (view.name === 'escape') app.append(escapeView());
+  else if (view.name === 'quest') app.append(h('main', { class: 'page quest-page', id: 'main' }, renderQuest({ start: view.start || { view: 'hub' }, onHome: () => navigate({ name: 'home' }) })));
   else if (view.name === 'teachers') app.append(teachers());
   else app.append(home());
   app.append(h('footer', { class: 'site-foot' }, h('p', {}, `Aligned to Grade 9 outcome ${DEMO_OUTCOME_ID}, Draft Social Studies (7–9) Curriculum, June 2026. Progress is saved in this browser only.`)));

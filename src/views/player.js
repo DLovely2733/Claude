@@ -381,7 +381,7 @@ export function renderPlayer(lessonId, startAt, opts = {}) {
       const firstTry = scored.filter((x) => x.correct === true).length;
       const stars = scored.length ? Math.max(1, Math.round((firstTry / scored.length) * 3)) : 3;
       const result = { stars, firstTry, scored: scored.length };
-      update((s) => s.evidence.push({ id: uid('ev'), sessionId, type: 'complete', lessonId: opts.lesson ? (steps[0]?.sourceLessonId || lesson.id) : lesson.id, lessonTitle: lesson.title, activityId: opts.lesson ? lesson.id : undefined, stepId: null, stepTitle: `Finished: ${lesson.title}`, response: `${stars} star(s)`, correct: null, stars, statementIds: [], at: new Date().toISOString() }));
+      if (!opts.silentFinish) update((s) => s.evidence.push({ id: uid('ev'), sessionId, type: 'complete', lessonId: opts.lesson ? (steps[0]?.sourceLessonId || lesson.id) : lesson.id, lessonTitle: lesson.title, activityId: opts.lesson ? lesson.id : undefined, stepId: null, stepTitle: `Finished: ${lesson.title}`, response: `${stars} star(s)`, correct: null, stars, statementIds: [], at: new Date().toISOString() }));
       return opts.renderFinish(result, () => ((index = 0), results.length = 0, renderStep()));
     }
     return h('div', { class: 'finish' },

@@ -43,6 +43,13 @@ export const DEFAULT_PROFILE = {
   communityName: '',
   interests: '',
   goals: [], // [{id, text, area}] — individualized learning goals written by the teacher
+  // Canada Quest (3D) settings
+  subtitles: true, // captions for the guide's narration over the 3D view
+  adultAssisted: false, // adds "we did this together" to every mission step
+  cameraSensitivity: 1, // 0.5–2, free-exploration turning and walking speed
+  graphicsQuality: 'auto', // auto | low | high
+  questMode: 'guided', // guided | free
+  quest3d: true, // false = accessible 2D mode
   notes: '',
 };
 

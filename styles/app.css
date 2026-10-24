@@ -302,3 +302,12 @@ body.student-mode main { max-width: 980px; }
 
 /* Official statements keep their sub-item lists on separate lines. */
 .official li, .browse li, .stmt-picker span, .linked-outcome .check span, .new-lesson .check span, .trace td, .printable li, .diff li, .diff p { white-space: pre-line; }
+
+/* Coverage dashboard */
+.table-wrap { overflow-x: auto; }
+.coverage-outcome > summary { cursor: pointer; line-height: 1.6; }
+.table.coverage td { font-size: 0.9rem; }
+.table.coverage .stmt-text { white-space: pre-line; margin-top: 4px; }
+.table.coverage tr.cov-not-built td:first-child { border-left: 4px solid var(--error); }
+.table.coverage tr.cov-ready td:first-child { border-left: 4px solid var(--brand); }
+.table.coverage tr.cov-approved td:first-child { border-left: 4px solid var(--ok); }

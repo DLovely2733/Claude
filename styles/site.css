@@ -421,3 +421,128 @@ body.calm .esc-scene, body.calm .hotspot.glow { animation: none !important; }
   .esc-panel, .esc-panel.wide { position: static; transform: none; width: auto; max-height: none; margin: 10px; }
   .esc-say-text { font-size: 1rem; }
 }
+
+/* ---------- Canada Quest (3D) ----------
+   The 3D viewport is one visual world in every theme; the side panel follows
+   the site theme tokens. */
+[hidden] { display: none !important; }
+.quest-page { max-width: 1320px; gap: 12px; }
+.quest { display: grid; gap: 10px; }
+.q-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 8px 12px; border-radius: 14px; background: #13201a; color: #f3eedf; }
+.q-title { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px; }
+.q-title strong { font-family: var(--display); font-size: 1.15rem; color: #f2c94c; }
+.q-crumbs { color: #d9d2bf; font-size: 0.92rem; }
+.q-bar-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.q-bar-btn { font: 600 0.95rem var(--display); min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 2px solid #f2c94c; background: transparent; color: #fff8e6; cursor: pointer; }
+.q-bar-btn.home { background: #f2c94c; color: #13201a; }
+.q-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 400px); gap: 12px; height: min(78vh, 780px); min-height: 520px; }
+.q-layout.q-2d { grid-template-columns: minmax(0, 1fr); height: auto; min-height: 0; }
+.q-layout.q-2d .q-viewport { display: none; }
+.q-viewport { position: relative; border-radius: 16px; overflow: hidden; background: #0d1512; min-height: 300px; outline: none; }
+.q-viewport:focus-visible { outline: 3px solid #f2c94c; outline-offset: 2px; }
+.q-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+.q-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.q-label {
+  position: absolute; left: 0; top: 0; pointer-events: auto; display: inline-flex; align-items: center; gap: 6px;
+  min-height: 40px; padding: 6px 12px; border-radius: 999px; border: 2px solid rgb(255 255 255 / 0.85);
+  background: rgb(19 32 26 / 0.86); color: #fff8e6; font: 700 0.92rem var(--body); cursor: pointer; white-space: nowrap;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.35);
+}
+.q-label::after { content: ''; position: absolute; left: 50%; bottom: -8px; width: 2px; height: 8px; background: rgb(255 255 255 / 0.85); }
+.q-label.hl { background: #f2c94c; color: #13201a; border-color: #fff8e6; }
+.q-label.hover, .q-label:hover, .q-label:focus-visible { background: #1b6a4e; color: #fff; outline: none; }
+.q-label.hl.hover { background: #ffe08a; color: #13201a; }
+.q-label-icon { font-size: 1.1rem; }
+.q-caption { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); width: min(92%, 760px); margin: 0; padding: 10px 16px; border-radius: 12px; background: rgb(10 14 12 / 0.82); color: #fff8e6; font-size: 1.02rem; text-align: center; z-index: 5; pointer-events: none; }
+.q-notice { position: absolute; inset: 0; display: grid; place-items: center; color: #f3eedf; font: 600 1.1rem var(--display); z-index: 6; }
+.q-pad { position: absolute; right: 14px; bottom: 70px; z-index: 6; display: grid; grid-template-columns: repeat(3, 56px); grid-template-rows: repeat(2, 56px); gap: 6px; }
+.q-pad button { border-radius: 14px; border: 2px solid #f2c94c; background: rgb(10 14 12 / 0.75); color: #fff8e6; font-size: 1.4rem; cursor: pointer; touch-action: none; }
+.q-pad-forward { grid-column: 2; grid-row: 1; } .q-pad-left { grid-column: 1; grid-row: 2; } .q-pad-back { grid-column: 2; grid-row: 2; } .q-pad-right { grid-column: 3; grid-row: 2; }
+
+.q-panel { overflow: auto; padding: 16px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); display: grid; align-content: start; gap: 12px; }
+.q-panel h2 { font-size: 1.35rem; }
+.q-panel h3 { font-size: 1.02rem; margin-top: 4px; }
+.q-kicker { font: 600 0.78rem var(--display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--commons); }
+.q-help { color: var(--muted); font-size: 0.92rem; }
+.q-status { padding: 10px 12px; border-radius: 12px; background: var(--sunk); }
+.q-status.warn { background: var(--try-soft); border-left: 4px solid var(--try); }
+.q-badge { font: 600 0.75rem var(--display); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.q-badge.ok { background: var(--good-soft); color: var(--good); }
+.q-badge.warn { background: var(--try-soft); color: var(--try); }
+.q-worlds { display: grid; gap: 8px; }
+.q-world { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; border: 2px solid var(--line); border-left: 6px solid var(--wc); background: var(--surface); color: var(--ink); cursor: pointer; text-align: left; font: inherit; }
+.q-world.open { border-color: var(--wc); }
+.q-world-icon { font-size: 1.7rem; }
+.q-world-text { display: grid; }
+.q-world-text small { color: var(--muted); }
+.q-outcomes, .q-planned { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 0.95rem; }
+.q-missionmap { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.q-missionmap li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px; border-radius: 14px; border: 1px solid var(--line); }
+.q-missionmap li.done { border-color: var(--commons); }
+.q-mm-num { width: 2em; height: 2em; display: grid; place-items: center; border-radius: 50%; background: var(--commons-soft); color: var(--commons); font: 700 1rem var(--display); }
+.q-missionmap li.done .q-mm-num { background: var(--commons); color: var(--commons-ink); }
+.q-mm-text { display: grid; min-width: 0; }
+.q-mm-text small { color: var(--muted); }
+.q-places, .q-chiplist { display: flex; flex-wrap: wrap; gap: 6px; }
+.q-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 12px; border-radius: 999px; border: 2px solid var(--line); background: var(--surface); color: var(--ink); font: 600 0.92rem var(--body); cursor: pointer; }
+.q-chip.done { border-color: var(--commons); background: var(--commons-soft); }
+.q-exhibit { padding: 12px 14px; border-radius: 14px; background: var(--sunk); border-left: 5px solid var(--crown); display: grid; gap: 6px; }
+.q-exhibit-head { display: flex; align-items: center; gap: 10px; }
+.q-exhibit-head h4 { flex: 1; margin: 0; font: 600 1.05rem var(--display); }
+.q-exhibit-sym { font-size: 1.8rem; }
+.q-icon { min-width: 44px; min-height: 44px; border-radius: 50%; border: 2px solid var(--line); background: var(--surface); font-size: 1.2rem; cursor: pointer; }
+
+.q-mission { display: grid; gap: 12px; }
+.q-mission-head { display: grid; gap: 6px; }
+.q-phases { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; }
+.q-phases li { display: grid; justify-items: center; gap: 2px; padding: 6px 2px; border-radius: 10px; background: var(--sunk); color: var(--muted); font-size: 0.72rem; text-align: center; }
+.q-phases li span:first-child { font-size: 1.1rem; }
+.q-phases li.done { background: var(--commons-soft); color: var(--commons); }
+.q-phases li.now { background: var(--commons); color: var(--commons-ink); font-weight: 700; }
+.q-guide { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 12px; border-radius: 14px; background: var(--commons-soft); }
+.q-guide-avatar { font-size: 1.8rem; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: var(--surface); }
+.q-guide-text { margin-top: 2px; font-size: 1.04rem; }
+.q-beat { display: grid; gap: 10px; }
+.q-beat .player { font-size: 1rem; }
+.q-beat .lesson-title, .q-beat .progress, .q-beat .nav-buttons .ghost { display: none; }
+.q-beat .step { box-shadow: none; padding: 14px; }
+.q-prompt { font: 600 1.06rem var(--display); }
+.q-where { color: var(--muted); }
+.q-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.q-options.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.q-option { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 84px; padding: 10px; border-radius: 14px; border: 3px solid var(--line); background: var(--surface); color: var(--ink); font: 700 0.98rem var(--body); cursor: pointer; text-align: center; }
+.q-option .sym { font-size: 1.7rem; }
+.q-option:hover, .q-option.picked { border-color: var(--commons); background: var(--commons-soft); }
+.q-feedback { font: 600 1.02rem var(--display); min-height: 1.3em; }
+.q-feedback.good { color: var(--good); }
+.q-feedback.try { color: var(--try); }
+.q-sortcard { display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 14px; background: var(--sunk); }
+.q-trail { margin: 0; padding-left: 24px; display: grid; gap: 2px; font-weight: 700; color: var(--commons); }
+.q-concepts { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.q-foot { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center; padding-top: 6px; border-top: 1px solid var(--line); }
+.q-next:disabled { opacity: 0.4; cursor: default; }
+.q-complete { display: grid; gap: 12px; }
+.q-stars { font-size: 2.6rem; display: flex; gap: 6px; }
+.q-stars .on { color: var(--crown); } .q-stars .off { color: var(--line); }
+
+.quest-feature { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: center; padding: 24px; border-radius: 20px; background: linear-gradient(135deg, #13201a, #1f5a42); color: #f3eedf; }
+.quest-feature h2 { font-size: 2rem; color: #fff8e6; }
+.quest-feature p { color: #d9d2bf; max-width: 60ch; }
+.quest-feature .eyebrow { color: #f2c94c; }
+.quest-feature .btn.primary { background: #f2c94c; border-color: #f2c94c; color: #13201a; }
+.quest-feature .btn.ghost { border-color: #f2c94c; color: #fff8e6; }
+.quest-feature-copy { display: grid; gap: 10px; min-width: 0; }
+.quest-worlds { display: grid; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.quest-worlds li { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 12px; background: rgb(255 255 255 / 0.07); }
+.quest-worlds li span:first-child { font-size: 1.4rem; }
+.quest-worlds li .q-badge { margin-left: auto; }
+.quest-feature .q-badge.ok { background: #5cc597; color: #08140f; }
+.quest-feature .q-badge.warn { background: #f0c060; color: #2a1f00; }
+
+@media (max-width: 900px) {
+  .q-layout { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .q-viewport { height: 56vh; min-height: 300px; }
+  .q-panel { overflow: visible; }
+  .quest-feature { grid-template-columns: minmax(0, 1fr); }
+  .q-phases .q-phase-label { display: none; }
+}

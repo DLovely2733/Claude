@@ -6,6 +6,37 @@ Official sources:
 - https://www.alberta.ca/curriculum-social-studies
 - https://curriculum.learnalberta.ca/home/en
 
+## Canada Quest (3D)
+
+`index.html#quest` is the 3D learning world, built with three.js.
+
+**Hub.** A plaza with a map of Canada and gateways to five curriculum worlds.
+
+**Inside Canadian Government (G9-LO6) is playable.** It's a civic campus with:
+- the Centre Block and Peace Tower
+- the House of Commons, the Senate and the Crown
+- a seven-step law path
+- a map of Canada you can tap
+- a street of government services
+- a justice quarter: courts, the Charter and the Citizenship Act
+- a riding office and a community square
+
+Six missions run through Discover → Learn → Try → Decide → Show What You Know → Reflect. Together they cover every G9-LO6 statement.
+
+**The other four worlds are labelled "Being built".** Each shows its outcomes and planned missions. They have no fake interactions.
+
+**Ways to explore and supports:**
+- **Guided Adventure:** the camera moves for you.
+- **Free Exploration:** arrow keys or WASD, drag to look, on-screen buttons.
+- **2D mode:** the same missions without 3D. It turns on automatically when WebGL isn't available.
+- **Supports:** subtitles, narration, reduced motion, camera speed, graphics quality and an adult-assisted mode.
+
+Teacher tools have two new pages:
+- **Coverage:** every statement, the experiences that address it, the adapted pathway, the evidence, and a status of Not Built, In Development, Ready for Review or Teacher Approved.
+- **Canada Quest:** assign missions, preview them as the student, see independent versus supported evidence, and generate a mission for any outcome from a linked lesson. Generation uses local templates with no external AI. Generated missions need your approval before students see them.
+
+See `docs/AUDIT-AND-ROADMAP.md` for the architecture and an honest status of each build stage.
+
 ## Student site
 
 `index.html` is the student-facing lesson and activity site for the Canada's Political System unit:

@@ -17,6 +17,7 @@ function initialState() {
     evidence: [], // student responses captured in the player
     ratings: [], // teacher ratings against criteria
     log: [],
+    quest: { missions: {}, assigned: {}, approved: {}, custom: [] }, // Canada Quest progress, assignment and approvals
   };
 }
 

@@ -8,6 +8,7 @@ import { renderPlayer } from './views/player.js';
 import { renderEvidence } from './views/evidence.js';
 import { renderPrint } from './views/print.js';
 import { setRenderer } from './router.js';
+import { renderCoverage, renderQuestMissions } from './views/quest.js';
 
 // Navigation follows the development priority order of the project brief.
 const NAV = [
@@ -18,6 +19,8 @@ const NAV = [
   { path: 'student', label: '4 · Student view' },
   { path: 'evidence', label: '5 · Evidence' },
   { path: 'print', label: '6 · Print & reports' },
+  { path: 'coverage', label: 'Coverage' },
+  { path: 'quest', label: 'Canada Quest' },
 ];
 
 function parseRoute() {
@@ -67,6 +70,8 @@ function render() {
     case 'play': view = renderPlayer(a, b); break;
     case 'evidence': view = renderEvidence(a); break;
     case 'print': view = renderPrint(a, b); break;
+    case 'coverage': view = renderCoverage(); break;
+    case 'quest': view = renderQuestMissions(); break;
     default: view = renderDashboard();
   }
   app.append(view);
