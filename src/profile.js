@@ -28,7 +28,7 @@ export const PROMPT_LEVELS = [
 export const DEFAULT_PROFILE = {
   studentName: '',
   textSupport: 'standard', // standard | plain | plain-symbols | keywords
-  narration: 'off', // off | on-demand | auto
+  narration: 'on-demand', // off | on-demand (🔊 button, nothing plays unless pressed) | auto
   speechRate: 0.9,
   visuals: 'supporting', // minimal | supporting | rich
   pacing: 'section', // one-step | section | full

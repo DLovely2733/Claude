@@ -20,8 +20,15 @@ function shuffle(arr, seed) {
   return a;
 }
 
-export function renderPlayer(lessonId, startAt) {
-  const lesson = getLesson(lessonId);
+/**
+ * @param {string} lessonId
+ * @param {number|string} [startAt] step index
+ * @param {object} [opts] Embedding options used by the student site:
+ *   lesson – a lesson-like object to play instead of a stored lesson (activities);
+ *   site – hide teacher-only controls; renderFinish(result, restart) – custom end screen.
+ */
+export function renderPlayer(lessonId, startAt, opts = {}) {
+  const lesson = opts.lesson || getLesson(lessonId);
   if (!lesson) return empty('Lesson not found.', h('a', { href: '#/student' }, 'Choose a lesson'));
   const p = withDefaults(getState().profile);
   const r = alignmentFor(lesson);
@@ -35,15 +42,20 @@ export function renderPlayer(lessonId, startAt) {
   const steps = lesson.steps || [];
   let index = Math.min(Number(startAt) || 0, steps.length);
 
+  const results = [];
   const record = (step, data) => {
+    // Activity steps file their evidence under the lesson they practise.
+    const target = (step.sourceLessonId && getLesson(step.sourceLessonId)) || lesson;
+    results.push({ stepId: step.id, correct: data.correct });
     update((s) =>
       s.evidence.push({
         id: uid('ev'),
         sessionId,
-        lessonId: lesson.id,
-        lessonTitle: lesson.title,
+        lessonId: target.id,
+        lessonTitle: target.title,
+        activityId: opts.lesson ? lesson.id : undefined,
         stepId: step.id,
-        stepTitle: step.title,
+        stepTitle: opts.lesson ? `${lesson.title}: ${step.title}` : step.title,
         stepKind: step.kind,
         curriculumVersionId: lesson.curriculumVersionId,
         curriculumVersionLabel: lesson.curriculumVersionLabel,
@@ -62,7 +74,8 @@ export function renderPlayer(lessonId, startAt) {
     r.status !== 'verified' ? h('span', { class: 'badge warn', title: r.warnings.map((w) => w.message).join('\n') }, r.status === 'unverified' ? '⛔ No verified curriculum connection' : '⚠ Curriculum link needs review') : h('span', { class: 'badge ok' }, '✔ Curriculum-linked'));
 
   const stage = h('div', { class: 'stage' });
-  root.append(teacherBar, h('h1', { class: 'lesson-title' }, lesson.title), stage);
+  if (!opts.site) root.append(teacherBar);
+  root.append(h('h1', { class: 'lesson-title' }, lesson.title), stage);
 
   function renderStep() {
     stopSpeaking();
@@ -72,6 +85,7 @@ export function renderPlayer(lessonId, startAt) {
       stage.append(finishView());
       return;
     }
+    opts.onStep?.(index);
     if (index >= steps.length) return stage.append(finishView());
     stage.append(progress(), stepView(steps[index], index), navButtons());
     if (p.narration === 'auto') narrate(steps[index]);
@@ -103,7 +117,6 @@ export function renderPlayer(lessonId, startAt) {
         h('h2', {}, st.title),
         p.narration !== 'off' && speechAvailable() ? h('button', { class: 'speak', 'aria-label': 'Read aloud', onclick: () => narrate(st) }, '🔊') : null)
     );
-    if (st.kind === 'connect' && lesson.classConnection) view.append(h('p', { class: 'class-link' }, '🧑‍🤝‍🧑 ', lesson.classConnection));
     const vis = renderVisual(st, p);
     if (vis) view.append(vis);
     if (p.textSupport === 'keywords' && st.keywords?.length && text) {
@@ -113,7 +126,7 @@ export function renderPlayer(lessonId, startAt) {
     }
     if (st.chunks?.length) view.append(chunkList(st));
     if (st.interaction) view.append(interaction(st, i));
-    view.append(teacherSupport(st));
+    if (!opts.site) view.append(teacherSupport(st));
     return view;
   }
 
@@ -363,6 +376,14 @@ export function renderPlayer(lessonId, startAt) {
   }
 
   function finishView() {
+    if (opts.renderFinish) {
+      const scored = results.filter((x) => x.correct === true || x.correct === false);
+      const firstTry = scored.filter((x) => x.correct === true).length;
+      const stars = scored.length ? Math.max(1, Math.round((firstTry / scored.length) * 3)) : 3;
+      const result = { stars, firstTry, scored: scored.length };
+      update((s) => s.evidence.push({ id: uid('ev'), sessionId, type: 'complete', lessonId: opts.lesson ? (steps[0]?.sourceLessonId || lesson.id) : lesson.id, lessonTitle: lesson.title, activityId: opts.lesson ? lesson.id : undefined, stepId: null, stepTitle: `Finished: ${lesson.title}`, response: `${stars} star(s)`, correct: null, stars, statementIds: [], at: new Date().toISOString() }));
+      return opts.renderFinish(result, () => ((index = 0), results.length = 0, renderStep()));
+    }
     return h('div', { class: 'finish' },
       h('p', { class: 'sym huge', 'aria-hidden': 'true' }, '🎉'),
       h('h2', {}, 'You did it!'),

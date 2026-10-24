@@ -6,6 +6,17 @@ Official sources:
 - https://www.alberta.ca/curriculum-social-studies
 - https://curriculum.learnalberta.ca/home/en
 
+## Student site
+
+`index.html` is the student-facing lesson and activity site for the Canada's Political System unit:
+
+- **Lessons:** the five lessons in order, played by the accessible lesson player, with progress stars.
+- **Activities:** Federal or Provincial?, Bill to Law (short version and all seven official steps), Elected or Appointed?, Rights and Responsibilities, and a Review Quiz built from the lessons' questions. Each activity cites the G9-LO6 statements it practises.
+- **Supports:** read-aloud, plain language and symbols, text size, number of answer choices, step size, high contrast and reduced motion. These are the same settings as Teacher tools → Student settings.
+- **For teachers:** the official G9-LO6 wording, the statements each lesson and activity covers, and a link to the teacher tools (`teacher.html`).
+
+The site reads lessons from the same browser storage as the teacher tools, so lesson edits appear on the site and student responses show up under Evidence. Activity responses are filed under the lesson they practise.
+
 ## Curriculum integrity
 
 - **The June 2026 draft is included as a word-for-word extract** (`curriculum/draft-2026-06-ss7-9.json`). It comes from the teacher-supplied *Social_Studies_7_9-2026-10-24.pdf* (12 pages, Government of Alberta): 7 Grade 9 learning outcomes and 147 Knowledge, Understanding and Skills & Procedures statements, with page references. Load it from the Dashboard or the Curriculum page. You can also upload the PDF in the app yourself; the browser extraction produces an identical result.
@@ -52,7 +63,7 @@ Each lesson shows **⚠ needs review** until you tick "Checked against the sourc
 The app is static HTML/JS with no build step. Data stays in the browser's local storage, so use **Dashboard → Export backup** regularly.
 
 ```bash
-npm start      # serves on http://localhost:8080
+npm start      # student site on http://localhost:8080, teacher tools at /teacher.html
 npm test       # unit tests for extraction, diffing, alignment, generation
 npm install && npm run extract -- <file.pdf> <out.json> <version-id> "<label>"
                # maintainers: re-extract a curriculum PDF into a loadable version file

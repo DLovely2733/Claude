@@ -15,9 +15,14 @@ createServer(async (req, res) => {
   const file = normalize(join(root, urlPath === '/' ? 'index.html' : urlPath));
   if (!file.startsWith(root)) return res.writeHead(403).end();
   try {
-    const body = await readFile(file);
+    let body = await readFile(file);
+    // index.html is written as artifact page content (no document skeleton);
+    // add the same minimal skeleton the artifact host adds when published.
+    if (extname(file) === '.html' && !/^\s*<!doctype/i.test(body.toString('utf8', 0, 64))) {
+      body = Buffer.concat([Buffer.from('<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"></head><body>'), body, Buffer.from('</body></html>')]);
+    }
     res.writeHead(200, { 'content-type': types[extname(file)] || 'application/octet-stream' }).end(body);
   } catch {
     res.writeHead(404).end('Not found');
   }
-}).listen(port, () => console.log(`Grade 9 Social Studies app: http://localhost:${port}`));
+}).listen(port, () => console.log(`Student site: http://localhost:${port}/  ·  Teacher tools: http://localhost:${port}/teacher.html`));
