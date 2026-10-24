@@ -36,6 +36,10 @@ export function areaName(id) {
   return CONTENT_AREAS.find((a) => a.id === id)?.name || 'Unassigned';
 }
 
+export function areaNames(ids) {
+  return ids?.length ? ids.map(areaName).join(' · ') : 'Unassigned';
+}
+
 export function typeLabel(key) {
   return STATEMENT_TYPES[key]?.label || key;
 }

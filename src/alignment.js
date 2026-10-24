@@ -36,7 +36,7 @@ export function checkAlignment(lesson, { versions = [], activeVersionId = null, 
   } else if (!lesson.curriculumVersionId) {
     add('error', 'NO_VERSION', 'This lesson is not linked to a curriculum version.');
   } else if (!version) {
-    add('error', 'VERSION_MISSING', `The curriculum version this lesson was created from (${lesson.curriculumVersionLabel || lesson.curriculumVersionId}) is no longer stored.`);
+    add('error', 'VERSION_MISSING', `The curriculum version this lesson was created from (${lesson.curriculumVersionLabel || lesson.curriculumVersionId}) is not loaded. Load it in Curriculum (for the June 2026 draft: “Load the June 2026 draft”), or move this lesson to a loaded version in Curriculum → Compare versions.`);
   } else if (activeVersionId && version.id !== activeVersionId) {
     const active = versions.find((v) => v.id === activeVersionId);
     add('warn', 'STALE_VERSION', `Created from “${version.label}”. The active curriculum is “${active?.label || activeVersionId}”. Review changes in Curriculum → Compare versions.`);

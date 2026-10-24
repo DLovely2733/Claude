@@ -3,14 +3,14 @@
 import { h, field, select, input, textarea, checkbox, toast, modal, badge } from '../ui.js';
 import { getState, update, activeVersion, getLesson, restoreDemoLessons } from '../store.js';
 import { go, rerender } from '../router.js';
-import { CONTENT_AREAS, STATEMENT_KEYS, STATEMENT_TYPES, findOutcome, findStatement } from '../curriculum/model.js';
+import { CONTENT_AREAS, STATEMENT_KEYS, STATEMENT_TYPES, findOutcome, findStatement, areasOf } from '../curriculum/model.js';
 import { generateLesson } from '../generator.js';
 import { activityStatementIds } from '../alignment.js';
 import { suggestOutcomes, suggestStatements } from '../linking.js';
 import { RESPONSE_MODES, withDefaults } from '../profile.js';
 import { VISUAL_TYPES } from '../visuals.js';
 import { uid, clone } from '../util.js';
-import { alignmentFor, statusBadge, alignmentAlert, areaName, pageHeader, empty, typeLabel } from './common.js';
+import { alignmentFor, statusBadge, alignmentAlert, areaNames, pageHeader, empty, typeLabel } from './common.js';
 
 // ---------------------------------------------------------------------------
 // List
@@ -81,7 +81,7 @@ export function renderNewLesson(outcomeId) {
       o.organizingIdea ? h('p', {}, h('strong', {}, 'Organizing Idea: '), o.organizingIdea) : null,
       o.guidingQuestion ? h('p', {}, h('strong', {}, 'Guiding Question: '), o.guidingQuestion) : null,
       h('p', { class: 'lo' }, h('strong', {}, 'Learning Outcome: '), o.text),
-      h('p', {}, badge(areaName(o.contentAreaId), o.contentAreaId ? 'neutral' : 'warn')),
+      h('p', {}, badge(areaNames(areasOf(o)), areasOf(o).length ? 'neutral' : 'warn')),
       h('div', { class: 'grid3' }, STATEMENT_KEYS.map((k) =>
         h('div', {},
           h('h4', {}, STATEMENT_TYPES[k].label),
@@ -100,7 +100,7 @@ export function renderNewLesson(outcomeId) {
       onclick: () => {
         if (!draftNew.statementIds.size) return toast('Select at least one knowledge, understanding or skills statement.', 'warn');
         const lesson = generateLesson({ version: v, outcomeId: o.id, statementIds: [...draftNew.statementIds], profile: p, goalIds: [...draftNew.goalIds], title: draftNew.title || o.guidingQuestion, classActivity: draftNew.classActivity });
-        lesson.unit = o.contentAreaId;
+        lesson.unit = areasOf(o)[0] || null;
         update((s) => s.lessons.push(lesson), `Generated lesson “${lesson.title}” from ${o.id}`);
         Object.assign(draftNew, { outcomeId: null, statementIds: new Set(), goalIds: new Set(), title: '', classActivity: '' });
         toast('Draft lesson created. Complete the plain-language explanations and decision options marked “teacher review”.', 'info');

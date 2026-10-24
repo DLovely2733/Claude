@@ -8,7 +8,8 @@ Official sources:
 
 ## Curriculum integrity
 
-- **The app ships with no curriculum wording.** You load the official draft (PDF, saved web page, text or JSON), and the app extracts every Organizing Idea, Guiding Question, Learning Outcome, and Knowledge, Understanding and Skills & Procedures statement word for word, with page references.
+- **The June 2026 draft is included as a word-for-word extract** (`curriculum/draft-2026-06-ss7-9.json`). It comes from the teacher-supplied *Social_Studies_7_9-2026-10-24.pdf* (12 pages, Government of Alberta): 7 Grade 9 learning outcomes and 147 Knowledge, Understanding and Skills & Procedures statements, with page references. Load it from the Dashboard or the Curriculum page. You can also upload the PDF in the app yourself; the browser extraction produces an identical result.
+- To load any other curriculum, upload the official document (PDF, saved web page, text or JSON). The app extracts every Organizing Idea, Guiding Question, Learning Outcome and statement word for word, with page references.
 - If the curriculum can't be retrieved automatically (government sites usually block in-browser downloads), the app asks you to upload an authorized copy. It never falls back to the 2005 curriculum and never makes up outcomes.
 - Every extracted outcome starts as **Needs review**. Check it against the source ("Show source" displays the extracted page text) and mark it verified. Fixes to extraction errors are recorded next to the extracted wording.
 - Every lesson records which curriculum version it was created from. A lesson with no verified link shows **⛔ No verified curriculum connection**. One that needs review (an unverified outcome, an activity with no link, an older version) shows **⚠**.
@@ -42,7 +43,9 @@ Five sample lessons are included:
 4. How do government decisions affect our communities?
 5. Apply your learning: Make a decision for your community.
 
-Their instruction is general Canadian civics written for accessible delivery. **They deliberately ship without curriculum links:** after you upload and verify the official draft, open each lesson and link its Grade 9 outcome and statements. The editor suggests likely matches, and you confirm them. Until then, each lesson shows the unverified warning.
+All five are linked to the official Grade 9 outcome **G9-LO6**: "Students analyze how power is distributed and exercised in Canada's government, including how laws are made and how rights are protected." Every activity, essential concept and assessment criterion traces to specific G9-LO6 knowledge, understanding and skills statements (e.g. G9-LO6-K8, the formal legislative process). The lesson content follows the official statements, such as the federal and provincial responsibility lists and the steps from bill drafting to Royal Assent.
+
+Each lesson shows **⚠ needs review** until you tick "Checked against the source document" for G9-LO6 in Curriculum → Review. After that, all five show **✔ Verified curriculum connection**.
 
 ## Running
 
@@ -51,6 +54,8 @@ The app is static HTML/JS with no build step. Data stays in the browser's local 
 ```bash
 npm start      # serves on http://localhost:8080
 npm test       # unit tests for extraction, diffing, alignment, generation
+npm install && npm run extract -- <file.pdf> <out.json> <version-id> "<label>"
+               # maintainers: re-extract a curriculum PDF into a loadable version file
 ```
 
 It can also be hosted on any static web server. PDF text extraction uses a vendored copy of pdf.js (`vendor/pdfjs`, Apache-2.0).
@@ -59,6 +64,7 @@ It can also be hosted on any static web server. PDF text extraction uses a vendo
 
 | Path | Purpose |
 | --- | --- |
+| `curriculum/draft-2026-06-ss7-9.json` | June 2026 draft, Grade 9: the verbatim extract |
 | `src/curriculum/parser.js` | Column-aware PDF layout plus a structure parser that keeps wording verbatim |
 | `src/curriculum/diff.js` | Version comparison and lesson impact |
 | `src/curriculum/model.js` | Content areas, statement types, lookups |

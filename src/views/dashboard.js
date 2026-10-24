@@ -1,7 +1,8 @@
 import { h, toast, modal, download, badge } from '../ui.js';
 import { getState, activeVersion, exportBackup, importBackup, resetAll } from '../store.js';
 import { rerender } from '../router.js';
-import { CONTENT_AREAS, TARGET_CURRICULUM, OFFICIAL_SOURCES } from '../curriculum/model.js';
+import { loadBundledCurriculum } from './curriculum.js';
+import { CONTENT_AREAS, TARGET_CURRICULUM, OFFICIAL_SOURCES, areasOf } from '../curriculum/model.js';
 import { alignmentFor, statusBadge, pageHeader } from './common.js';
 
 export function renderDashboard() {
@@ -36,16 +37,16 @@ export function renderDashboard() {
     h('div', { class: 'card' },
       h('h2', {}, 'Getting started'),
       h('ol', { class: 'checklist' },
-        step(Boolean(s.versions.length), h('span', {}, 'Upload the June 2026 draft Grade 7–9 Social Studies curriculum (', OFFICIAL_SOURCES.map((x, i) => [i ? ', ' : '', h('a', { href: x.url, target: '_blank', rel: 'noopener' }, x.label)]), ').')),
+        step(Boolean(s.versions.length), h('span', {}, 'Load the June 2026 draft Grade 7–9 Social Studies curriculum (', OFFICIAL_SOURCES.map((x, i) => [i ? ', ' : '', h('a', { href: x.url, target: '_blank', rel: 'noopener' }, x.label)]), '). ', s.versions.length ? null : h('button', { class: 'small', onclick: loadBundledCurriculum }, 'Load June 2026 draft'))),
         step(g9.length > 0 && g9.every((o) => o.verified), h('span', {}, 'Review extracted Grade 9 outcomes against the source and assign content areas. ', v ? h('a', { href: `#/curriculum/review/${v.id}` }, 'Review →') : null)),
         step(Boolean(s.profile.studentName || (s.profile.goals || []).length), h('span', {}, 'Set the student’s supports and individualized goals. ', h('a', { href: '#/settings' }, 'Settings →'))),
-        step(results.some(({ l, r }) => l.origin === 'demo' && r.status !== 'unverified'), h('span', {}, 'Link the five “Canada’s Political System” demo lessons to their verified Grade 9 outcomes. ', h('a', { href: '#/lessons' }, 'Lessons →'))),
+        step(results.some(({ l, r }) => l.origin === 'demo' && r.status === 'verified'), h('span', {}, 'Verify G9-LO6 so the five “Canada’s Political System” demo lessons have a verified connection. ', h('a', { href: '#/lessons' }, 'Lessons →'))),
         step(s.lessons.some((l) => l.origin === 'generated'), h('span', {}, 'Create a lesson from any Grade 9 outcome. ', h('a', { href: '#/new-lesson' }, 'New lesson →'))))),
 
     h('h2', {}, 'Content areas'),
     h('div', { class: 'area-grid' }, CONTENT_AREAS.map((a) => {
       const ls = results.filter(({ l }) => l.unit === a.id);
-      const outs = g9.filter((o) => o.contentAreaId === a.id);
+      const outs = g9.filter((o) => areasOf(o).includes(a.id));
       return h('div', { class: 'card area' },
         h('h3', {}, a.name),
         h('p', { class: 'help' }, a.scope),

@@ -9,7 +9,11 @@ import { suggestContentAreas } from '../src/curriculum/model.js';
 import { DEMO_LESSONS } from '../src/demo/politicalSystemUnit.js';
 import { limitChoices, DEFAULT_PROFILE } from '../src/profile.js';
 import { clone } from '../src/util.js';
-import { SAMPLE_TEXT, samplePdfPages } from './fixtures.js';
+import { SAMPLE_TEXT, samplePdfPages, officialLayoutPages } from './fixtures.js';
+import { readFileSync } from 'node:fs';
+import { findStatement } from '../src/curriculum/model.js';
+
+const bundled = JSON.parse(readFileSync(new URL('../curriculum/draft-2026-06-ss7-9.json', import.meta.url)));
 
 const version = (id, outcomes, label = id) => ({ id, label, outcomes });
 
@@ -92,14 +96,40 @@ function verifiedVersion() {
   return version('v1', outcomes, 'Fixture v1');
 }
 
-test('demo lessons warn until linked to a verified curriculum', () => {
-  for (const l of DEMO_LESSONS) {
-    const r = checkAlignment(l, { versions: [], activeVersionId: null });
-    assert.equal(r.status, 'unverified');
-    assert.ok(r.warnings.some((w) => w.code === 'NO_CURRICULUM'));
-    assert.ok(r.warnings.some((w) => w.code === 'NO_OUTCOME'));
-  }
-  assert.equal(DEMO_LESSONS.length, 5);
+test('official PDF table layout: paragraphs, sub-item bullets, page continuation, footers', () => {
+  const lines = layoutPdfPages(officialLayoutPages());
+  assert.ok(!lines.some((l) => /Page \d/.test(l.text)), 'long running footer removed');
+  const { outcomes } = parseCurriculumText(lines);
+  assert.equal(outcomes.length, 2);
+  const [o] = outcomes;
+  assert.equal(o.organizingIdea, 'Fixture Idea: Exploring fixture things.');
+  assert.equal(o.guidingQuestion, 'How do fixtures work?');
+  assert.equal(o.text, 'Students examine fixtures.');
+  assert.deepEqual(o.knowledge.map((x) => x.text), [
+    'First fixture knowledge that wraps onto a second line.',
+    'Fixture knowledge with a list, including\n• first item that wraps onto a second line\n• second item',
+    'A statement that continues onto the next page.',
+    'A final fixture statement.',
+  ]);
+  assert.deepEqual(o.understanding.map((x) => x.text), ['Fixture understanding.']);
+  assert.deepEqual(o.skills.map((x) => x.text), ['Relate fixture skill one.', 'Explain fixture skill two.']);
+  assert.equal(o.knowledge[3].sourcePage, 2);
+});
+
+test('bundled June 2026 Grade 9 extract matches the source document', () => {
+  assert.equal(bundled.id, 'ab-ss79-draft-2026-06');
+  assert.equal(bundled.outcomes.length, 7);
+  assert.ok(bundled.outcomes.every((o) => o.grade === 9 && !o.verified));
+  const counts = bundled.outcomes.map((o) => [o.knowledge.length, o.understanding.length, o.skills.length]);
+  assert.deepEqual(counts, [[6, 1, 6], [6, 1, 4], [7, 1, 5], [22, 1, 9], [8, 1, 8], [23, 1, 9], [17, 1, 10]]);
+  const lo6 = bundled.outcomes[5];
+  assert.equal(lo6.text, 'Students analyze how power is distributed and exercised in Canada’s government, including how laws are made and how rights are protected.');
+  assert.equal(lo6.guidingQuestion, 'How is power organized and exercised in Canada’s system of government?');
+  assert.ok(lo6.knowledge[7].text.startsWith('Laws are created through a formal legislative process, including\n• bill drafting\n• first reading (introduction)'));
+  for (const o of bundled.outcomes) for (const k of ['knowledge', 'understanding', 'skills']) for (const st of o[k]) assert.ok(!/Page \d+|©2026/.test(st.text), st.id);
+});
+
+test('demo lessons link to real G9-LO6 statements and are verified once the teacher verifies the outcome', () => {
   assert.deepEqual(DEMO_LESSONS.map((l) => l.title), [
     'Who makes decisions in Canada?',
     'What do federal and provincial governments do?',
@@ -107,6 +137,22 @@ test('demo lessons warn until linked to a verified curriculum', () => {
     'How do government decisions affect our communities?',
     'Apply your learning: Make a decision for your community',
   ]);
+  const v = clone(bundled);
+  for (const l of DEMO_LESSONS) {
+    for (const id of l.curriculumLinks.statementIds) assert.ok(findStatement(v, id), `${l.id} links ${id}`);
+    // Without curriculum: unverified. With unverified curriculum: needs review.
+    assert.equal(checkAlignment(l, { versions: [], activeVersionId: null }).status, 'unverified');
+    const r = checkAlignment(l, { versions: [v], activeVersionId: v.id });
+    assert.equal(r.status, 'partial');
+    assert.ok(r.warnings.some((w) => w.code === 'UNVERIFIED_OUTCOME'));
+  }
+  v.outcomes.find((o) => o.id === 'G9-LO6').verified = true;
+  for (const l of DEMO_LESSONS) {
+    const r = checkAlignment(l, { versions: [v], activeVersionId: v.id, profile: DEFAULT_PROFILE });
+    assert.deepEqual(r.warnings.filter((w) => w.level !== 'info'), [], l.title);
+    assert.equal(r.status, 'verified');
+    assert.ok(r.trace.every((t) => t.statements.length && t.statements.every((x) => x.outcomeId === 'G9-LO6')));
+  }
 });
 
 test('generated lesson traces every activity and is verified once statements are verified', () => {

@@ -23,10 +23,18 @@ function initialState() {
 let state = load();
 const listeners = new Set();
 
+// Demo lessons saved by an earlier build (before they were linked to the
+// official curriculum) are replaced unless the teacher has edited them.
+function migrate(s) {
+  const fresh = new Map(DEMO_LESSONS.map((l) => [l.id, l]));
+  s.lessons = s.lessons.map((l) => (l.origin === 'demo' && !l.curriculumVersionId && l.updatedAt === '2026-10-23T00:00:00.000Z' && fresh.has(l.id) ? clone(fresh.get(l.id)) : l));
+  return s;
+}
+
 function load() {
   try {
     const raw = globalThis.localStorage?.getItem(KEY);
-    if (raw) return { ...initialState(), ...JSON.parse(raw) };
+    if (raw) return migrate({ ...initialState(), ...JSON.parse(raw) });
   } catch (e) {
     console.warn('Could not read saved data', e);
   }
@@ -80,6 +88,16 @@ export function importBackup(json) {
   state = { ...initialState(), ...data.state };
   persist();
   for (const l of listeners) l(state);
+}
+
+/** Add a curriculum version (e.g. the bundled June 2026 extract). */
+export function addVersion(version, logMessage) {
+  if (state.versions.some((v) => v.id === version.id)) return false;
+  update((s) => {
+    s.versions.push(version);
+    if (!s.activeVersionId) s.activeVersionId = version.id;
+  }, logMessage || `Added curriculum version ${version.label}`);
+  return true;
 }
 
 export function restoreDemoLessons() {

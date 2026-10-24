@@ -90,3 +90,40 @@ export function samplePdfPages() {
     { pageNumber: 3, items: [...header(10), item('Fixture closing note', 40, 40)] },
   ];
 }
+
+/**
+ * Synthetic pages mimicking the official June 2026 PDF table layout: label
+ * column + value, centred K/U/S headers, statements separated by blank space,
+ * bullets as sub-items, a statement continuing onto the next page under a
+ * repeated "Grade 9" header, and a long running footer.
+ */
+export function officialLayoutPages() {
+  const item = (str, x, y, width = str.length * 4.5) => ({ str, x, y, width, height: 9.75 });
+  const footer = (n) => [item('©2026 Fixture Government | Fixture Department', 30, 560), item(`Fixture Curriculum: Optional Fixture Piloting in 2026–27 Page ${n}`, 400, 560, 300)];
+  const top = [item('Draft Fixture (7–9) Curriculum', 300, 20), item('Grade 9', 520, 60)];
+  return [
+    {
+      pageNumber: 1, height: 612,
+      items: [
+        ...top,
+        item('Organizing Idea', 30, 80), item('Fixture Idea: Exploring fixture things.', 166, 80),
+        item('Guiding Question', 30, 100), item('How do fixtures work?', 166, 100),
+        item('Learning Outcome', 30, 120), item('Students examine fixtures.', 166, 120),
+        item('Knowledge', 312, 140, 48), item('Understanding', 650, 140, 63), item('Skills & Procedures', 985, 140, 84),
+        item('First fixture knowledge that wraps onto', 171, 160), item('Fixture understanding.', 517, 160), item('Relate fixture skill one.', 862, 160),
+        item('a second line.', 171, 171),
+        item('Fixture knowledge with a list, including', 171, 192), item('Explain fixture skill two.', 862, 192),
+        item('• first item that wraps', 171, 203),
+        item('onto a second line', 180, 214),
+        item('• second item', 171, 225),
+        item('A statement that continues', 171, 246),
+        ...footer(1),
+      ],
+    },
+    {
+      pageNumber: 2, height: 612,
+      items: [...top, item('onto the next page.', 171, 80), item('A final fixture statement.', 171, 101), ...footer(2)],
+    },
+    { pageNumber: 3, height: 612, items: [...top, item('Organizing Idea', 30, 80), item('Second Idea: More fixtures.', 166, 80), item('Learning Outcome', 30, 120), item('Students test more fixtures.', 166, 120), ...footer(3)] },
+  ];
+}

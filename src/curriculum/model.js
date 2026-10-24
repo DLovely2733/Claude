@@ -11,6 +11,16 @@ export const OFFICIAL_SOURCES = [
   { label: 'LearnAlberta – New LearnAlberta curriculum', url: 'https://curriculum.learnalberta.ca/home/en' },
 ];
 
+// The June 2026 draft as extracted (verbatim) from the copy supplied by the
+// teacher, generated with scripts/extract-curriculum.mjs. Loading it is a
+// teacher action; every outcome still has to be verified against the source.
+export const BUNDLED_CURRICULUM = {
+  id: 'ab-ss79-draft-2026-06',
+  label: 'Draft Social Studies (7–9), June 2026 – Grade 9',
+  path: 'curriculum/draft-2026-06-ss7-9.json',
+  source: 'Social_Studies_7_9-2026-10-24.pdf (12 pages, Government of Alberta, June 2026 draft)',
+};
+
 export const TARGET_CURRICULUM = {
   subject: 'Social Studies',
   grade: 9,
@@ -27,31 +37,31 @@ export const CONTENT_AREAS = [
     id: 'urbanization',
     name: 'Canadian Urbanization and Growth',
     scope: 'Postwar immigration, population movement, urbanization and the transformation of Canadian industries.',
-    keywords: ['urban', 'urbanization', 'city', 'cities', 'immigration', 'immigrant', 'population', 'migration', 'industry', 'industries', 'industrial', 'postwar', 'growth', 'rural', 'economy'],
+    keywords: ['urban', 'urbanization', 'urbanized', 'city', 'cities', 'immigration', 'immigrants', 'population', 'migration', 'migrate', 'industry', 'industries', 'industrial', 'suburbs', 'growth', 'rural', 'demographics', 'petroleum', 'sectors'],
   },
   {
     id: 'collective-security',
     name: 'Canadian Collective Security',
     scope: 'Canada’s role and contributions during the Second World War and Canadian involvement in international affairs after the war.',
-    keywords: ['war', 'second', 'world', 'military', 'security', 'collective', 'nato', 'united', 'nations', 'peacekeeping', 'international', 'alliance', 'korea', 'cold', 'veterans', 'conflict'],
+    keywords: ['military', 'security', 'collective', 'nato', 'norad', 'peacekeeping', 'peace', 'international', 'alliance', 'allied', 'korean', 'cold', 'battle', 'battles', 'armed', 'forces', 'defence', 'wwii', 'navies', 'diplomacy', 'global'],
   },
   {
     id: 'government-policies',
     name: 'Canadian Government Policies',
     scope: 'Changes to Canada’s constitution, residential schools, trade agreements and their consequences.',
-    keywords: ['constitution', 'constitutional', 'patriation', 'residential', 'schools', 'trade', 'agreement', 'agreements', 'policy', 'policies', 'consequences', 'reconciliation', 'nafta', 'free'],
+    keywords: ['constitution', 'constitutional', 'patriation', 'residential', 'sixties', 'scoop', 'trade', 'agreement', 'agreements', 'policy', 'policies', 'nafta', 'free', 'autonomy', 'sovereign', 'sovereignty', 'statute', 'independence', 'program', 'programs'],
   },
   {
     id: 'political-system',
     name: 'Canada’s Political System',
     scope: 'Government organization, federal and provincial powers, and the process of creating legislation.',
-    keywords: ['government', 'governments', 'federal', 'provincial', 'municipal', 'legislation', 'legislative', 'parliament', 'parliamentary', 'law', 'laws', 'bill', 'jurisdiction', 'powers', 'democracy', 'democratic', 'political', 'accountability', 'elected', 'senate', 'commons'],
+    keywords: ['federal', 'provincial', 'municipal', 'legislative', 'parliament', 'parliamentary', 'laws', 'bill', 'jurisdiction', 'power', 'powers', 'accountability', 'accountable', 'elected', 'senate', 'commons', 'riding', 'judiciary', 'courts', 'crown', 'responsible'],
   },
   {
     id: 'citizenship',
     name: 'Citizenship in Canada',
     scope: 'The expansion of citizenship and rights, immigration, multiculturalism, and Canadian rights and responsibilities.',
-    keywords: ['citizenship', 'citizen', 'citizens', 'rights', 'responsibilities', 'multiculturalism', 'multicultural', 'pluralism', 'charter', 'freedoms', 'vote', 'franchise', 'immigration', 'identity'],
+    keywords: ['citizenship', 'citizen', 'citizens', 'rights', 'responsibilities', 'multiculturalism', 'multicultural', 'pluralism', 'charter', 'freedoms', 'suffrage', 'franchise', 'immigration', 'immigrants', 'advocacy', 'equality'],
   },
 ];
 
@@ -101,6 +111,20 @@ export function suggestContentAreas(outcome) {
   })
     .filter((s) => s.score > 0)
     .sort((a, b) => b.score - a.score);
+}
+
+/**
+ * Content areas proposed for an outcome: the best match plus any area scoring
+ * at least 35% of it (outcomes often span several areas).
+ */
+export function suggestedAreaIds(outcome) {
+  const s = suggestContentAreas(outcome);
+  return s.filter((x) => x.score >= s[0].score * 0.35).map((x) => x.areaId);
+}
+
+/** Content areas assigned to an outcome (supports the older single-area field). */
+export function areasOf(outcome) {
+  return outcome?.contentAreaIds || (outcome?.contentAreaId ? [outcome.contentAreaId] : []);
 }
 
 /** Outcome is usable for verified lesson links only after teacher verification. */

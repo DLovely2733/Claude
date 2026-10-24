@@ -5,7 +5,7 @@
 // subject knowledge (plain-language explanations, decision options) is left as
 // a clearly marked draft for the teacher to complete in the editor.
 
-import { findOutcome, findStatement } from './curriculum/model.js';
+import { findOutcome, findStatement, areasOf } from './curriculum/model.js';
 import { withDefaults, RESPONSE_MODES } from './profile.js';
 import { uid } from './util.js';
 
@@ -186,7 +186,7 @@ export function generateLesson({ version, outcomeId, statementIds, profile, goal
   return {
     id: uid('lesson'),
     title: title || `Lesson: ${outcome.guidingQuestion || outcome.text.slice(0, 60)}`,
-    unit: version.outcomes.find((o) => o.id === outcomeId)?.contentAreaId || null,
+    unit: areasOf(outcome)[0] || null,
     curriculumVersionId: version.id,
     curriculumVersionLabel: version.label,
     curriculumLinks: { outcomeIds: [outcome.id], statementIds: selected.map((s) => s.statement.id) },

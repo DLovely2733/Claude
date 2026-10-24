@@ -55,7 +55,8 @@ function isStructural(text) {
 /**
  * @param {Array<{pageNumber:number, height?:number, items:Array<{str:string,x:number,y:number,width?:number,height?:number}>}>} pages
  *   Item `y` is measured from the top of the page.
- * @returns {Array<{text:string, page:number}>}
+ * @returns {Array<{text:string, page:number, para?:boolean}>} `para` marks the
+ *   first line of a paragraph inside a K/U/S table column.
  */
 export function layoutPdfPages(pages, { gutter = 14 } = {}) {
   const pageLines = pages.map((p) => ({ page: p.pageNumber, height: p.height || 0, lines: groupLines(p.items, gutter) }));
@@ -70,18 +71,22 @@ export function layoutPdfPages(pages, { gutter = 14 } = {}) {
     }
   }
   const threshold = Math.max(3, Math.ceil(pages.length * 0.4));
-  const isNoise = (l) => {
+  const isNoise = (l, pageHeight) => {
     const t = l.text.trim();
     if (!t) return true;
     if (/^(page\s*)?\d+(\s*(of|\/)\s*\d+)?$/i.test(t)) return true;
     if (GRADE_RE.test(t) && t.length <= 40) return false;
-    if (isStructural(t)) return false;
+    if (isStructural(t) || detectColumnHeaders(l)) return false;
     const key = t.replace(/\d+/g, '#').toLowerCase();
-    return pages.length >= 3 && (freq.get(key) || 0) >= threshold && t.split(/\s+/).length <= 14;
+    // Long repeated lines are only noise inside the top/bottom page margins
+    // (running headers and footers).
+    const inMargin = pageHeight > 0 && (l.y < pageHeight * 0.1 || l.y > pageHeight * 0.9);
+    return pages.length >= 3 && (freq.get(key) || 0) >= threshold && (t.split(/\s+/).length <= 14 || inMargin);
   };
 
   const out = [];
-  let columns = null; // [{kind, x, lines:[]}]
+  let columns = null; // [{kind, left, lines:[], lastY, lastPage}]
+  let lastGrade = null;
   const flush = () => {
     if (!columns) return;
     for (const col of columns) {
@@ -93,12 +98,20 @@ export function layoutPdfPages(pages, { gutter = 14 } = {}) {
 
   for (const p of pageLines) {
     for (const line of p.lines) {
-      if (isNoise(line)) continue;
+      if (isNoise(line, p.height)) continue;
       const headers = detectColumnHeaders(line);
       if (headers) {
-        // A repeated header row on a continuation page keeps the same table.
-        if (!columns) columns = headers.map((h) => ({ ...h, page: p.page, lines: [] }));
+        // A repeated header row on a continuation page keeps the same table;
+        // the first line under it starts a new statement.
+        if (!columns) columns = headers.map((h) => ({ ...h, page: p.page, lines: [], lastY: null, lastPage: null }));
+        else for (const col of columns) col.lastY = null;
         continue;
+      }
+      const grade = line.text.match(GRADE_RE);
+      if (grade && line.text.length <= 40) {
+        // Tables repeat their "Grade N" header on continuation pages.
+        if (columns && Number(grade[1]) === lastGrade) continue;
+        lastGrade = Number(grade[1]);
       }
       if (columns && isStructural(line.text)) flush();
       if (columns) {
@@ -112,7 +125,15 @@ export function layoutPdfPages(pages, { gutter = 14 } = {}) {
         }
         for (const [col, items] of buckets) {
           const text = joinItems(items);
-          if (text) col.lines.push({ text, page: p.page });
+          if (!text) continue;
+          // A vertical gap larger than normal line spacing starts a new
+          // paragraph (= a new statement). The first line on a continuation
+          // page continues the previous statement.
+          const h = Math.max(...items.map((i) => i.height));
+          const para = col.lastY == null || (col.lastPage === p.page && line.y - col.lastY > h * 1.5);
+          col.lines.push({ text, page: p.page, para });
+          col.lastY = line.y;
+          col.lastPage = p.page;
         }
       } else {
         out.push({ text: line.text, page: p.page });
@@ -173,14 +194,18 @@ function detectColumnHeaders(line) {
   for (const seg of line.segments) {
     const h = COLUMN_HEADERS.find((c) => c.re.test(seg.text));
     if (!h) return null;
-    found.push({ kind: h.kind, x: seg.x });
+    found.push({ kind: h.kind, x: seg.x, center: (seg.x + seg.end) / 2 });
   }
-  return found.sort((a, b) => a.x - b.x);
+  found.sort((a, b) => a.x - b.x);
+  // Column boundaries sit midway between header centres, which works whether
+  // headers are left-aligned or centred over their cells.
+  found.forEach((c, i) => (c.left = i === 0 ? -Infinity : (found[i - 1].center + c.center) / 2));
+  return found;
 }
 
 function pickColumn(columns, x) {
   let best = columns[0];
-  for (const c of columns) if (x + 12 >= c.x) best = c;
+  for (const c of columns) if (x >= c.left) best = c;
   return best;
 }
 
@@ -203,12 +228,38 @@ export function htmlToText(html) {
 }
 
 /**
- * @param {string|Array<{text:string,page?:number}>} input
+ * Split pasted/plain text into lines. When blank lines separate paragraphs
+ * inside the text, they are kept as paragraph markers (one statement per
+ * paragraph, as in the official tables).
+ */
+function textToLines(text) {
+  const raw = text.split(/\r?\n/);
+  const first = raw.findIndex((l) => l.trim());
+  const usesBlankLines = raw.some((l, i) => i > first && !l.trim() && raw.slice(i + 1).some((x) => x.trim()));
+  const out = [];
+  let afterBlank = true;
+  for (const l of raw) {
+    if (!l.trim()) {
+      afterBlank = true;
+      continue;
+    }
+    out.push({ text: l, page: null, para: usesBlankLines ? afterBlank || isHeadingLine(l) : undefined });
+    afterBlank = false;
+  }
+  return out;
+}
+
+function isHeadingLine(l) {
+  return classifyLine(l).kind !== 'text';
+}
+
+/**
+ * @param {string|Array<{text:string,page?:number,para?:boolean}>} input
  * @returns {{outcomes:Array, warnings:string[], stats:object}}
  */
 export function parseCurriculumText(input) {
-  const lines = (typeof input === 'string' ? input.split(/\r?\n/).map((text) => ({ text, page: null })) : input)
-    .map((l) => ({ text: l.text.replace(/\s+/g, ' ').trim(), page: l.page ?? null }))
+  const lines = (typeof input === 'string' ? textToLines(input) : input)
+    .map((l) => ({ text: l.text.replace(/\s+/g, ' ').trim(), page: l.page ?? null, para: l.para }))
     .filter((l) => l.text);
 
   const outcomes = [];
@@ -237,7 +288,7 @@ export function parseCurriculumText(input) {
       knowledge: [],
       understanding: [],
       skills: [],
-      contentAreaId: null,
+      contentAreaIds: [],
       verified: false,
     };
     outcomes.push(outcome);
@@ -251,13 +302,14 @@ export function parseCurriculumText(input) {
     if (prop === 'text' && 'extractedText' in target) target.extractedText = target.text;
   };
 
-  for (const { text, page } of lines) {
+  for (const { text, page, para } of lines) {
     const c = classifyLine(text);
     if (c.kind === 'grade') {
-      if (ctx.grade !== c.grade) {
-        ctx.organizingIdea = '';
-        ctx.guidingQuestion = '';
-      }
+      // A repeated heading for the same grade (e.g. a table header on every
+      // page) does not interrupt the outcome in progress.
+      if (ctx.grade === c.grade && !c.rest) continue;
+      ctx.organizingIdea = '';
+      ctx.guidingQuestion = '';
       ctx.grade = c.grade;
       field = null;
       section = null;
@@ -302,9 +354,22 @@ export function parseCurriculumText(input) {
       const body = b ? text.slice(b[0].length).trim() : text;
       if (!body) continue;
       const level = b && (b[2] || b[3] || b[5]) ? 2 : 1;
-      const startsLower = /^[a-z(]/.test(body);
-      const continues = current && !b && (startsLower || (sawBullet && !/[.;:!?]$/.test(current.text)));
-      if (b) sawBullet = true;
+      let continues;
+      if (typeof para === 'boolean') {
+        // Paragraph layout (official PDF tables): each paragraph is one
+        // statement and bullets are list items inside it, kept on their own
+        // lines exactly as printed.
+        continues = current && !para;
+        if (continues && b) {
+          current.text += `\n• ${body}`;
+          current.extractedText = current.text;
+          continue;
+        }
+      } else {
+        const startsLower = /^[a-z(]/.test(body);
+        continues = current && !b && (startsLower || (sawBullet && !/[.;:!?]$/.test(current.text)));
+        if (b) sawBullet = true;
+      }
       if (continues) {
         current.text += ` ${body}`;
         current.extractedText = current.text;
@@ -315,7 +380,7 @@ export function parseCurriculumText(input) {
           id: `${outcome.id}-${code}${list.length + 1}`,
           text: body,
           extractedText: body,
-          level,
+          level: typeof para === 'boolean' ? 1 : level,
           sourcePage: page,
           verified: false,
         };
@@ -376,7 +441,7 @@ export function parseCurriculumJson(json) {
     const fixList = (arr, code) =>
       (arr || []).map((s, j) => (typeof s === 'string' ? { id: `${o.id}-${code}${j + 1}`, text: s, extractedText: s, level: 1, verified: false } : { level: 1, verified: false, extractedText: s.text, ...s }));
     return {
-      contentAreaId: null,
+      contentAreaIds: [],
       verified: false,
       sourcePage: null,
       organizingIdea: '',

@@ -1,0 +1,3241 @@
+{
+ "id": "ab-ss79-draft-2026-06",
+ "label": "Draft Social Studies (7–9), June 2026 – Grade 9",
+ "notes": "Extracted from ss79.pdf (12 pages). Wording is verbatim from the source; every outcome still needs teacher verification.",
+ "sourceName": "ss79.pdf",
+ "sourceType": "PDF (12 pages)",
+ "uploadedAt": "2026-10-24T00:28:04.815Z",
+ "bundled": true,
+ "outcomes": [
+  {
+   "id": "G9-LO1",
+   "grade": 9,
+   "organizingIdea": "Time and Place: Exploring the dynamic relationships between people, place, and time supports understanding of perspectives and events to make meaning of the world.",
+   "guidingQuestion": "How can urbanization shift and shape a society?",
+   "text": "Students examine the impacts of urbanization and the growth of industry on Canada.",
+   "extractedText": "Students examine the impacts of urbanization and the growth of industry on Canada.",
+   "sourcePage": 3,
+   "knowledge": [
+    {
+     "id": "G9-LO1-K1",
+     "text": "Patterns of immigration can be identified as push and pull factors that motivate people to migrate from one place to another.",
+     "extractedText": "Patterns of immigration can be identified as push and pull factors that motivate people to migrate from one place to another.",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    },
+    {
+     "id": "G9-LO1-K2",
+     "text": "Canada experienced changing and increasingly urbanized demographics due to international migration after the Second World War and urban centres reflected a more diverse, pluralistic population.",
+     "extractedText": "Canada experienced changing and increasingly urbanized demographics due to international migration after the Second World War and urban centres reflected a more diverse, pluralistic population.",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    },
+    {
+     "id": "G9-LO1-K3",
+     "text": "Displaced persons are refugees, including Holocaust survivors, who migrated to Canada following the Second World War (1945–51).",
+     "extractedText": "Displaced persons are refugees, including Holocaust survivors, who migrated to Canada following the Second World War (1945–51).",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    },
+    {
+     "id": "G9-LO1-K4",
+     "text": "Urbanization and population boom after the Second World War increased consumption and demand for development.",
+     "extractedText": "Urbanization and population boom after the Second World War increased consumption and demand for development.",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    },
+    {
+     "id": "G9-LO1-K5",
+     "text": "Urbanization influenced the growth and transformation of industries and the emergence of new sectors in Canada, including\n• public infrastructure development to support growth of suburbs and population\n• oil and gas exploration, and the growth of the petroleum industry\n• hydroelectricity production\n• automobile and paper production",
+     "extractedText": "Urbanization influenced the growth and transformation of industries and the emergence of new sectors in Canada, including\n• public infrastructure development to support growth of suburbs and population\n• oil and gas exploration, and the growth of the petroleum industry\n• hydroelectricity production\n• automobile and paper production",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    },
+    {
+     "id": "G9-LO1-K6",
+     "text": "There are environmental impacts of urbanization, such as\n• pollution\n• land consumption\n• land division\n• wildlife migration changes",
+     "extractedText": "There are environmental impacts of urbanization, such as\n• pollution\n• land consumption\n• land division\n• wildlife migration changes",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    }
+   ],
+   "understanding": [
+    {
+     "id": "G9-LO1-U1",
+     "text": "Urbanization impacts a country’s population, economy, and environment.",
+     "extractedText": "Urbanization impacts a country’s population, economy, and environment.",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    }
+   ],
+   "skills": [
+    {
+     "id": "G9-LO1-S1",
+     "text": "Relate patterns of immigration to push and pull factors.",
+     "extractedText": "Relate patterns of immigration to push and pull factors.",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    },
+    {
+     "id": "G9-LO1-S2",
+     "text": "Explain changes to Canada’s demographics after the Second World War.",
+     "extractedText": "Explain changes to Canada’s demographics after the Second World War.",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    },
+    {
+     "id": "G9-LO1-S3",
+     "text": "Explain social, economic, and environmental consequences and challenges of increased urbanization.",
+     "extractedText": "Explain social, economic, and environmental consequences and challenges of increased urbanization.",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    },
+    {
+     "id": "G9-LO1-S4",
+     "text": "Investigate how new fields are responding to urbanization.",
+     "extractedText": "Investigate how new fields are responding to urbanization.",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    },
+    {
+     "id": "G9-LO1-S5",
+     "text": "Evaluate the impacts of the growth of oil and gas industry in Canada.",
+     "extractedText": "Evaluate the impacts of the growth of oil and gas industry in Canada.",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    },
+    {
+     "id": "G9-LO1-S6",
+     "text": "Consider the benefits of the growth of Canada’s petroleum industry.",
+     "extractedText": "Consider the benefits of the growth of Canada’s petroleum industry.",
+     "level": 1,
+     "sourcePage": 3,
+     "verified": false
+    }
+   ],
+   "contentAreaIds": [
+    "urbanization"
+   ],
+   "verified": false,
+   "contentAreaSource": "suggested"
+  },
+  {
+   "id": "G9-LO2",
+   "grade": 9,
+   "organizingIdea": "Time and Place: Exploring the dynamic relationships between people, place, and time supports understanding of perspectives and events to make meaning of the world.",
+   "guidingQuestion": "How did Canada become a more independent nation and expand democratic rights?",
+   "text": "Students explain how Canada gained independence and expanded democratic rights.",
+   "extractedText": "Students explain how Canada gained independence and expanded democratic rights.",
+   "sourcePage": 4,
+   "knowledge": [
+    {
+     "id": "G9-LO2-K1",
+     "text": "Canada’s increasing autonomy, including the 1926 Balfour Declaration and the 1931 Statute of Westminster, represented the formal transition of Canada from a self-governing colony to a fully sovereign nation.",
+     "extractedText": "Canada’s increasing autonomy, including the 1926 Balfour Declaration and the 1931 Statute of Westminster, represented the formal transition of Canada from a self-governing colony to a fully sovereign nation.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    },
+    {
+     "id": "G9-LO2-K2",
+     "text": "Canada gained full authority over its own foreign policy.",
+     "extractedText": "Canada gained full authority over its own foreign policy.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    },
+    {
+     "id": "G9-LO2-K3",
+     "text": "The shift from a centralized empire to a commonwealth of independent nations was driven by a combination of post-war exhaustion, intense diplomatic pressure from the Dominions, and a pragmatic desire to maintain influence through cooperation rather than coercion.",
+     "extractedText": "The shift from a centralized empire to a commonwealth of independent nations was driven by a combination of post-war exhaustion, intense diplomatic pressure from the Dominions, and a pragmatic desire to maintain influence through cooperation rather than coercion.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    },
+    {
+     "id": "G9-LO2-K4",
+     "text": "Women’s suffrage in Canada was the decades-long movement to secure the right of women to vote and hold political office.",
+     "extractedText": "Women’s suffrage in Canada was the decades-long movement to secure the right of women to vote and hold political office.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    },
+    {
+     "id": "G9-LO2-K5",
+     "text": "The Famous Five were a group of five prominent Alberta women who launched a legal challenge that fundamentally redefined the status of women in Canadian law.",
+     "extractedText": "The Famous Five were a group of five prominent Alberta women who launched a legal challenge that fundamentally redefined the status of women in Canadian law.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    },
+    {
+     "id": "G9-LO2-K6",
+     "text": "By establishing that women were legal persons, the Persons Case affirmed that women had the right to hold any appointed or elected office in the country, reinforcing the democratic principle of equality.",
+     "extractedText": "By establishing that women were legal persons, the Persons Case affirmed that women had the right to hold any appointed or elected office in the country, reinforcing the democratic principle of equality.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    }
+   ],
+   "understanding": [
+    {
+     "id": "G9-LO2-U1",
+     "text": "Canada became a sovereign nation and its identity evolved as more people gained rights.",
+     "extractedText": "Canada became a sovereign nation and its identity evolved as more people gained rights.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    }
+   ],
+   "skills": [
+    {
+     "id": "G9-LO2-S1",
+     "text": "Analyze how the Balfour Declaration (1926) and the Statute of Westminster (1931) transformed Canada’s political independence.",
+     "extractedText": "Analyze how the Balfour Declaration (1926) and the Statute of Westminster (1931) transformed Canada’s political independence.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    },
+    {
+     "id": "G9-LO2-S2",
+     "text": "Explain how gaining control over foreign policy contributed to Canada’s development as a sovereign nation.",
+     "extractedText": "Explain how gaining control over foreign policy contributed to Canada’s development as a sovereign nation.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    },
+    {
+     "id": "G9-LO2-S3",
+     "text": "Explain how the Famous Five case changed the distribution of political power and participation in Canada.",
+     "extractedText": "Explain how the Famous Five case changed the distribution of political power and participation in Canada.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    },
+    {
+     "id": "G9-LO2-S4",
+     "text": "Compare how political independence and expanded rights contributed to changes in Canadian identity.",
+     "extractedText": "Compare how political independence and expanded rights contributed to changes in Canadian identity.",
+     "level": 1,
+     "sourcePage": 4,
+     "verified": false
+    }
+   ],
+   "contentAreaIds": [
+    "government-policies",
+    "citizenship"
+   ],
+   "verified": false,
+   "contentAreaSource": "suggested"
+  },
+  {
+   "id": "G9-LO3",
+   "grade": 9,
+   "organizingIdea": "Time and Place: Exploring the dynamic relationships between people, place, and time supports understanding of perspectives and events to make meaning of the world.",
+   "guidingQuestion": "How did WWII shape Canada’s independence?",
+   "text": "Students examine how Canada’s identity was shaped by its independent role in WWII and its growing global influence.",
+   "extractedText": "Students examine how Canada’s identity was shaped by its independent role in WWII and its growing global influence.",
+   "sourcePage": 5,
+   "knowledge": [
+    {
+     "id": "G9-LO3-K1",
+     "text": "Canada’s Parliament declared war independently in 1939 and entered the Second World War, which represented a significant step forward in its sovereignty and identity.",
+     "extractedText": "Canada’s Parliament declared war independently in 1939 and entered the Second World War, which represented a significant step forward in its sovereignty and identity.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    },
+    {
+     "id": "G9-LO3-K2",
+     "text": "Canada’s independent participation in WWII contributed to its emergence as a self-governing nation with a distinct international role.",
+     "extractedText": "Canada’s independent participation in WWII contributed to its emergence as a self-governing nation with a distinct international role.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    },
+    {
+     "id": "G9-LO3-K3",
+     "text": "More than one million Canadians joined the armed forces, allowing the country to build one of the world’s largest navies and air forces by 1945.",
+     "extractedText": "More than one million Canadians joined the armed forces, allowing the country to build one of the world’s largest navies and air forces by 1945.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    },
+    {
+     "id": "G9-LO3-K4",
+     "text": "Canadian forces earned recognition on the battlefield and were highly regarded. They made important contributions during the\n• Defence of Hong Kong (1941)\n• Dieppe Raid (1942)\n• Italian Campaign (1943)\n• D-Day and the Battle of Normandy (1944)\n• Liberation of France, Belgium and the Netherlands (1944-45)",
+     "extractedText": "Canadian forces earned recognition on the battlefield and were highly regarded. They made important contributions during the\n• Defence of Hong Kong (1941)\n• Dieppe Raid (1942)\n• Italian Campaign (1943)\n• D-Day and the Battle of Normandy (1944)\n• Liberation of France, Belgium and the Netherlands (1944-45)",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    },
+    {
+     "id": "G9-LO3-K5",
+     "text": "Canada’s diverse populations and communities, such as Chinese Canadians in Force 136, made contributions to the Second World War.",
+     "extractedText": "Canada’s diverse populations and communities, such as Chinese Canadians in Force 136, made contributions to the Second World War.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    },
+    {
+     "id": "G9-LO3-K6",
+     "text": "Cree code talkers were First Nations and Métis soldiers who developed and contributed a military coding system based on the Cree language, which was invaluable to communications during the Second World War.",
+     "extractedText": "Cree code talkers were First Nations and Métis soldiers who developed and contributed a military coding system based on the Cree language, which was invaluable to communications during the Second World War.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    },
+    {
+     "id": "G9-LO3-K7",
+     "text": "The Second World War transformed Canada into a more prominent international actor, strengthening its global reputation and influence.",
+     "extractedText": "The Second World War transformed Canada into a more prominent international actor, strengthening its global reputation and influence.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    }
+   ],
+   "understanding": [
+    {
+     "id": "G9-LO3-U1",
+     "text": "Canada’s identity was shaped by its independent role in WWII and its growing global influence.",
+     "extractedText": "Canada’s identity was shaped by its independent role in WWII and its growing global influence.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    }
+   ],
+   "skills": [
+    {
+     "id": "G9-LO3-S1",
+     "text": "Analyze how Canada’s decision to declare war independently in 1939 demonstrated its growing sovereignty.",
+     "extractedText": "Analyze how Canada’s decision to declare war independently in 1939 demonstrated its growing sovereignty.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    },
+    {
+     "id": "G9-LO3-S2",
+     "text": "Explain how participation in WWII contributed to Canada’s development as a self-governing nation.",
+     "extractedText": "Explain how participation in WWII contributed to Canada’s development as a self-governing nation.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    },
+    {
+     "id": "G9-LO3-S3",
+     "text": "Use evidence from battles (e.g., Hong Kong, Dieppe, Italy, D-Day, liberation of Europe) to explain Canada’s contributions to Allied success.",
+     "extractedText": "Use evidence from battles (e.g., Hong Kong, Dieppe, Italy, D-Day, liberation of Europe) to explain Canada’s contributions to Allied success.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    },
+    {
+     "id": "G9-LO3-S4",
+     "text": "Explain the significance of contributions by groups such as Chinese Canadians and Cree code talkers to the war effort.",
+     "extractedText": "Explain the significance of contributions by groups such as Chinese Canadians and Cree code talkers to the war effort.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    },
+    {
+     "id": "G9-LO3-S5",
+     "text": "Evaluate the extent to which the Second World War was a turning point in Canada’s development as an independent and influential nation.",
+     "extractedText": "Evaluate the extent to which the Second World War was a turning point in Canada’s development as an independent and influential nation.",
+     "level": 1,
+     "sourcePage": 5,
+     "verified": false
+    }
+   ],
+   "contentAreaIds": [
+    "collective-security"
+   ],
+   "verified": false,
+   "contentAreaSource": "suggested"
+  },
+  {
+   "id": "G9-LO4",
+   "grade": 9,
+   "organizingIdea": "Time and Place: Exploring the dynamic relationships between people, place, and time supports understanding of perspectives and events to make meaning of the world.",
+   "guidingQuestion": "How did political, economic, and social changes reshape Canada after WWII?",
+   "text": "Students analyze how post-war developments shaped Canada as a modern nation.",
+   "extractedText": "Students analyze how post-war developments shaped Canada as a modern nation.",
+   "sourcePage": 6,
+   "knowledge": [
+    {
+     "id": "G9-LO4-K1",
+     "text": "After World War II, Canada developed into a welfare state, where the government expanded social programs, including universal healthcare and old-age pensions, to reduce inequality and provide financial security.",
+     "extractedText": "After World War II, Canada developed into a welfare state, where the government expanded social programs, including universal healthcare and old-age pensions, to reduce inequality and provide financial security.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K2",
+     "text": "The welfare state emerged in response to the economic hardships of the Great Depression, as well as wartime experiences that increased expectations for government support.",
+     "extractedText": "The welfare state emerged in response to the economic hardships of the Great Depression, as well as wartime experiences that increased expectations for government support.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K3",
+     "text": "After WWII, Canada played an active role in promoting global peace and security, strengthening its identity as a cooperative and responsible international partner.",
+     "extractedText": "After WWII, Canada played an active role in promoting global peace and security, strengthening its identity as a cooperative and responsible international partner.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K4",
+     "text": "Canada became a founding member of NATO, contributing to collective defence during the Cold War.",
+     "extractedText": "Canada became a founding member of NATO, contributing to collective defence during the Cold War.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K5",
+     "text": "Canada participated in the Korean War, including key battles such as Kapyong and Hill 355, demonstrating its military commitment to global stability.",
+     "extractedText": "Canada participated in the Korean War, including key battles such as Kapyong and Hill 355, demonstrating its military commitment to global stability.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K6",
+     "text": "Canada worked with the United States through NORAD to defend North America from external threats.",
+     "extractedText": "Canada worked with the United States through NORAD to defend North America from external threats.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K7",
+     "text": "Canada helped resolve international conflicts, including the Suez Crisis, where Lester B. Pearson’s leadership contributed to the creation of modern peacekeeping and earned him the Nobel Peace Prize.",
+     "extractedText": "Canada helped resolve international conflicts, including the Suez Crisis, where Lester B. Pearson’s leadership contributed to the creation of modern peacekeeping and earned him the Nobel Peace Prize.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K8",
+     "text": "Canada’s continued involvement in peacekeeping missions around the world strengthened its reputation as a nation committed to diplomacy and global cooperation.",
+     "extractedText": "Canada’s continued involvement in peacekeeping missions around the world strengthened its reputation as a nation committed to diplomacy and global cooperation.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K9",
+     "text": "After WWII, immigration patterns shifted, with increasing numbers of immigrants arriving from non-European regions such as India, China, and Vietnam.",
+     "extractedText": "After WWII, immigration patterns shifted, with increasing numbers of immigrants arriving from non-European regions such as India, China, and Vietnam.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K10",
+     "text": "Displaced persons are refugees, including Holocaust survivors, who migrated to Canada following the Second World War (1945-51).",
+     "extractedText": "Displaced persons are refugees, including Holocaust survivors, who migrated to Canada following the Second World War (1945-51).",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K11",
+     "text": "These new waves of immigration contributed to Canada’s growing cultural diversity and reshaped its population and identity.",
+     "extractedText": "These new waves of immigration contributed to Canada’s growing cultural diversity and reshaped its population and identity.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K12",
+     "text": "The development of multiculturalism reflected efforts to recognize and include diverse cultural groups within Canadian society.",
+     "extractedText": "The development of multiculturalism reflected efforts to recognize and include diverse cultural groups within Canadian society.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K13",
+     "text": "Government policies such as Residential Schools and the Sixties Scoop caused long-term harm to Indigenous communities by separating children from their families and cultures.",
+     "extractedText": "Government policies such as Residential Schools and the Sixties Scoop caused long-term harm to Indigenous communities by separating children from their families and cultures.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K14",
+     "text": "Canadian identity has been shaped by internal disagreements and challenges to national unity.",
+     "extractedText": "Canadian identity has been shaped by internal disagreements and challenges to national unity.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K15",
+     "text": "Events such as the October Crisis (1970) and debates surrounding Quebec separatism reflect differing views about Canada’s political and cultural future.",
+     "extractedText": "Events such as the October Crisis (1970) and debates surrounding Quebec separatism reflect differing views about Canada’s political and cultural future.",
+     "level": 1,
+     "sourcePage": 7,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K16",
+     "text": "The Meech Lake Accord (1987) attempted to address Quebec’s status within Canada but revealed ongoing tensions between regions.",
+     "extractedText": "The Meech Lake Accord (1987) attempted to address Quebec’s status within Canada but revealed ongoing tensions between regions.",
+     "level": 1,
+     "sourcePage": 7,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K17",
+     "text": "The growth of the petroleum industry contributed to economic prosperity, particularly in Western Canada.",
+     "extractedText": "The growth of the petroleum industry contributed to economic prosperity, particularly in Western Canada.",
+     "level": 1,
+     "sourcePage": 7,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K18",
+     "text": "Government policies such as the National Energy Program aimed to manage energy resources but led to conflict between regions.",
+     "extractedText": "Government policies such as the National Energy Program aimed to manage energy resources but led to conflict between regions.",
+     "level": 1,
+     "sourcePage": 7,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K19",
+     "text": "These tensions contributed to Western alienation, where Western Canadians, particularly those in Alberta and Saskatchewan, felt underrepresented or disadvantaged by federal decisions.",
+     "extractedText": "These tensions contributed to Western alienation, where Western Canadians, particularly those in Alberta and Saskatchewan, felt underrepresented or disadvantaged by federal decisions.",
+     "level": 1,
+     "sourcePage": 7,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K20",
+     "text": "The Constitution Act (1982) was a major milestone in Canadian independence, as Canada gained full control over its own constitution.",
+     "extractedText": "The Constitution Act (1982) was a major milestone in Canadian independence, as Canada gained full control over its own constitution.",
+     "level": 1,
+     "sourcePage": 7,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K21",
+     "text": "The inclusion of the Charter of Rights and Freedoms strengthened protections for individual rights and freedoms.",
+     "extractedText": "The inclusion of the Charter of Rights and Freedoms strengthened protections for individual rights and freedoms.",
+     "level": 1,
+     "sourcePage": 7,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-K22",
+     "text": "This marked a significant step in shaping Canada’s identity as a nation based on democracy, equality, and the rule of law.",
+     "extractedText": "This marked a significant step in shaping Canada’s identity as a nation based on democracy, equality, and the rule of law.",
+     "level": 1,
+     "sourcePage": 7,
+     "verified": false
+    }
+   ],
+   "understanding": [
+    {
+     "id": "G9-LO4-U1",
+     "text": "Canada’s identity evolved after the Second World War through change, cooperation, and conflict.",
+     "extractedText": "Canada’s identity evolved after the Second World War through change, cooperation, and conflict.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    }
+   ],
+   "skills": [
+    {
+     "id": "G9-LO4-S1",
+     "text": "Evaluate the impact of social programs (e.g., healthcare, pensions) on reducing inequality and shaping Canadian society.",
+     "extractedText": "Evaluate the impact of social programs (e.g., healthcare, pensions) on reducing inequality and shaping Canadian society.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-S2",
+     "text": "Evaluate how Canada’s international actions (e.g., NATO, Korean War, peacekeeping) influenced both its global reputation and national identity.",
+     "extractedText": "Evaluate how Canada’s international actions (e.g., NATO, Korean War, peacekeeping) influenced both its global reputation and national identity.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-S3",
+     "text": "Assess how the development of multiculturalism shaped Canadian identity.",
+     "extractedText": "Assess how the development of multiculturalism shaped Canadian identity.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-S4",
+     "text": "Analyze the impact of Residential Schools and the Sixties Scoop on Indigenous communities.",
+     "extractedText": "Analyze the impact of Residential Schools and the Sixties Scoop on Indigenous communities.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-S5",
+     "text": "Analyze how events such as the October Crisis and Quebec separatism reflected differing views of Canadian identity.",
+     "extractedText": "Analyze how events such as the October Crisis and Quebec separatism reflected differing views of Canadian identity.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-S6",
+     "text": "Analyze the impact of the petroleum industry on economic development and regional identity.",
+     "extractedText": "Analyze the impact of the petroleum industry on economic development and regional identity.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-S7",
+     "text": "Assess the causes and consequences of Western alienation.",
+     "extractedText": "Assess the causes and consequences of Western alienation.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-S8",
+     "text": "Evaluate the extent to which post-war developments strengthened or challenged Canadian identity.",
+     "extractedText": "Evaluate the extent to which post-war developments strengthened or challenged Canadian identity.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    },
+    {
+     "id": "G9-LO4-S9",
+     "text": "Evaluate how the Constitution Act (1982) and the Charter of Rights and Freedoms transformed Canadian identity and participation in society.",
+     "extractedText": "Evaluate how the Constitution Act (1982) and the Charter of Rights and Freedoms transformed Canadian identity and participation in society.",
+     "level": 1,
+     "sourcePage": 6,
+     "verified": false
+    }
+   ],
+   "contentAreaIds": [
+    "collective-security",
+    "government-policies",
+    "citizenship"
+   ],
+   "verified": false,
+   "contentAreaSource": "suggested"
+  },
+  {
+   "id": "G9-LO5",
+   "grade": 9,
+   "organizingIdea": "Systems: Evaluating processes and structures of organizations builds understanding of decision making in the world.",
+   "guidingQuestion": "How did economic changes transform Canada into a modern economy?",
+   "text": "Students analyze how economic crisis, growth, and global trade shaped Canada’s modern economy.",
+   "extractedText": "Students analyze how economic crisis, growth, and global trade shaped Canada’s modern economy.",
+   "sourcePage": 8,
+   "knowledge": [
+    {
+     "id": "G9-LO5-K1",
+     "text": "The Great Depression (1930s) was a period of severe economic hardship marked by high unemployment, falling prices, and widespread poverty.",
+     "extractedText": "The Great Depression (1930s) was a period of severe economic hardship marked by high unemployment, falling prices, and widespread poverty.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-K2",
+     "text": "The Great Depression was caused by several factors, including\n• overproduction of goods\n• declining consumer demand\n• the collapse of global trade\n• financial instability",
+     "extractedText": "The Great Depression was caused by several factors, including\n• overproduction of goods\n• declining consumer demand\n• the collapse of global trade\n• financial instability",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-K3",
+     "text": "In response to the Great Depression, governments in Canada and the United States began to take a more active role in the economy such as public works, social welfare programs, and deficit spending.",
+     "extractedText": "In response to the Great Depression, governments in Canada and the United States began to take a more active role in the economy such as public works, social welfare programs, and deficit spending.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-K4",
+     "text": "After World War II, Canada’s economy expanded and diversified, contributing to the development of a modern industrial economy. This included the growth of economic sectors including\n• automobile manufacturing\n• petroleum and energy production\n• papers and forestry\n• hydroelectric power development",
+     "extractedText": "After World War II, Canada’s economy expanded and diversified, contributing to the development of a modern industrial economy. This included the growth of economic sectors including\n• automobile manufacturing\n• petroleum and energy production\n• papers and forestry\n• hydroelectric power development",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-K5",
+     "text": "Canada’s population became increasingly urbanized after WWII, with more people living in cities rather than rural areas.",
+     "extractedText": "Canada’s population became increasingly urbanized after WWII, with more people living in cities rather than rural areas.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-K6",
+     "text": "The growth of suburbs occurred as people moved to residential areas outside city centres in search of affordable housing and improved living conditions.",
+     "extractedText": "The growth of suburbs occurred as people moved to residential areas outside city centres in search of affordable housing and improved living conditions.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-K7",
+     "text": "Canada developed an increasingly close trade relationship with the United States, reflecting geographic proximity and economic interdependence.",
+     "extractedText": "Canada developed an increasingly close trade relationship with the United States, reflecting geographic proximity and economic interdependence.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-K8",
+     "text": "Agreements such as NAFTA expanded free trade, increasing the movement of goods, services, and investment between the two countries.",
+     "extractedText": "Agreements such as NAFTA expanded free trade, increasing the movement of goods, services, and investment between the two countries.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    }
+   ],
+   "understanding": [
+    {
+     "id": "G9-LO5-U1",
+     "text": "Canada’s economy evolved through crisis, government action, and global trade.",
+     "extractedText": "Canada’s economy evolved through crisis, government action, and global trade.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    }
+   ],
+   "skills": [
+    {
+     "id": "G9-LO5-S1",
+     "text": "Analyze the causes of the Great Depression and their impact on economic stability.",
+     "extractedText": "Analyze the causes of the Great Depression and their impact on economic stability.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-S2",
+     "text": "Analyze how governments responded to economic crises through policies such as public works, social programs, and deficit spending.",
+     "extractedText": "Analyze how governments responded to economic crises through policies such as public works, social programs, and deficit spending.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-S3",
+     "text": "Analyze how Canada’s economy transformed after WWII through industrial growth and the emergence of new sectors.",
+     "extractedText": "Analyze how Canada’s economy transformed after WWII through industrial growth and the emergence of new sectors.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-S4",
+     "text": "Analyze how economic growth contributed to urbanization and the development of suburban communities.",
+     "extractedText": "Analyze how economic growth contributed to urbanization and the development of suburban communities.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-S5",
+     "text": "Evaluate the social and economic consequences of increased urbanization.",
+     "extractedText": "Evaluate the social and economic consequences of increased urbanization.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-S6",
+     "text": "Analyze how Canada’s trade relationship with the United States shaped its economic development.",
+     "extractedText": "Analyze how Canada’s trade relationship with the United States shaped its economic development.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-S7",
+     "text": "Evaluate the impact of free trade agreements on economic growth and interdependence.",
+     "extractedText": "Evaluate the impact of free trade agreements on economic growth and interdependence.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    },
+    {
+     "id": "G9-LO5-S8",
+     "text": "Evaluate the extent to which economic developments contributed to Canada becoming a modern, industrial, and globally connected nation.",
+     "extractedText": "Evaluate the extent to which economic developments contributed to Canada becoming a modern, industrial, and globally connected nation.",
+     "level": 1,
+     "sourcePage": 8,
+     "verified": false
+    }
+   ],
+   "contentAreaIds": [
+    "urbanization",
+    "government-policies"
+   ],
+   "verified": false,
+   "contentAreaSource": "suggested"
+  },
+  {
+   "id": "G9-LO6",
+   "grade": 9,
+   "organizingIdea": "Systems: Evaluating processes and structures of organizations builds understanding of decision making in the world.",
+   "guidingQuestion": "How is power organized and exercised in Canada’s system of government?",
+   "text": "Students analyze how power is distributed and exercised in Canada’s government, including how laws are made and how rights are protected.",
+   "extractedText": "Students analyze how power is distributed and exercised in Canada’s government, including how laws are made and how rights are protected.",
+   "sourcePage": 9,
+   "knowledge": [
+    {
+     "id": "G9-LO6-K1",
+     "text": "Responsible government is a principle of Canada’s parliamentary democracy in which the executive branch must maintain the confidence of the elected House of Commons to remain in power.",
+     "extractedText": "Responsible government is a principle of Canada’s parliamentary democracy in which the executive branch must maintain the confidence of the elected House of Commons to remain in power.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K2",
+     "text": "Responsible government means that the government is accountable to elected representatives, who act on behalf of citizens.",
+     "extractedText": "Responsible government means that the government is accountable to elected representatives, who act on behalf of citizens.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K3",
+     "text": "If the government loses the support of the House of Commons, it must resign or call an election. Canada’s Parliament consists of three parts: the Crown, the Senate, and the House of Commons, which must all approve laws.",
+     "extractedText": "If the government loses the support of the House of Commons, it must resign or call an election. Canada’s Parliament consists of three parts: the Crown, the Senate, and the House of Commons, which must all approve laws.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K4",
+     "text": "The Crown is represented by the Governor General which represent the Monarch and gives Royal Assent to laws.",
+     "extractedText": "The Crown is represented by the Governor General which represent the Monarch and gives Royal Assent to laws.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K5",
+     "text": "The House of Commons is comprised of elected representatives, Members of Parliament, who represent a riding. They are responsible for making new laws through debate and voting.",
+     "extractedText": "The House of Commons is comprised of elected representatives, Members of Parliament, who represent a riding. They are responsible for making new laws through debate and voting.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K6",
+     "text": "A riding (also called a constituency or electoral district) is a geographic area in Canada that elects one Member of Parliament (MP) to represent it in the House of Commons.",
+     "extractedText": "A riding (also called a constituency or electoral district) is a geographic area in Canada that elects one Member of Parliament (MP) to represent it in the House of Commons.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K7",
+     "text": "The Senate consists of appointed members who review laws passed by the House of Commons.",
+     "extractedText": "The Senate consists of appointed members who review laws passed by the House of Commons.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K8",
+     "text": "Laws are created through a formal legislative process, including\n• bill drafting\n• first reading (introduction)\n• second reading (debate)\n• committee stage (detailed review)\n• third reading (final approval)\n• approval by the Senate\n• royal assent by the Crown",
+     "extractedText": "Laws are created through a formal legislative process, including\n• bill drafting\n• first reading (introduction)\n• second reading (debate)\n• committee stage (detailed review)\n• third reading (final approval)\n• approval by the Senate\n• royal assent by the Crown",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K9",
+     "text": "A formal legislative process ensures that laws are debated, reviewed, and approved by multiple institutions before being enacted.",
+     "extractedText": "A formal legislative process ensures that laws are debated, reviewed, and approved by multiple institutions before being enacted.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K10",
+     "text": "Governments also make decisions through:\n• Orders in Council\n• Regulations and Directives\n• Ministerial Orders/Decisions",
+     "extractedText": "Governments also make decisions through:\n• Orders in Council\n• Regulations and Directives\n• Ministerial Orders/Decisions",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K11",
+     "text": "Canada is a federal system, meaning power is divided between federal and provincial governments.",
+     "extractedText": "Canada is a federal system, meaning power is divided between federal and provincial governments.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K12",
+     "text": "The Federal government is responsible for\n• Defence\n• Banking and Currency\n• Trade and Commerce\n• Criminal Law\n• Citizenship",
+     "extractedText": "The Federal government is responsible for\n• Defence\n• Banking and Currency\n• Trade and Commerce\n• Criminal Law\n• Citizenship",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K13",
+     "text": "Provincial governments are responsible for\n• Education\n• Healthcare\n• Property and Civil Rights\n• Municipalities\n• Natural Resources",
+     "extractedText": "Provincial governments are responsible for\n• Education\n• Healthcare\n• Property and Civil Rights\n• Municipalities\n• Natural Resources",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K14",
+     "text": "Provinces have primary authority over natural resources, including their development, management, and use.",
+     "extractedText": "Provinces have primary authority over natural resources, including their development, management, and use.",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K15",
+     "text": "Jurisdiction over natural resources is critical to Alberta because\n• its economy relies heavily on oil and gas development\n• it controls resource revenues (e.g., royalties)\n• it shapes decisions about economic growth and development",
+     "extractedText": "Jurisdiction over natural resources is critical to Alberta because\n• its economy relies heavily on oil and gas development\n• it controls resource revenues (e.g., royalties)\n• it shapes decisions about economic growth and development",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K16",
+     "text": "Conflicts can arise between federal and provincial governments when resource issues involve national interests such as the environment or interprovincial trade.",
+     "extractedText": "Conflicts can arise between federal and provincial governments when resource issues involve national interests such as the environment or interprovincial trade.",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K17",
+     "text": "Canada’s judiciary (court system) interprets and applies the law, ensuring laws follow the Constitution.",
+     "extractedText": "Canada’s judiciary (court system) interprets and applies the law, ensuring laws follow the Constitution.",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K18",
+     "text": "Lower courts establish the facts of a case and make the initial decision.",
+     "extractedText": "Lower courts establish the facts of a case and make the initial decision.",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K19",
+     "text": "Appeal courts ensure that laws are applied correctly and consistently.",
+     "extractedText": "Appeal courts ensure that laws are applied correctly and consistently.",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K20",
+     "text": "The Supreme Court of Canada is the highest and final court in the country. The Supreme Court ensures that laws are interpreted consistently across Canada and that they follow the Constitution.",
+     "extractedText": "The Supreme Court of Canada is the highest and final court in the country. The Supreme Court ensures that laws are interpreted consistently across Canada and that they follow the Constitution.",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K21",
+     "text": "The Canadian Citizenship Act (1947) formally established Canadian citizenship and defined membership in the nation.",
+     "extractedText": "The Canadian Citizenship Act (1947) formally established Canadian citizenship and defined membership in the nation.",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K22",
+     "text": "The Canadian Charter of Rights and Freedoms (1982) protects fundamental rights such as\n• freedom of expression\n• equality\n• legal protections",
+     "extractedText": "The Canadian Charter of Rights and Freedoms (1982) protects fundamental rights such as\n• freedom of expression\n• equality\n• legal protections",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-K23",
+     "text": "Canadian citizens have rights (e.g., voting, freedoms) and responsibilities, including\n• obeying laws\n• participating in democracy\n• respecting the rights of others",
+     "extractedText": "Canadian citizens have rights (e.g., voting, freedoms) and responsibilities, including\n• obeying laws\n• participating in democracy\n• respecting the rights of others",
+     "level": 1,
+     "sourcePage": 10,
+     "verified": false
+    }
+   ],
+   "understanding": [
+    {
+     "id": "G9-LO6-U1",
+     "text": "Power in Canada is shared and exercised through democratic structures, laws, and institutions, which shape decision making, protect rights, and ensure accountability.",
+     "extractedText": "Power in Canada is shared and exercised through democratic structures, laws, and institutions, which shape decision making, protect rights, and ensure accountability.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    }
+   ],
+   "skills": [
+    {
+     "id": "G9-LO6-S1",
+     "text": "Examine how power is distributed between federal and provincial governments and how this shapes decision making in Canada.",
+     "extractedText": "Examine how power is distributed between federal and provincial governments and how this shapes decision making in Canada.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-S2",
+     "text": "Assess how responsible government ensures accountability in Canada’s political system.",
+     "extractedText": "Assess how responsible government ensures accountability in Canada’s political system.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-S3",
+     "text": "Explain how representation through ridings connects citizens to government decision making.",
+     "extractedText": "Explain how representation through ridings connects citizens to government decision making.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-S4",
+     "text": "Interpret how government tools (e.g., regulations, orders in council) shape decisions beyond Parliament.",
+     "extractedText": "Interpret how government tools (e.g., regulations, orders in council) shape decisions beyond Parliament.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-S5",
+     "text": "Explain how the judiciary interprets laws and places limits on government authority.",
+     "extractedText": "Explain how the judiciary interprets laws and places limits on government authority.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-S6",
+     "text": "Examine how the Charter of Rights and Freedoms influences laws and government actions.",
+     "extractedText": "Examine how the Charter of Rights and Freedoms influences laws and government actions.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-S7",
+     "text": "Investigate how control over natural resources shapes provincial decision making and regional perspectives.",
+     "extractedText": "Investigate how control over natural resources shapes provincial decision making and regional perspectives.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-S8",
+     "text": "Connect how Canada’s system of government balances power, accountability, and rights.",
+     "extractedText": "Connect how Canada’s system of government balances power, accountability, and rights.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    },
+    {
+     "id": "G9-LO6-S9",
+     "text": "Formulate a judgement on how fairly power is distributed among governments and citizens in Canada.",
+     "extractedText": "Formulate a judgement on how fairly power is distributed among governments and citizens in Canada.",
+     "level": 1,
+     "sourcePage": 9,
+     "verified": false
+    }
+   ],
+   "contentAreaIds": [
+    "political-system"
+   ],
+   "verified": false,
+   "contentAreaSource": "suggested"
+  },
+  {
+   "id": "G9-LO7",
+   "grade": 9,
+   "organizingIdea": "Citizenship: Understanding local, national, and global issues empowers individual and collective action toward an inclusive society.",
+   "guidingQuestion": "In what ways do citizen rights evolve?",
+   "text": "Students examine the impact of changing legislation on citizenship in Canada.",
+   "extractedText": "Students examine the impact of changing legislation on citizenship in Canada.",
+   "sourcePage": 11,
+   "knowledge": [
+    {
+     "id": "G9-LO7-K1",
+     "text": "Canada is a democratic nation that balances government control and protection of citizens’ individual rights and freedoms.",
+     "extractedText": "Canada is a democratic nation that balances government control and protection of citizens’ individual rights and freedoms.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K2",
+     "text": "Canada’s government policies and programs reflect changing perspectives and impact individuals and groups in different ways.",
+     "extractedText": "Canada’s government policies and programs reflect changing perspectives and impact individuals and groups in different ways.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K3",
+     "text": "Changes in legislation extended individual rights that were once denied to people based on\n• age\n• race\n• gender\n• income\n• ethnic origin\n• religious or spiritual beliefs",
+     "extractedText": "Changes in legislation extended individual rights that were once denied to people based on\n• age\n• race\n• gender\n• income\n• ethnic origin\n• religious or spiritual beliefs",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K4",
+     "text": "Individuals and groups have changed the social and political landscape in Canada through advocacy for changes in legislation, including advocacy for women’s suffrage by the Famous Five.",
+     "extractedText": "Individuals and groups have changed the social and political landscape in Canada through advocacy for changes in legislation, including advocacy for women’s suffrage by the Famous Five.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K5",
+     "text": "Prior to the Canadian Citizenship Act (1947), citizens in Canada were considered British subjects.",
+     "extractedText": "Prior to the Canadian Citizenship Act (1947), citizens in Canada were considered British subjects.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K6",
+     "text": "The Canadian Citizenship Act (1947) defined who could hold or obtain Canadian citizenship and was in response to increased international recognition and the increasingly diverse population of Canada after the Second World War.",
+     "extractedText": "The Canadian Citizenship Act (1947) defined who could hold or obtain Canadian citizenship and was in response to increased international recognition and the increasingly diverse population of Canada after the Second World War.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K7",
+     "text": "Legislation has been amended over time to reflect Canadian pluralism and immigration from non-European countries, such as India, China, the Philippines, and Vietnam, including\n• the ability to pass on citizenship from one generation to the next\n• inclusive point systems and designations, such as economic, family, refugee, and humanitarian classes",
+     "extractedText": "Legislation has been amended over time to reflect Canadian pluralism and immigration from non-European countries, such as India, China, the Philippines, and Vietnam, including\n• the ability to pass on citizenship from one generation to the next\n• inclusive point systems and designations, such as economic, family, refugee, and humanitarian classes",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K8",
+     "text": "In Canada, citizenship status can be designated as\n• citizen at birth or through naturalization\n• temporary resident with a study, work, or visitor permit\n• permanent resident\n• refugee",
+     "extractedText": "In Canada, citizenship status can be designated as\n• citizen at birth or through naturalization\n• temporary resident with a study, work, or visitor permit\n• permanent resident\n• refugee",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K9",
+     "text": "Permanent residents and refugees in Canada are non-citizens with some of the same rights as citizens and some restrictions.",
+     "extractedText": "Permanent residents and refugees in Canada are non-citizens with some of the same rights as citizens and some restrictions.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K10",
+     "text": "The Canadian Bill of Rights (1960) was the first federal legislation outlining rights and freedoms.",
+     "extractedText": "The Canadian Bill of Rights (1960) was the first federal legislation outlining rights and freedoms.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K11",
+     "text": "Canada’s federal government further advanced rights by creating commissions and legislation that helped the development of Canadian multiculturalism and immigration, for example,\n• the Royal Commission of Bilingualism and Biculturalism (1963)\n• the Royal Commission on the Status of Women (1967)\n• the Official Languages Act (1969)\n• the Canadian Multiculturalism Policy (1971)",
+     "extractedText": "Canada’s federal government further advanced rights by creating commissions and legislation that helped the development of Canadian multiculturalism and immigration, for example,\n• the Royal Commission of Bilingualism and Biculturalism (1963)\n• the Royal Commission on the Status of Women (1967)\n• the Official Languages Act (1969)\n• the Canadian Multiculturalism Policy (1971)",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K12",
+     "text": "Canada gained sovereign control over its constitution through gradual patriation, culminating in the Constitution Act (1982), which entrenched the Canadian Charter of Rights and Freedoms.",
+     "extractedText": "Canada gained sovereign control over its constitution through gradual patriation, culminating in the Constitution Act (1982), which entrenched the Canadian Charter of Rights and Freedoms.",
+     "level": 1,
+     "sourcePage": 12,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K13",
+     "text": "The Canadian Charter of Rights and Freedoms (1982) defines individual and collective rights, including\n• fundamental freedoms\n• democratic rights\n• mobility rights\n• legal rights\n• equality rights\n• official language rights\n• minority language educational rights\n• Canada’s multicultural heritage\n• Indigenous peoples’ rights",
+     "extractedText": "The Canadian Charter of Rights and Freedoms (1982) defines individual and collective rights, including\n• fundamental freedoms\n• democratic rights\n• mobility rights\n• legal rights\n• equality rights\n• official language rights\n• minority language educational rights\n• Canada’s multicultural heritage\n• Indigenous peoples’ rights",
+     "level": 1,
+     "sourcePage": 12,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K14",
+     "text": "Section 1 of the Canadian Charter of Rights and Freedoms recognizes that reasonable limits may be placed on rights and freedoms, including censorship of hate speech e.g., racism, antisemitism, or Islamophobia.",
+     "extractedText": "Section 1 of the Canadian Charter of Rights and Freedoms recognizes that reasonable limits may be placed on rights and freedoms, including censorship of hate speech e.g., racism, antisemitism, or Islamophobia.",
+     "level": 1,
+     "sourcePage": 12,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K15",
+     "text": "Changes to the Constitution Act and the Canadian Charter of Rights and Freedoms can be made through\n• the amending formula that allows the federal government to make additions\n• the notwithstanding clause that allows provincial governments to exempt certain sections",
+     "extractedText": "Changes to the Constitution Act and the Canadian Charter of Rights and Freedoms can be made through\n• the amending formula that allows the federal government to make additions\n• the notwithstanding clause that allows provincial governments to exempt certain sections",
+     "level": 1,
+     "sourcePage": 12,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K16",
+     "text": "Attempts to amend the Constitution of Canada to encourage national unity include\n• the 1987 Meech Lake Accord\n• the Charlottetown Accord",
+     "extractedText": "Attempts to amend the Constitution of Canada to encourage national unity include\n• the 1987 Meech Lake Accord\n• the Charlottetown Accord",
+     "level": 1,
+     "sourcePage": 12,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-K17",
+     "text": "Rights afforded to Canadian citizens come with responsibilities of\n• obeying the law\n• taking responsibility for oneself and one’s family\n• serving on a jury\n• voting in elections\n• helping others in the community\n• protecting Canadian identity and the environment",
+     "extractedText": "Rights afforded to Canadian citizens come with responsibilities of\n• obeying the law\n• taking responsibility for oneself and one’s family\n• serving on a jury\n• voting in elections\n• helping others in the community\n• protecting Canadian identity and the environment",
+     "level": 1,
+     "sourcePage": 12,
+     "verified": false
+    }
+   ],
+   "understanding": [
+    {
+     "id": "G9-LO7-U1",
+     "text": "Protection of individual and collective rights evolves based on societal change.",
+     "extractedText": "Protection of individual and collective rights evolves based on societal change.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    }
+   ],
+   "skills": [
+    {
+     "id": "G9-LO7-S1",
+     "text": "Determine significance of individual and collective rights for self and others.",
+     "extractedText": "Determine significance of individual and collective rights for self and others.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-S2",
+     "text": "Relate ethical considerations to changes and growth in Canadian rights and freedoms since Confederation.",
+     "extractedText": "Relate ethical considerations to changes and growth in Canadian rights and freedoms since Confederation.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-S3",
+     "text": "Interpret evidence in legislation that affirms pluralism in Canada.",
+     "extractedText": "Interpret evidence in legislation that affirms pluralism in Canada.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-S4",
+     "text": "Relate advocacy to the changing social and political landscape of Canada.",
+     "extractedText": "Relate advocacy to the changing social and political landscape of Canada.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-S5",
+     "text": "Explain how amendments to legislation contribute to the development of Canadian multiculturalism and immigration.",
+     "extractedText": "Explain how amendments to legislation contribute to the development of Canadian multiculturalism and immigration.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-S6",
+     "text": "Explore the contributions of immigrants to Canada.",
+     "extractedText": "Explore the contributions of immigrants to Canada.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-S7",
+     "text": "Discuss historical and contemporary issues where reasonable limits have been placed on rights and freedoms.",
+     "extractedText": "Discuss historical and contemporary issues where reasonable limits have been placed on rights and freedoms.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-S8",
+     "text": "Evaluate the impact the Constitution Act (1982) had on Canadian identity.",
+     "extractedText": "Evaluate the impact the Constitution Act (1982) had on Canadian identity.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-S9",
+     "text": "Discuss the relationship between rights and responsibilities afforded to Canadian citizens.",
+     "extractedText": "Discuss the relationship between rights and responsibilities afforded to Canadian citizens.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    },
+    {
+     "id": "G9-LO7-S10",
+     "text": "Explore the significance of the Meech Lake Accord and the Quebec October Crisis.",
+     "extractedText": "Explore the significance of the Meech Lake Accord and the Quebec October Crisis.",
+     "level": 1,
+     "sourcePage": 11,
+     "verified": false
+    }
+   ],
+   "contentAreaIds": [
+    "citizenship"
+   ],
+   "verified": false,
+   "contentAreaSource": "suggested"
+  }
+ ],
+ "warnings": [
+  "41 line(s) of text were not placed in any outcome (introductions, notes or unrecognised layout). Review them in the source panel. First: \"Subject Introduction\" (page 1)"
+ ],
+ "stats": {
+  "lines": 474,
+  "unplaced": 41,
+  "outcomes": 7,
+  "grades": [
+   9
+  ],
+  "statements": 147
+ },
+ "sourceLines": [
+  {
+   "text": "Subject Introduction",
+   "page": 1
+  },
+  {
+   "text": "What is Social Studies?",
+   "page": 1
+  },
+  {
+   "text": "Social studies is the study of history, geography, economics, civics and citizenship, and government and politics. Students explore important questions and actively engage with issues to understand lessons from the past and to become active and well-",
+   "page": 1
+  },
+  {
+   "text": "informed citizens in their communities. Students use a knowledge-based curriculum and combine social science methods, including research, source evaluation, and evidence interpretation, to enhance understanding, draw conclusions, and build robust",
+   "page": 1
+  },
+  {
+   "text": "critical-thinking skills.",
+   "page": 1
+  },
+  {
+   "text": "History",
+   "page": 1
+  },
+  {
+   "text": "Social studies gives students a strong understanding of local, national, and international history. By understanding the past, students can interpret the present. By learning about societies, cultures, and civilizations, students will be equipped to",
+   "page": 1
+  },
+  {
+   "text": "understand the origins of current events and the roles of institutions.",
+   "page": 1
+  },
+  {
+   "text": "Supporting Active and Responsible Citizens",
+   "page": 1
+  },
+  {
+   "text": "Social studies empowers students to become active and responsible citizens by developing their critical-thinking, problem-solving, and decision-making skills. Students learn about the importance of rights and responsibilities and will understand the",
+   "page": 1
+  },
+  {
+   "text": "various ways in which citizens can and should participate in their communities.",
+   "page": 1
+  },
+  {
+   "text": "Critical Thinking",
+   "page": 1
+  },
+  {
+   "text": "Social studies equips students with essential critical-thinking skills by encouraging them to question assumptions, ask questions, consider bias, and build resilience in a rapidly changing world. Historical, comparative, quantitative, and political analysis",
+   "page": 1
+  },
+  {
+   "text": "improves students’ understanding of perspectives, bias, motivations, and actions from the past and supports students’ decision making in the present and future. Students also develop an understanding of research methods and learn to practise",
+   "page": 1
+  },
+  {
+   "text": "objective and impartial inquiry, investigation, and analysis of primary and secondary sources. These skills support students’ understanding of the significance of historical events, which will inform lifelong critical thinking.",
+   "page": 1
+  },
+  {
+   "text": "Critical thinking in social studies involves more than memorization and recall. Critical thinking is reinforced through students’ engagement with developmentally appropriate sources, content, resources, and learning experiences and contributes to",
+   "page": 1
+  },
+  {
+   "text": "students’ literacy and numeracy development. The skills and procedures in Alberta’s social studies curriculum require students to interpret evidence, determine significance, recognize perspectives, analyze patterns and relationships, and consider ethics.",
+   "page": 1
+  },
+  {
+   "text": "The study and creation of primary and secondary sources is essential to understanding complex historical and contemporary issues.",
+   "page": 1
+  },
+  {
+   "text": "Students develop their critical-thinking skills when they listen to, read, and view a variety of primary and secondary sources and they demonstrate their critical-thinking skills when they speak, write, and represent to express their evidence-based",
+   "page": 1
+  },
+  {
+   "text": "viewpoints. When students communicate their ideas through debates, discussions, presentations, research reports, opinion pieces, and structured writing, they develop higher-order thinking skills and the ability to contribute to dialogue and discussion.",
+   "page": 1
+  },
+  {
+   "text": "Media Literacy",
+   "page": 1
+  },
+  {
+   "text": "Media literacy is a crucial skill for interacting with complex and sometimes conflicting information from a variety of sources. Media literacy is an essential component of critical thinking and serves as a bridge to real-world experiences. In social studies,",
+   "page": 1
+  },
+  {
+   "text": "students develop and practise media literacy skills, including digital literacy skills, when they access and engage effectively with historical and contemporary issues, which helps them analyze information, communicate ideas, and participate as informed",
+   "page": 1
+  },
+  {
+   "text": "citizens.",
+   "page": 1
+  },
+  {
+   "text": "Supporting Career and Academic Pathways",
+   "page": 1
+  },
+  {
+   "text": "Alberta students have diverse career and academic goals. These goals are supported in social studies by developing Alberta’s eight core competencies: critical thinking, problem solving, research and managing information, creativity and innovation,",
+   "page": 1
+  },
+  {
+   "text": "communication, citizenship, collaboration, and personal growth and well-being. Engaging in these various levels of thinking, from foundational understanding to complex analysis and evaluation, prepares Alberta students for real-world experiences, for",
+   "page": 1
+  },
+  {
+   "text": "successful and fulfilling lives, and to make meaningful contributions in their communities and the world.",
+   "page": 1
+  },
+  {
+   "text": "Engaging students in interpreting evidence, determining significance, recognizing perspectives, analyzing patterns and relationships, and considering ethics develops transferable skills that support the pursuit of a variety of career and academic interests.",
+   "page": 1
+  },
+  {
+   "text": "When addressing historical and contemporary issues, educators, parents, and caregivers support engagement with social studies through approaches that are both developmentally appropriate and essential preparation for many career and academic",
+   "page": 1
+  },
+  {
+   "text": "pursuits. The selection of age-appropriate content, resources, and real-world learning experiences can include:",
+   "page": 1
+  },
+  {
+   "text": "• listening, reading, and viewing a variety of primary and secondary sources, texts such as lectures, discussions, oral histories, speeches, interviews, historical documents, biographies, articles, editorials, books, maps, charts, political cartoons, news",
+   "page": 1
+  },
+  {
+   "text": "clips, films, documentaries, photographs, artwork, artifacts, performances, and other media texts; and",
+   "page": 1
+  },
+  {
+   "text": "• speaking, writing, and representing using a variety of forms to communicate ideas, such as informal and formal debates, discussions, presentations, research reports, structured writing, opinion pieces, and other texts to inform and/or persuade.",
+   "page": 1
+  },
+  {
+   "text": "Social Studies in Our World",
+   "page": 2
+  },
+  {
+   "text": "Social studies promotes engaged and critically informed, active citizens. Globally, citizenship is dynamic, contextual, and multi-dimensional. Definitions of citizenship and its key features change across time and place based on the application and",
+   "page": 2
+  },
+  {
+   "text": "interpretation of values. Active citizenship involves a range of practices that ultimately seek to help people be active participants in their world. Social studies acknowledges that students bring their own perspectives, cultures, and experiences to the",
+   "page": 2
+  },
+  {
+   "text": "evolving world around them.",
+   "page": 2
+  },
+  {
+   "text": "Students connect prior knowledge with new contexts to construct learning in ways that enrich their evolving understanding. Students recognize that diverse cultures, histories, contributions, and perspectives support a pluralistic society. Social studies",
+   "page": 2
+  },
+  {
+   "text": "provides opportunities for the exploration of historical, contemporary, and emerging issues through the lens of multiple perspectives. The opportunity to respectfully debate, discuss, and address ethical questions prepares students for their future.",
+   "page": 2
+  },
+  {
+   "text": "Engaging respectfully with multiple perspectives, including those of First Nations, Métis, Inuit, and Francophone communities, contributes to a deeper understanding of the worldviews that shape how individuals and groups interact in the world.",
+   "page": 2
+  },
+  {
+   "text": "Grade 9",
+   "page": 3
+  },
+  {
+   "text": "Organizing Idea Time and Place: Exploring the dynamic relationships between people, place, and time supports understanding of perspectives and events to make meaning of the world.",
+   "page": 3
+  },
+  {
+   "text": "Guiding Question How can urbanization shift and shape a society?",
+   "page": 3
+  },
+  {
+   "text": "Learning Outcome Students examine the impacts of urbanization and the growth of industry on Canada.",
+   "page": 3
+  },
+  {
+   "text": "Knowledge",
+   "page": 3
+  },
+  {
+   "text": "Patterns of immigration can be identified as push and pull factors that",
+   "page": 3
+  },
+  {
+   "text": "motivate people to migrate from one place to another.",
+   "page": 3
+  },
+  {
+   "text": "Canada experienced changing and increasingly urbanized demographics",
+   "page": 3
+  },
+  {
+   "text": "due to international migration after the Second World War and urban centres",
+   "page": 3
+  },
+  {
+   "text": "reflected a more diverse, pluralistic population.",
+   "page": 3
+  },
+  {
+   "text": "Displaced persons are refugees, including Holocaust survivors, who",
+   "page": 3
+  },
+  {
+   "text": "migrated to Canada following the Second World War (1945–51).",
+   "page": 3
+  },
+  {
+   "text": "Urbanization and population boom after the Second World War increased",
+   "page": 3
+  },
+  {
+   "text": "consumption and demand for development.",
+   "page": 3
+  },
+  {
+   "text": "Urbanization influenced the growth and transformation of industries and the",
+   "page": 3
+  },
+  {
+   "text": "emergence of new sectors in Canada, including",
+   "page": 3
+  },
+  {
+   "text": "• public infrastructure development to support growth of suburbs and",
+   "page": 3
+  },
+  {
+   "text": "population",
+   "page": 3
+  },
+  {
+   "text": "• oil and gas exploration, and the growth of the petroleum industry",
+   "page": 3
+  },
+  {
+   "text": "• hydroelectricity production",
+   "page": 3
+  },
+  {
+   "text": "• automobile and paper production",
+   "page": 3
+  },
+  {
+   "text": "There are environmental impacts of urbanization, such as",
+   "page": 3
+  },
+  {
+   "text": "• pollution",
+   "page": 3
+  },
+  {
+   "text": "• land consumption",
+   "page": 3
+  },
+  {
+   "text": "• land division",
+   "page": 3
+  },
+  {
+   "text": "• wildlife migration changes",
+   "page": 3
+  },
+  {
+   "text": "Understanding",
+   "page": 3
+  },
+  {
+   "text": "Urbanization impacts a country’s population, economy, and environment.",
+   "page": 3
+  },
+  {
+   "text": "Skills & Procedures",
+   "page": 3
+  },
+  {
+   "text": "Relate patterns of immigration to push and pull factors.",
+   "page": 3
+  },
+  {
+   "text": "Explain changes to Canada’s demographics after the Second World War.",
+   "page": 3
+  },
+  {
+   "text": "Explain social, economic, and environmental consequences and challenges",
+   "page": 3
+  },
+  {
+   "text": "of increased urbanization.",
+   "page": 3
+  },
+  {
+   "text": "Investigate how new fields are responding to urbanization.",
+   "page": 3
+  },
+  {
+   "text": "Evaluate the impacts of the growth of oil and gas industry in Canada.",
+   "page": 3
+  },
+  {
+   "text": "Consider the benefits of the growth of Canada’s petroleum industry.",
+   "page": 3
+  },
+  {
+   "text": "Organizing Idea Time and Place: Exploring the dynamic relationships between people, place, and time supports understanding of perspectives and events to make meaning of the world.",
+   "page": 4
+  },
+  {
+   "text": "Guiding Question How did Canada become a more independent nation and expand democratic rights?",
+   "page": 4
+  },
+  {
+   "text": "Learning Outcome Students explain how Canada gained independence and expanded democratic rights.",
+   "page": 4
+  },
+  {
+   "text": "Knowledge",
+   "page": 4
+  },
+  {
+   "text": "Canada’s increasing autonomy, including the 1926 Balfour Declaration and",
+   "page": 4
+  },
+  {
+   "text": "the 1931 Statute of Westminster, represented the formal transition of Canada",
+   "page": 4
+  },
+  {
+   "text": "from a self-governing colony to a fully sovereign nation.",
+   "page": 4
+  },
+  {
+   "text": "Canada gained full authority over its own foreign policy.",
+   "page": 4
+  },
+  {
+   "text": "The shift from a centralized empire to a commonwealth of independent",
+   "page": 4
+  },
+  {
+   "text": "nations was driven by a combination of post-war exhaustion, intense",
+   "page": 4
+  },
+  {
+   "text": "diplomatic pressure from the Dominions, and a pragmatic desire to maintain",
+   "page": 4
+  },
+  {
+   "text": "influence through cooperation rather than coercion.",
+   "page": 4
+  },
+  {
+   "text": "Women’s suffrage in Canada was the decades-long movement to secure the",
+   "page": 4
+  },
+  {
+   "text": "right of women to vote and hold political office.",
+   "page": 4
+  },
+  {
+   "text": "The Famous Five were a group of five prominent Alberta women who",
+   "page": 4
+  },
+  {
+   "text": "launched a legal challenge that fundamentally redefined the status of women",
+   "page": 4
+  },
+  {
+   "text": "in Canadian law.",
+   "page": 4
+  },
+  {
+   "text": "By establishing that women were legal persons, the Persons Case affirmed",
+   "page": 4
+  },
+  {
+   "text": "that women had the right to hold any appointed or elected office in the",
+   "page": 4
+  },
+  {
+   "text": "country, reinforcing the democratic principle of equality.",
+   "page": 4
+  },
+  {
+   "text": "Understanding",
+   "page": 4
+  },
+  {
+   "text": "Canada became a sovereign nation and its identity evolved as more people",
+   "page": 4
+  },
+  {
+   "text": "gained rights.",
+   "page": 4
+  },
+  {
+   "text": "Skills & Procedures",
+   "page": 4
+  },
+  {
+   "text": "Analyze how the Balfour Declaration (1926) and the Statute of Westminster",
+   "page": 4
+  },
+  {
+   "text": "(1931) transformed Canada’s political independence.",
+   "page": 4
+  },
+  {
+   "text": "Explain how gaining control over foreign policy contributed to Canada’s",
+   "page": 4
+  },
+  {
+   "text": "development as a sovereign nation.",
+   "page": 4
+  },
+  {
+   "text": "Explain how the Famous Five case changed the distribution of political power",
+   "page": 4
+  },
+  {
+   "text": "and participation in Canada.",
+   "page": 4
+  },
+  {
+   "text": "Compare how political independence and expanded rights contributed to",
+   "page": 4
+  },
+  {
+   "text": "changes in Canadian identity.",
+   "page": 4
+  },
+  {
+   "text": "Organizing Idea Time and Place: Exploring the dynamic relationships between people, place, and time supports understanding of perspectives and events to make meaning of the world.",
+   "page": 5
+  },
+  {
+   "text": "Guiding Question How did WWII shape Canada’s independence?",
+   "page": 5
+  },
+  {
+   "text": "Learning Outcome Students examine how Canada’s identity was shaped by its independent role in WWII and its growing global influence.",
+   "page": 5
+  },
+  {
+   "text": "Knowledge",
+   "page": 5
+  },
+  {
+   "text": "Canada’s Parliament declared war independently in 1939 and entered the",
+   "page": 5
+  },
+  {
+   "text": "Second World War, which represented a significant step forward in its",
+   "page": 5
+  },
+  {
+   "text": "sovereignty and identity.",
+   "page": 5
+  },
+  {
+   "text": "Canada’s independent participation in WWII contributed to its emergence as",
+   "page": 5
+  },
+  {
+   "text": "a self-governing nation with a distinct international role.",
+   "page": 5
+  },
+  {
+   "text": "More than one million Canadians joined the armed forces, allowing the",
+   "page": 5
+  },
+  {
+   "text": "country to build one of the world’s largest navies and air forces by 1945.",
+   "page": 5
+  },
+  {
+   "text": "Canadian forces earned recognition on the battlefield and were highly",
+   "page": 5
+  },
+  {
+   "text": "regarded. They made important contributions during the",
+   "page": 5
+  },
+  {
+   "text": "• Defence of Hong Kong (1941)",
+   "page": 5
+  },
+  {
+   "text": "• Dieppe Raid (1942)",
+   "page": 5
+  },
+  {
+   "text": "• Italian Campaign (1943)",
+   "page": 5
+  },
+  {
+   "text": "• D-Day and the Battle of Normandy (1944)",
+   "page": 5
+  },
+  {
+   "text": "• Liberation of France, Belgium and the Netherlands (1944-45)",
+   "page": 5
+  },
+  {
+   "text": "Canada’s diverse populations and communities, such as Chinese Canadians",
+   "page": 5
+  },
+  {
+   "text": "in Force 136, made contributions to the Second World War.",
+   "page": 5
+  },
+  {
+   "text": "Cree code talkers were First Nations and Métis soldiers who developed and",
+   "page": 5
+  },
+  {
+   "text": "contributed a military coding system based on the Cree language, which was",
+   "page": 5
+  },
+  {
+   "text": "invaluable to communications during the Second World War.",
+   "page": 5
+  },
+  {
+   "text": "The Second World War transformed Canada into a more prominent",
+   "page": 5
+  },
+  {
+   "text": "international actor, strengthening its global reputation and influence.",
+   "page": 5
+  },
+  {
+   "text": "Understanding",
+   "page": 5
+  },
+  {
+   "text": "Canada’s identity was shaped by its independent role in WWII and its",
+   "page": 5
+  },
+  {
+   "text": "growing global influence.",
+   "page": 5
+  },
+  {
+   "text": "Skills & Procedures",
+   "page": 5
+  },
+  {
+   "text": "Analyze how Canada’s decision to declare war independently in 1939",
+   "page": 5
+  },
+  {
+   "text": "demonstrated its growing sovereignty.",
+   "page": 5
+  },
+  {
+   "text": "Explain how participation in WWII contributed to Canada’s development as a",
+   "page": 5
+  },
+  {
+   "text": "self-governing nation.",
+   "page": 5
+  },
+  {
+   "text": "Use evidence from battles (e.g., Hong Kong, Dieppe, Italy, D-Day, liberation",
+   "page": 5
+  },
+  {
+   "text": "of Europe) to explain Canada’s contributions to Allied success.",
+   "page": 5
+  },
+  {
+   "text": "Explain the significance of contributions by groups such as Chinese",
+   "page": 5
+  },
+  {
+   "text": "Canadians and Cree code talkers to the war effort.",
+   "page": 5
+  },
+  {
+   "text": "Evaluate the extent to which the Second World War was a turning point in",
+   "page": 5
+  },
+  {
+   "text": "Canada’s development as an independent and influential nation.",
+   "page": 5
+  },
+  {
+   "text": "Organizing Idea Time and Place: Exploring the dynamic relationships between people, place, and time supports understanding of perspectives and events to make meaning of the world.",
+   "page": 6
+  },
+  {
+   "text": "Guiding Question How did political, economic, and social changes reshape Canada after WWII?",
+   "page": 6
+  },
+  {
+   "text": "Learning Outcome Students analyze how post-war developments shaped Canada as a modern nation.",
+   "page": 6
+  },
+  {
+   "text": "Knowledge",
+   "page": 6
+  },
+  {
+   "text": "After World War II, Canada developed into a welfare state, where the",
+   "page": 6
+  },
+  {
+   "text": "government expanded social programs, including universal healthcare and",
+   "page": 6
+  },
+  {
+   "text": "old-age pensions, to reduce inequality and provide financial security.",
+   "page": 6
+  },
+  {
+   "text": "The welfare state emerged in response to the economic hardships of the",
+   "page": 6
+  },
+  {
+   "text": "Great Depression, as well as wartime experiences that increased",
+   "page": 6
+  },
+  {
+   "text": "expectations for government support.",
+   "page": 6
+  },
+  {
+   "text": "After WWII, Canada played an active role in promoting global peace and",
+   "page": 6
+  },
+  {
+   "text": "security, strengthening its identity as a cooperative and responsible",
+   "page": 6
+  },
+  {
+   "text": "international partner.",
+   "page": 6
+  },
+  {
+   "text": "Canada became a founding member of NATO, contributing to collective",
+   "page": 6
+  },
+  {
+   "text": "defence during the Cold War.",
+   "page": 6
+  },
+  {
+   "text": "Canada participated in the Korean War, including key battles such as",
+   "page": 6
+  },
+  {
+   "text": "Kapyong and Hill 355, demonstrating its military commitment to global",
+   "page": 6
+  },
+  {
+   "text": "stability.",
+   "page": 6
+  },
+  {
+   "text": "Canada worked with the United States through NORAD to defend North",
+   "page": 6
+  },
+  {
+   "text": "America from external threats.",
+   "page": 6
+  },
+  {
+   "text": "Canada helped resolve international conflicts, including the Suez Crisis,",
+   "page": 6
+  },
+  {
+   "text": "where Lester B. Pearson’s leadership contributed to the creation of modern",
+   "page": 6
+  },
+  {
+   "text": "peacekeeping and earned him the Nobel Peace Prize.",
+   "page": 6
+  },
+  {
+   "text": "Canada’s continued involvement in peacekeeping missions around the world",
+   "page": 6
+  },
+  {
+   "text": "strengthened its reputation as a nation committed to diplomacy and global",
+   "page": 6
+  },
+  {
+   "text": "cooperation.",
+   "page": 6
+  },
+  {
+   "text": "After WWII, immigration patterns shifted, with increasing numbers of",
+   "page": 6
+  },
+  {
+   "text": "immigrants arriving from non-European regions such as India, China, and",
+   "page": 6
+  },
+  {
+   "text": "Vietnam.",
+   "page": 6
+  },
+  {
+   "text": "Displaced persons are refugees, including Holocaust survivors, who",
+   "page": 6
+  },
+  {
+   "text": "migrated to Canada following the Second World War (1945-51).",
+   "page": 6
+  },
+  {
+   "text": "These new waves of immigration contributed to Canada’s growing cultural",
+   "page": 6
+  },
+  {
+   "text": "diversity and reshaped its population and identity.",
+   "page": 6
+  },
+  {
+   "text": "The development of multiculturalism reflected efforts to recognize and",
+   "page": 6
+  },
+  {
+   "text": "include diverse cultural groups within Canadian society.",
+   "page": 6
+  },
+  {
+   "text": "Government policies such as Residential Schools and the Sixties Scoop",
+   "page": 6
+  },
+  {
+   "text": "caused long-term harm to Indigenous communities by separating children",
+   "page": 6
+  },
+  {
+   "text": "from their families and cultures.",
+   "page": 6
+  },
+  {
+   "text": "Canadian identity has been shaped by internal disagreements and",
+   "page": 6
+  },
+  {
+   "text": "challenges to national unity.",
+   "page": 7
+  },
+  {
+   "text": "Events such as the October Crisis (1970) and debates surrounding Quebec",
+   "page": 7
+  },
+  {
+   "text": "separatism reflect differing views about Canada’s political and cultural future.",
+   "page": 7
+  },
+  {
+   "text": "The Meech Lake Accord (1987) attempted to address Quebec’s status within",
+   "page": 7
+  },
+  {
+   "text": "Canada but revealed ongoing tensions between regions.",
+   "page": 7
+  },
+  {
+   "text": "The growth of the petroleum industry contributed to economic prosperity,",
+   "page": 7
+  },
+  {
+   "text": "particularly in Western Canada.",
+   "page": 7
+  },
+  {
+   "text": "Government policies such as the National Energy Program aimed to manage",
+   "page": 7
+  },
+  {
+   "text": "energy resources but led to conflict between regions.",
+   "page": 7
+  },
+  {
+   "text": "These tensions contributed to Western alienation, where Western",
+   "page": 7
+  },
+  {
+   "text": "Canadians, particularly those in Alberta and Saskatchewan, felt",
+   "page": 7
+  },
+  {
+   "text": "underrepresented or disadvantaged by federal decisions.",
+   "page": 7
+  },
+  {
+   "text": "The Constitution Act (1982) was a major milestone in Canadian",
+   "page": 7
+  },
+  {
+   "text": "independence, as Canada gained full control over its own constitution.",
+   "page": 7
+  },
+  {
+   "text": "The inclusion of the Charter of Rights and Freedoms strengthened",
+   "page": 7
+  },
+  {
+   "text": "protections for individual rights and freedoms.",
+   "page": 7
+  },
+  {
+   "text": "This marked a significant step in shaping Canada’s identity as a nation",
+   "page": 7
+  },
+  {
+   "text": "based on democracy, equality, and the rule of law.",
+   "page": 7
+  },
+  {
+   "text": "Understanding",
+   "page": 6
+  },
+  {
+   "text": "Canada’s identity evolved after the Second World War through change,",
+   "page": 6
+  },
+  {
+   "text": "cooperation, and conflict.",
+   "page": 6
+  },
+  {
+   "text": "Skills & Procedures",
+   "page": 6
+  },
+  {
+   "text": "Evaluate the impact of social programs (e.g., healthcare, pensions) on",
+   "page": 6
+  },
+  {
+   "text": "reducing inequality and shaping Canadian society.",
+   "page": 6
+  },
+  {
+   "text": "Evaluate how Canada’s international actions (e.g., NATO, Korean War,",
+   "page": 6
+  },
+  {
+   "text": "peacekeeping) influenced both its global reputation and national identity.",
+   "page": 6
+  },
+  {
+   "text": "Assess how the development of multiculturalism shaped Canadian identity.",
+   "page": 6
+  },
+  {
+   "text": "Analyze the impact of Residential Schools and the Sixties Scoop on",
+   "page": 6
+  },
+  {
+   "text": "Indigenous communities.",
+   "page": 6
+  },
+  {
+   "text": "Analyze how events such as the October Crisis and Quebec separatism",
+   "page": 6
+  },
+  {
+   "text": "reflected differing views of Canadian identity.",
+   "page": 6
+  },
+  {
+   "text": "Analyze the impact of the petroleum industry on economic development and",
+   "page": 6
+  },
+  {
+   "text": "regional identity.",
+   "page": 6
+  },
+  {
+   "text": "Assess the causes and consequences of Western alienation.",
+   "page": 6
+  },
+  {
+   "text": "Evaluate the extent to which post-war developments strengthened or",
+   "page": 6
+  },
+  {
+   "text": "challenged Canadian identity.",
+   "page": 6
+  },
+  {
+   "text": "Evaluate how the Constitution Act (1982) and the Charter of Rights and",
+   "page": 6
+  },
+  {
+   "text": "Freedoms transformed Canadian identity and participation in society.",
+   "page": 6
+  },
+  {
+   "text": "Organizing Idea Systems: Evaluating processes and structures of organizations builds understanding of decision making in the world.",
+   "page": 8
+  },
+  {
+   "text": "Guiding Question How did economic changes transform Canada into a modern economy?",
+   "page": 8
+  },
+  {
+   "text": "Learning Outcome Students analyze how economic crisis, growth, and global trade shaped Canada’s modern economy.",
+   "page": 8
+  },
+  {
+   "text": "Knowledge",
+   "page": 8
+  },
+  {
+   "text": "The Great Depression (1930s) was a period of severe economic hardship",
+   "page": 8
+  },
+  {
+   "text": "marked by high unemployment, falling prices, and widespread poverty.",
+   "page": 8
+  },
+  {
+   "text": "The Great Depression was caused by several factors, including",
+   "page": 8
+  },
+  {
+   "text": "• overproduction of goods",
+   "page": 8
+  },
+  {
+   "text": "• declining consumer demand",
+   "page": 8
+  },
+  {
+   "text": "• the collapse of global trade",
+   "page": 8
+  },
+  {
+   "text": "• financial instability",
+   "page": 8
+  },
+  {
+   "text": "In response to the Great Depression, governments in Canada and the United",
+   "page": 8
+  },
+  {
+   "text": "States began to take a more active role in the economy such as public",
+   "page": 8
+  },
+  {
+   "text": "works, social welfare programs, and deficit spending.",
+   "page": 8
+  },
+  {
+   "text": "After World War II, Canada’s economy expanded and diversified, contributing",
+   "page": 8
+  },
+  {
+   "text": "to the development of a modern industrial economy. This included the growth",
+   "page": 8
+  },
+  {
+   "text": "of economic sectors including",
+   "page": 8
+  },
+  {
+   "text": "• automobile manufacturing",
+   "page": 8
+  },
+  {
+   "text": "• petroleum and energy production",
+   "page": 8
+  },
+  {
+   "text": "• papers and forestry",
+   "page": 8
+  },
+  {
+   "text": "• hydroelectric power development",
+   "page": 8
+  },
+  {
+   "text": "Canada’s population became increasingly urbanized after WWII, with more",
+   "page": 8
+  },
+  {
+   "text": "people living in cities rather than rural areas.",
+   "page": 8
+  },
+  {
+   "text": "The growth of suburbs occurred as people moved to residential areas",
+   "page": 8
+  },
+  {
+   "text": "outside city centres in search of affordable housing and improved living",
+   "page": 8
+  },
+  {
+   "text": "conditions.",
+   "page": 8
+  },
+  {
+   "text": "Canada developed an increasingly close trade relationship with the United",
+   "page": 8
+  },
+  {
+   "text": "States, reflecting geographic proximity and economic interdependence.",
+   "page": 8
+  },
+  {
+   "text": "Agreements such as NAFTA expanded free trade, increasing the movement",
+   "page": 8
+  },
+  {
+   "text": "of goods, services, and investment between the two countries.",
+   "page": 8
+  },
+  {
+   "text": "Understanding",
+   "page": 8
+  },
+  {
+   "text": "Canada’s economy evolved through crisis, government action, and global",
+   "page": 8
+  },
+  {
+   "text": "trade.",
+   "page": 8
+  },
+  {
+   "text": "Skills & Procedures",
+   "page": 8
+  },
+  {
+   "text": "Analyze the causes of the Great Depression and their impact on economic",
+   "page": 8
+  },
+  {
+   "text": "stability.",
+   "page": 8
+  },
+  {
+   "text": "Analyze how governments responded to economic crises through policies",
+   "page": 8
+  },
+  {
+   "text": "such as public works, social programs, and deficit spending.",
+   "page": 8
+  },
+  {
+   "text": "Analyze how Canada’s economy transformed after WWII through industrial",
+   "page": 8
+  },
+  {
+   "text": "growth and the emergence of new sectors.",
+   "page": 8
+  },
+  {
+   "text": "Analyze how economic growth contributed to urbanization and the",
+   "page": 8
+  },
+  {
+   "text": "development of suburban communities.",
+   "page": 8
+  },
+  {
+   "text": "Evaluate the social and economic consequences of increased urbanization.",
+   "page": 8
+  },
+  {
+   "text": "Analyze how Canada’s trade relationship with the United States shaped its",
+   "page": 8
+  },
+  {
+   "text": "economic development.",
+   "page": 8
+  },
+  {
+   "text": "Evaluate the impact of free trade agreements on economic growth and",
+   "page": 8
+  },
+  {
+   "text": "interdependence.",
+   "page": 8
+  },
+  {
+   "text": "Evaluate the extent to which economic developments contributed to Canada",
+   "page": 8
+  },
+  {
+   "text": "becoming a modern, industrial, and globally connected nation.",
+   "page": 8
+  },
+  {
+   "text": "Organizing Idea Systems: Evaluating processes and structures of organizations builds understanding of decision making in the world.",
+   "page": 9
+  },
+  {
+   "text": "Guiding Question How is power organized and exercised in Canada’s system of government?",
+   "page": 9
+  },
+  {
+   "text": "Learning Outcome Students analyze how power is distributed and exercised in Canada’s government, including how laws are made and how rights are protected.",
+   "page": 9
+  },
+  {
+   "text": "Knowledge",
+   "page": 9
+  },
+  {
+   "text": "Responsible government is a principle of Canada’s parliamentary democracy",
+   "page": 9
+  },
+  {
+   "text": "in which the executive branch must maintain the confidence of the elected",
+   "page": 9
+  },
+  {
+   "text": "House of Commons to remain in power.",
+   "page": 9
+  },
+  {
+   "text": "Responsible government means that the government is accountable to",
+   "page": 9
+  },
+  {
+   "text": "elected representatives, who act on behalf of citizens.",
+   "page": 9
+  },
+  {
+   "text": "If the government loses the support of the House of Commons, it must resign",
+   "page": 9
+  },
+  {
+   "text": "or call an election. Canada’s Parliament consists of three parts: the Crown,",
+   "page": 9
+  },
+  {
+   "text": "the Senate, and the House of Commons, which must all approve laws.",
+   "page": 9
+  },
+  {
+   "text": "The Crown is represented by the Governor General which represent the",
+   "page": 9
+  },
+  {
+   "text": "Monarch and gives Royal Assent to laws.",
+   "page": 9
+  },
+  {
+   "text": "The House of Commons is comprised of elected representatives, Members",
+   "page": 9
+  },
+  {
+   "text": "of Parliament, who represent a riding. They are responsible for making new",
+   "page": 9
+  },
+  {
+   "text": "laws through debate and voting.",
+   "page": 9
+  },
+  {
+   "text": "A riding (also called a constituency or electoral district) is a geographic area",
+   "page": 9
+  },
+  {
+   "text": "in Canada that elects one Member of Parliament (MP) to represent it in the",
+   "page": 9
+  },
+  {
+   "text": "House of Commons.",
+   "page": 9
+  },
+  {
+   "text": "The Senate consists of appointed members who review laws passed by the",
+   "page": 9
+  },
+  {
+   "text": "House of Commons.",
+   "page": 9
+  },
+  {
+   "text": "Laws are created through a formal legislative process, including",
+   "page": 9
+  },
+  {
+   "text": "• bill drafting",
+   "page": 9
+  },
+  {
+   "text": "• first reading (introduction)",
+   "page": 9
+  },
+  {
+   "text": "• second reading (debate)",
+   "page": 9
+  },
+  {
+   "text": "• committee stage (detailed review)",
+   "page": 9
+  },
+  {
+   "text": "• third reading (final approval)",
+   "page": 9
+  },
+  {
+   "text": "• approval by the Senate",
+   "page": 9
+  },
+  {
+   "text": "• royal assent by the Crown",
+   "page": 9
+  },
+  {
+   "text": "A formal legislative process ensures that laws are debated, reviewed, and",
+   "page": 9
+  },
+  {
+   "text": "approved by multiple institutions before being enacted.",
+   "page": 9
+  },
+  {
+   "text": "Governments also make decisions through:",
+   "page": 9
+  },
+  {
+   "text": "• Orders in Council",
+   "page": 9
+  },
+  {
+   "text": "• Regulations and Directives",
+   "page": 9
+  },
+  {
+   "text": "• Ministerial Orders/Decisions",
+   "page": 9
+  },
+  {
+   "text": "Canada is a federal system, meaning power is divided between federal and",
+   "page": 9
+  },
+  {
+   "text": "provincial governments.",
+   "page": 9
+  },
+  {
+   "text": "The Federal government is responsible for",
+   "page": 9
+  },
+  {
+   "text": "• Defence",
+   "page": 9
+  },
+  {
+   "text": "• Banking and Currency",
+   "page": 9
+  },
+  {
+   "text": "• Trade and Commerce",
+   "page": 10
+  },
+  {
+   "text": "• Criminal Law",
+   "page": 10
+  },
+  {
+   "text": "• Citizenship",
+   "page": 10
+  },
+  {
+   "text": "Provincial governments are responsible for",
+   "page": 10
+  },
+  {
+   "text": "• Education",
+   "page": 10
+  },
+  {
+   "text": "• Healthcare",
+   "page": 10
+  },
+  {
+   "text": "• Property and Civil Rights",
+   "page": 10
+  },
+  {
+   "text": "• Municipalities",
+   "page": 10
+  },
+  {
+   "text": "• Natural Resources",
+   "page": 10
+  },
+  {
+   "text": "Provinces have primary authority over natural resources, including their",
+   "page": 10
+  },
+  {
+   "text": "development, management, and use.",
+   "page": 10
+  },
+  {
+   "text": "Jurisdiction over natural resources is critical to Alberta because",
+   "page": 10
+  },
+  {
+   "text": "• its economy relies heavily on oil and gas development",
+   "page": 10
+  },
+  {
+   "text": "• it controls resource revenues (e.g., royalties)",
+   "page": 10
+  },
+  {
+   "text": "• it shapes decisions about economic growth and development",
+   "page": 10
+  },
+  {
+   "text": "Conflicts can arise between federal and provincial governments when",
+   "page": 10
+  },
+  {
+   "text": "resource issues involve national interests such as the environment or",
+   "page": 10
+  },
+  {
+   "text": "interprovincial trade.",
+   "page": 10
+  },
+  {
+   "text": "Canada’s judiciary (court system) interprets and applies the law, ensuring",
+   "page": 10
+  },
+  {
+   "text": "laws follow the Constitution.",
+   "page": 10
+  },
+  {
+   "text": "Lower courts establish the facts of a case and make the initial decision.",
+   "page": 10
+  },
+  {
+   "text": "Appeal courts ensure that laws are applied correctly and consistently.",
+   "page": 10
+  },
+  {
+   "text": "The Supreme Court of Canada is the highest and final court in the country.",
+   "page": 10
+  },
+  {
+   "text": "The Supreme Court ensures that laws are interpreted consistently across",
+   "page": 10
+  },
+  {
+   "text": "Canada and that they follow the Constitution.",
+   "page": 10
+  },
+  {
+   "text": "The Canadian Citizenship Act (1947) formally established Canadian",
+   "page": 10
+  },
+  {
+   "text": "citizenship and defined membership in the nation.",
+   "page": 10
+  },
+  {
+   "text": "The Canadian Charter of Rights and Freedoms (1982) protects fundamental",
+   "page": 10
+  },
+  {
+   "text": "rights such as",
+   "page": 10
+  },
+  {
+   "text": "• freedom of expression",
+   "page": 10
+  },
+  {
+   "text": "• equality",
+   "page": 10
+  },
+  {
+   "text": "• legal protections",
+   "page": 10
+  },
+  {
+   "text": "Canadian citizens have rights (e.g., voting, freedoms) and responsibilities,",
+   "page": 10
+  },
+  {
+   "text": "including",
+   "page": 10
+  },
+  {
+   "text": "• obeying laws",
+   "page": 10
+  },
+  {
+   "text": "• participating in democracy",
+   "page": 10
+  },
+  {
+   "text": "• respecting the rights of others",
+   "page": 10
+  },
+  {
+   "text": "Understanding",
+   "page": 9
+  },
+  {
+   "text": "Power in Canada is shared and exercised through democratic structures,",
+   "page": 9
+  },
+  {
+   "text": "laws, and institutions, which shape decision making, protect rights, and",
+   "page": 9
+  },
+  {
+   "text": "ensure accountability.",
+   "page": 9
+  },
+  {
+   "text": "Skills & Procedures",
+   "page": 9
+  },
+  {
+   "text": "Examine how power is distributed between federal and provincial",
+   "page": 9
+  },
+  {
+   "text": "governments and how this shapes decision making in Canada.",
+   "page": 9
+  },
+  {
+   "text": "Assess how responsible government ensures accountability in Canada’s",
+   "page": 9
+  },
+  {
+   "text": "political system.",
+   "page": 9
+  },
+  {
+   "text": "Explain how representation through ridings connects citizens to government",
+   "page": 9
+  },
+  {
+   "text": "decision making.",
+   "page": 9
+  },
+  {
+   "text": "Interpret how government tools (e.g., regulations, orders in council) shape",
+   "page": 9
+  },
+  {
+   "text": "decisions beyond Parliament.",
+   "page": 9
+  },
+  {
+   "text": "Explain how the judiciary interprets laws and places limits on government",
+   "page": 9
+  },
+  {
+   "text": "authority.",
+   "page": 9
+  },
+  {
+   "text": "Examine how the Charter of Rights and Freedoms influences laws and",
+   "page": 9
+  },
+  {
+   "text": "government actions.",
+   "page": 9
+  },
+  {
+   "text": "Investigate how control over natural resources shapes provincial decision",
+   "page": 9
+  },
+  {
+   "text": "making and regional perspectives.",
+   "page": 9
+  },
+  {
+   "text": "Connect how Canada’s system of government balances power,",
+   "page": 9
+  },
+  {
+   "text": "accountability, and rights.",
+   "page": 9
+  },
+  {
+   "text": "Formulate a judgement on how fairly power is distributed among",
+   "page": 9
+  },
+  {
+   "text": "governments and citizens in Canada.",
+   "page": 9
+  },
+  {
+   "text": "Organizing Idea Citizenship: Understanding local, national, and global issues empowers individual and collective action toward an inclusive society.",
+   "page": 11
+  },
+  {
+   "text": "Guiding Question In what ways do citizen rights evolve?",
+   "page": 11
+  },
+  {
+   "text": "Learning Outcome Students examine the impact of changing legislation on citizenship in Canada.",
+   "page": 11
+  },
+  {
+   "text": "Knowledge",
+   "page": 11
+  },
+  {
+   "text": "Canada is a democratic nation that balances government control and",
+   "page": 11
+  },
+  {
+   "text": "protection of citizens’ individual rights and freedoms.",
+   "page": 11
+  },
+  {
+   "text": "Canada’s government policies and programs reflect changing perspectives",
+   "page": 11
+  },
+  {
+   "text": "and impact individuals and groups in different ways.",
+   "page": 11
+  },
+  {
+   "text": "Changes in legislation extended individual rights that were once denied to",
+   "page": 11
+  },
+  {
+   "text": "people based on",
+   "page": 11
+  },
+  {
+   "text": "• age",
+   "page": 11
+  },
+  {
+   "text": "• race",
+   "page": 11
+  },
+  {
+   "text": "• gender",
+   "page": 11
+  },
+  {
+   "text": "• income",
+   "page": 11
+  },
+  {
+   "text": "• ethnic origin",
+   "page": 11
+  },
+  {
+   "text": "• religious or spiritual beliefs",
+   "page": 11
+  },
+  {
+   "text": "Individuals and groups have changed the social and political landscape in",
+   "page": 11
+  },
+  {
+   "text": "Canada through advocacy for changes in legislation, including advocacy for",
+   "page": 11
+  },
+  {
+   "text": "women’s suffrage by the Famous Five.",
+   "page": 11
+  },
+  {
+   "text": "Prior to the Canadian Citizenship Act (1947), citizens in Canada were",
+   "page": 11
+  },
+  {
+   "text": "considered British subjects.",
+   "page": 11
+  },
+  {
+   "text": "The Canadian Citizenship Act (1947) defined who could hold or obtain",
+   "page": 11
+  },
+  {
+   "text": "Canadian citizenship and was in response to increased international",
+   "page": 11
+  },
+  {
+   "text": "recognition and the increasingly diverse population of Canada after the",
+   "page": 11
+  },
+  {
+   "text": "Second World War.",
+   "page": 11
+  },
+  {
+   "text": "Legislation has been amended over time to reflect Canadian pluralism and",
+   "page": 11
+  },
+  {
+   "text": "immigration from non-European countries, such as India, China, the",
+   "page": 11
+  },
+  {
+   "text": "Philippines, and Vietnam, including",
+   "page": 11
+  },
+  {
+   "text": "• the ability to pass on citizenship from one generation to the next",
+   "page": 11
+  },
+  {
+   "text": "• inclusive point systems and designations, such as economic, family,",
+   "page": 11
+  },
+  {
+   "text": "refugee, and humanitarian classes",
+   "page": 11
+  },
+  {
+   "text": "In Canada, citizenship status can be designated as",
+   "page": 11
+  },
+  {
+   "text": "• citizen at birth or through naturalization",
+   "page": 11
+  },
+  {
+   "text": "• temporary resident with a study, work, or visitor permit",
+   "page": 11
+  },
+  {
+   "text": "• permanent resident",
+   "page": 11
+  },
+  {
+   "text": "• refugee",
+   "page": 11
+  },
+  {
+   "text": "Permanent residents and refugees in Canada are non-citizens with some of",
+   "page": 11
+  },
+  {
+   "text": "the same rights as citizens and some restrictions.",
+   "page": 11
+  },
+  {
+   "text": "The Canadian Bill of Rights (1960) was the first federal legislation outlining",
+   "page": 11
+  },
+  {
+   "text": "rights and freedoms.",
+   "page": 11
+  },
+  {
+   "text": "Canada’s federal government further advanced rights by creating",
+   "page": 11
+  },
+  {
+   "text": "commissions and legislation that helped the development of Canadian",
+   "page": 11
+  },
+  {
+   "text": "multiculturalism and immigration, for example,",
+   "page": 12
+  },
+  {
+   "text": "• the Royal Commission of Bilingualism and Biculturalism (1963)",
+   "page": 12
+  },
+  {
+   "text": "• the Royal Commission on the Status of Women (1967)",
+   "page": 12
+  },
+  {
+   "text": "• the Official Languages Act (1969)",
+   "page": 12
+  },
+  {
+   "text": "• the Canadian Multiculturalism Policy (1971)",
+   "page": 12
+  },
+  {
+   "text": "Canada gained sovereign control over its constitution through gradual",
+   "page": 12
+  },
+  {
+   "text": "patriation, culminating in the Constitution Act (1982), which entrenched the",
+   "page": 12
+  },
+  {
+   "text": "Canadian Charter of Rights and Freedoms.",
+   "page": 12
+  },
+  {
+   "text": "The Canadian Charter of Rights and Freedoms (1982) defines individual and",
+   "page": 12
+  },
+  {
+   "text": "collective rights, including",
+   "page": 12
+  },
+  {
+   "text": "• fundamental freedoms",
+   "page": 12
+  },
+  {
+   "text": "• democratic rights",
+   "page": 12
+  },
+  {
+   "text": "• mobility rights",
+   "page": 12
+  },
+  {
+   "text": "• legal rights",
+   "page": 12
+  },
+  {
+   "text": "• equality rights",
+   "page": 12
+  },
+  {
+   "text": "• official language rights",
+   "page": 12
+  },
+  {
+   "text": "• minority language educational rights",
+   "page": 12
+  },
+  {
+   "text": "• Canada’s multicultural heritage",
+   "page": 12
+  },
+  {
+   "text": "• Indigenous peoples’ rights",
+   "page": 12
+  },
+  {
+   "text": "Section 1 of the Canadian Charter of Rights and Freedoms recognizes that",
+   "page": 12
+  },
+  {
+   "text": "reasonable limits may be placed on rights and freedoms, including",
+   "page": 12
+  },
+  {
+   "text": "censorship of hate speech e.g., racism, antisemitism, or Islamophobia.",
+   "page": 12
+  },
+  {
+   "text": "Changes to the Constitution Act and the Canadian Charter of Rights and",
+   "page": 12
+  },
+  {
+   "text": "Freedoms can be made through",
+   "page": 12
+  },
+  {
+   "text": "• the amending formula that allows the federal government to make additions",
+   "page": 12
+  },
+  {
+   "text": "• the notwithstanding clause that allows provincial governments to exempt",
+   "page": 12
+  },
+  {
+   "text": "certain sections",
+   "page": 12
+  },
+  {
+   "text": "Attempts to amend the Constitution of Canada to encourage national unity",
+   "page": 12
+  },
+  {
+   "text": "include",
+   "page": 12
+  },
+  {
+   "text": "• the 1987 Meech Lake Accord",
+   "page": 12
+  },
+  {
+   "text": "• the Charlottetown Accord",
+   "page": 12
+  },
+  {
+   "text": "Rights afforded to Canadian citizens come with responsibilities of",
+   "page": 12
+  },
+  {
+   "text": "• obeying the law",
+   "page": 12
+  },
+  {
+   "text": "• taking responsibility for oneself and one’s family",
+   "page": 12
+  },
+  {
+   "text": "• serving on a jury",
+   "page": 12
+  },
+  {
+   "text": "• voting in elections",
+   "page": 12
+  },
+  {
+   "text": "• helping others in the community",
+   "page": 12
+  },
+  {
+   "text": "• protecting Canadian identity and the environment",
+   "page": 12
+  },
+  {
+   "text": "Understanding",
+   "page": 11
+  },
+  {
+   "text": "Protection of individual and collective rights evolves based on societal",
+   "page": 11
+  },
+  {
+   "text": "change.",
+   "page": 11
+  },
+  {
+   "text": "Skills & Procedures",
+   "page": 11
+  },
+  {
+   "text": "Determine significance of individual and collective rights for self and others.",
+   "page": 11
+  },
+  {
+   "text": "Relate ethical considerations to changes and growth in Canadian rights and",
+   "page": 11
+  },
+  {
+   "text": "freedoms since Confederation.",
+   "page": 11
+  },
+  {
+   "text": "Interpret evidence in legislation that affirms pluralism in Canada.",
+   "page": 11
+  },
+  {
+   "text": "Relate advocacy to the changing social and political landscape of Canada.",
+   "page": 11
+  },
+  {
+   "text": "Explain how amendments to legislation contribute to the development of",
+   "page": 11
+  },
+  {
+   "text": "Canadian multiculturalism and immigration.",
+   "page": 11
+  },
+  {
+   "text": "Explore the contributions of immigrants to Canada.",
+   "page": 11
+  },
+  {
+   "text": "Discuss historical and contemporary issues where reasonable limits have",
+   "page": 11
+  },
+  {
+   "text": "been placed on rights and freedoms.",
+   "page": 11
+  },
+  {
+   "text": "Evaluate the impact the Constitution Act (1982) had on Canadian identity.",
+   "page": 11
+  },
+  {
+   "text": "Discuss the relationship between rights and responsibilities afforded to",
+   "page": 11
+  },
+  {
+   "text": "Canadian citizens.",
+   "page": 11
+  },
+  {
+   "text": "Explore the significance of the Meech Lake Accord and the Quebec October",
+   "page": 11
+  },
+  {
+   "text": "Crisis.",
+   "page": 11
+  }
+ ]
+}

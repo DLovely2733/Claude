@@ -257,7 +257,7 @@ body.student-mode main { max-width: 980px; }
 .modal-head h2 { margin: 0; }
 .modal-body { padding: 12px 16px; max-height: 60vh; overflow: auto; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 8px; padding: 10px 16px; border-top: 1px solid var(--line); flex-wrap: wrap; }
-#toasts { position: fixed; bottom: 16px; right: 16px; display: flex; flex-direction: column; gap: 8px; z-index: 50; }
+#toasts { position: fixed; top: 76px; right: 16px; display: flex; flex-direction: column; gap: 8px; z-index: 50; }
 .toast { background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 10px; max-width: 360px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); }
 .toast.warn { background: #7a5200; }
 .toast.error { background: var(--error); }
@@ -298,3 +298,6 @@ body.student-mode main { max-width: 980px; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* Official statements keep their sub-item lists on separate lines. */
+.official li, .browse li, .stmt-picker span, .linked-outcome .check span, .new-lesson .check span, .trace td, .printable li, .diff li, .diff p { white-space: pre-line; }

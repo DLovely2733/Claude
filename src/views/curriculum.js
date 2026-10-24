@@ -1,15 +1,15 @@
 // Priority 1: accurate curriculum extraction, review and mapping.
 
 import { h, toast, modal, field, input, select, textarea, checkbox, download, badge } from '../ui.js';
-import { getState, update, activeVersion } from '../store.js';
+import { getState, update, activeVersion, addVersion } from '../store.js';
 import { go, rerender } from '../router.js';
 import { parseCurriculumText, layoutPdfPages, parseCurriculumJson, htmlToText } from '../curriculum/parser.js';
 import { readPdfPages } from '../curriculum/pdf.js';
 import { diffVersions, lessonImpact } from '../curriculum/diff.js';
 import { migrateLesson } from '../linking.js';
-import { CONTENT_AREAS, OFFICIAL_SOURCES, TARGET_CURRICULUM, STATEMENT_KEYS, STATEMENT_TYPES, suggestContentAreas, statementsOf } from '../curriculum/model.js';
+import { CONTENT_AREAS, OFFICIAL_SOURCES, TARGET_CURRICULUM, BUNDLED_CURRICULUM, STATEMENT_KEYS, STATEMENT_TYPES, suggestedAreaIds, areasOf, statementsOf } from '../curriculum/model.js';
 import { uid, todayISO } from '../util.js';
-import { pageHeader, areaName, empty } from './common.js';
+import { pageHeader, areaNames, empty } from './common.js';
 
 export function renderCurriculum(sub, id) {
   if (sub === 'review') return renderReview(id);
@@ -70,6 +70,24 @@ function renderOverview() {
   );
 }
 
+export async function loadBundledCurriculum() {
+  if (getState().versions.some((v) => v.id === BUNDLED_CURRICULUM.id)) {
+    toast('The June 2026 draft is already loaded.', 'info');
+    return go(`curriculum/review/${BUNDLED_CURRICULUM.id}`);
+  }
+  try {
+    const res = await fetch(BUNDLED_CURRICULUM.path);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const version = await res.json();
+    version.uploadedAt = new Date().toISOString();
+    addVersion(version, `Loaded ${version.label} (${version.sourceName})`);
+    toast(`Loaded ${version.outcomes.length} Grade 9 outcomes. Verify each one against the source before relying on it.`, 'info');
+    go(`curriculum/review/${version.id}`);
+  } catch (e) {
+    toast(`Could not load the bundled curriculum (${e.message}). Upload the PDF instead.`, 'error');
+  }
+}
+
 function setActive(id) {
   update((s) => (s.activeVersionId = id), 'Changed active curriculum version');
   toast('Active curriculum version changed. Lessons created from other versions will show a review warning.', 'warn');
@@ -107,6 +125,12 @@ function ingestPanel() {
     { class: 'card ingest' },
     h('h2', {}, 'Add the official curriculum'),
     h('p', {}, 'Official sources: ', OFFICIAL_SOURCES.map((src, i) => [i ? ' · ' : '', h('a', { href: src.url, target: '_blank', rel: 'noopener' }, src.label)])),
+    getState().versions.some((v) => v.id === BUNDLED_CURRICULUM.id)
+      ? null
+      : h('div', { class: 'alert info' },
+          h('strong', {}, 'June 2026 draft available. '),
+          `Extracted word-for-word from ${BUNDLED_CURRICULUM.source}: 7 Grade 9 learning outcomes with their knowledge, understanding and skills statements. `,
+          h('button', { class: 'small', onclick: loadBundledCurriculum }, 'Load the June 2026 draft')),
     h('div', { class: 'grid3' },
       h('div', { class: 'ingest-opt' },
         h('h3', {}, 'A. Try automatic retrieval'),
@@ -239,7 +263,7 @@ function renderReview(versionId) {
   const outcomes = v.outcomes.filter(
     (o) =>
       (reviewFilter.grade === 'all' || String(o.grade) === reviewFilter.grade || (reviewFilter.grade === '9' && o.grade == null)) &&
-      (reviewFilter.area === 'all' || (o.contentAreaId || 'none') === reviewFilter.area) &&
+      (reviewFilter.area === 'all' || (reviewFilter.area === 'none' ? !areasOf(o).length : areasOf(o).includes(reviewFilter.area))) &&
       (reviewFilter.status === 'all' || (reviewFilter.status === 'verified') === Boolean(o.verified))
   );
   const grades = [...new Set(v.outcomes.map((o) => o.grade))];
@@ -267,7 +291,7 @@ function renderReview(versionId) {
 }
 
 function outcomeReviewCard(v, o, save) {
-  const sugg = suggestContentAreas(o);
+  const sugg = suggestedAreaIds(o);
   const sourcePanel = h('div', { class: 'source-panel', hidden: true });
   const toggleSource = () => {
     if (!sourcePanel.hidden) return (sourcePanel.hidden = true);
@@ -297,11 +321,19 @@ function outcomeReviewCard(v, o, save) {
     sourcePanel,
     h('div', { class: 'grid2' },
       field('Grade', select([{ id: '', label: 'Unknown' }, ...[7, 8, 9].map((g) => ({ id: String(g), label: `Grade ${g}` }))], o.grade == null ? '' : String(o.grade), (x) => ((o.grade = x ? Number(x) : null), save()))),
-      field(
-        'Grade 9 content area',
-        select([{ id: '', label: '— Unassigned —' }, ...CONTENT_AREAS.map((a) => ({ id: a.id, label: a.name }))], o.contentAreaId || '', (x) => ((o.contentAreaId = x || null), (o.contentAreaSource = 'teacher'), save())),
-        sugg.length ? `Suggestion (keyword match, please confirm): ${areaName(sugg[0].areaId)}` : 'No keyword suggestion.'
-      )
+      h('div', { class: 'field' },
+        h('strong', {}, 'Grade 9 content area(s) '),
+        o.contentAreaSource === 'suggested' ? badge('Suggested – please confirm', 'warn') : areasOf(o).length ? badge('Teacher-confirmed', 'ok') : null,
+        CONTENT_AREAS.map((a) => checkbox(a.name, areasOf(o).includes(a.id), (val) => {
+          const cur = new Set(areasOf(o));
+          val ? cur.add(a.id) : cur.delete(a.id);
+          o.contentAreaIds = CONTENT_AREAS.map((x) => x.id).filter((id) => cur.has(id));
+          delete o.contentAreaId;
+          o.contentAreaSource = 'teacher';
+          save();
+        })),
+        o.contentAreaSource === 'suggested' ? h('button', { class: 'tiny', onclick: () => ((o.contentAreaSource = 'teacher'), save(), rerender()) }, 'Confirm areas') : null,
+        h('p', { class: 'help' }, sugg.length ? `Keyword suggestion: ${areaNames(sugg)}` : 'No keyword suggestion.'))
     ),
     verbatimField('Organizing idea', o, 'organizingIdea', save),
     verbatimField('Guiding question', o, 'guidingQuestion', save),
@@ -399,9 +431,9 @@ function applySuggestions(v) {
   let n = 0;
   update(() => {
     for (const o of v.outcomes) {
-      if (o.contentAreaId) continue;
-      const sg = suggestContentAreas(o)[0];
-      if (sg) (o.contentAreaId = sg.areaId), (o.contentAreaSource = 'suggested'), n++;
+      if (areasOf(o).length) continue;
+      const sg = suggestedAreaIds(o);
+      if (sg.length) (o.contentAreaIds = sg), (o.contentAreaSource = 'suggested'), n++;
     }
   }, 'Applied content-area suggestions');
   toast(`${n} outcome(s) given a suggested content area. Please check each one.`, 'warn');
@@ -413,7 +445,7 @@ function addOutcome(v) {
   const n = v.outcomes.filter((o) => o.grade === g).length + 1;
   let id = `G${g}-LO${n}`;
   while (v.outcomes.some((o) => o.id === id)) id += 'm';
-  update(() => v.outcomes.push({ id, grade: g, organizingIdea: '', guidingQuestion: '', text: '', extractedText: '', knowledge: [], understanding: [], skills: [], contentAreaId: null, verified: false, manual: true }), `Added outcome ${id} manually`);
+  update(() => v.outcomes.push({ id, grade: g, organizingIdea: '', guidingQuestion: '', text: '', extractedText: '', knowledge: [], understanding: [], skills: [], contentAreaIds: [], verified: false, manual: true }), `Added outcome ${id} manually`);
   rerender();
   setTimeout(() => document.getElementById(`o-${id}`)?.scrollIntoView({ behavior: 'smooth' }), 50);
 }
@@ -444,7 +476,7 @@ function renderBrowse(versionId) {
           h('article', { class: 'card' },
             o.guidingQuestion ? h('p', { class: 'gq' }, h('strong', {}, 'Guiding Question: '), o.guidingQuestion) : null,
             h('p', { class: 'lo' }, h('strong', {}, 'Learning Outcome: '), o.text || h('em', {}, '(missing)')),
-            h('p', {}, h('code', {}, o.id), ' ', o.verified ? badge('✔ Verified', 'ok') : badge('Needs review', 'warn'), ' ', badge(areaName(o.contentAreaId), o.contentAreaId ? 'neutral' : 'warn')),
+            h('p', {}, h('code', {}, o.id), ' ', o.verified ? badge('✔ Verified', 'ok') : badge('Needs review', 'warn'), ' ', badge(areaNames(areasOf(o)), areasOf(o).length ? 'neutral' : 'warn')),
             h('div', { class: 'grid3' }, STATEMENT_KEYS.map((k) => h('div', {}, h('h4', {}, STATEMENT_TYPES[k].label), h('ul', {}, o[k].map((st) => h('li', { class: `level-${st.level || 1}` }, st.text)))))),
             h('a', { class: 'button', href: `#/new-lesson/${encodeURIComponent(o.id)}` }, 'Create accessible lesson for this outcome →')
           )
@@ -520,7 +552,7 @@ function contentAreaSummary() {
     h('h2', {}, 'Grade 9 content areas'),
     h('p', { class: 'help' }, 'Starting categories identified by Alberta Education. They organize the official outcomes; they do not replace them.'),
     h('div', { class: 'area-grid' }, CONTENT_AREAS.map((a) => {
-      const outs = v ? v.outcomes.filter((o) => o.contentAreaId === a.id && (o.grade === 9 || o.grade == null)) : [];
+      const outs = v ? v.outcomes.filter((o) => areasOf(o).includes(a.id) && (o.grade === 9 || o.grade == null)) : [];
       const lessons = s.lessons.filter((l) => l.unit === a.id);
       return h('div', { class: 'card area' }, h('h3', {}, a.name), h('p', { class: 'help' }, a.scope), h('p', {}, badge(`${outs.length} outcome(s)`, outs.length ? 'ok' : 'warn'), ' ', badge(`${lessons.length} lesson(s)`, 'neutral')));
     }))
