@@ -204,3 +204,16 @@ test('limitChoices always keeps the correct answer', () => {
     assert.ok(r.some((o) => o.correct));
   }
 });
+
+test('escape room: five rooms with four walls each, items and curriculum links are valid', async () => {
+  const { ESCAPE_GAME, ITEMS } = await import('../src/site/escape/rooms.js');
+  assert.equal(ESCAPE_GAME.rooms.length, 5);
+  assert.deepEqual(ESCAPE_GAME.rooms.map((r) => r.lessonId), DEMO_LESSONS.map((l) => l.id));
+  for (const r of ESCAPE_GAME.rooms) {
+    assert.deepEqual(Object.keys(r.walls).sort(), ['E', 'N', 'S', 'W'], r.id);
+    assert.equal(r.hints.length, 3, r.id);
+    for (const w of Object.values(r.walls)) for (const hs of w.hotspots) assert.ok(hs.x >= 0 && hs.y >= 0 && hs.x + hs.w <= 1000 && hs.y + hs.h <= 600, `${r.id} hotspot inside scene`);
+  }
+  for (const id of ESCAPE_GAME.curriculumLinks.statementIds) assert.ok(findStatement(bundled, id), id);
+  for (const [id, it] of Object.entries(ITEMS)) assert.ok(it.name && it.symbol, id);
+});

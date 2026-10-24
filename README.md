@@ -11,6 +11,14 @@ Official sources:
 `index.html` is the student-facing lesson and activity site for the Canada's Political System unit:
 
 - **Lessons:** the five lessons in order, played by the accessible lesson player, with progress stars.
+- **Escape from Parliament** (`#escape`): a first-person, point-and-click escape room with five rooms, one per lesson:
+  1. **Riding Office:** place the three parts of Parliament on the door lock.
+  2. **Jurisdiction Vault:** sort objects into federal and provincial chests.
+  3. **The Chamber:** order the official bill-to-law steps on the Bill Machine.
+  4. **Alberta Room:** balance "helps" and "harder" cards, then write to your MLA.
+  5. **Rotunda:** decide who decides, choose a community project, and escape.
+
+  Players turn to look at four walls, tap objects (real buttons, so keyboard and switch access work), collect items in a backpack and solve locks. There is no timer. A 💡 button gives hints in three levels, and hints used are recorded as the support level. Progress is saved so a student can continue later. Every answer is saved as evidence against its lesson and G9-LO6 statements. Bill to Law uses the five-step version when plain-language supports are on.
 - **Activities:** Federal or Provincial?, Bill to Law (short version and all seven official steps), Elected or Appointed?, Rights and Responsibilities, and a Review Quiz built from the lessons' questions. Each activity cites the G9-LO6 statements it practises.
 - **Supports:** read-aloud, plain language and symbols, text size, number of answer choices, step size, high contrast and reduced motion. These are the same settings as Teacher tools → Student settings.
 - **For teachers:** the official G9-LO6 wording, the statements each lesson and activity covers, and a link to the teacher tools (`teacher.html`).

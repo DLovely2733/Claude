@@ -9,6 +9,8 @@ import { withDefaults, TEXT_SUPPORT_OPTIONS } from '../profile.js';
 import { BUNDLED_CURRICULUM, STATEMENT_TYPES, findStatement } from '../curriculum/model.js';
 import { DEMO_OUTCOME_ID } from '../demo/politicalSystemUnit.js';
 import { ACTIVITIES, reviewQuiz } from './activities.js';
+import { renderEscape } from './escape/engine.js';
+import { ESCAPE_GAME } from './escape/rooms.js';
 
 const app = document.getElementById('site');
 let view = { name: 'home' };
@@ -51,12 +53,14 @@ const TOKENS = {
   home: () => ({ name: 'home' }),
   activities: () => ({ name: 'home', anchor: 'activities' }),
   teachers: () => ({ name: 'teachers' }),
+  escape: () => ({ name: 'escape' }),
 };
 
 function tokenFor(v) {
   if (v.name === 'lesson') return `lesson-${lessons().findIndex((l) => l.id === v.id) + 1}`;
   if (v.name === 'activity') return v.id.replace(/^act-/, '');
   if (v.name === 'teachers') return 'teachers';
+  if (v.name === 'escape') return 'escape';
   return v.anchor || 'home';
 }
 
@@ -95,6 +99,7 @@ function header() {
         h('span', { class: 'brand-text' }, h('strong', {}, 'Canada’s Political System'), h('small', {}, 'Grade 9 Social Studies'))),
       h('nav', { class: 'site-nav', 'aria-label': 'Site' },
         link('Lessons', { name: 'home', anchor: 'lessons' }, view.name === 'lesson'),
+        link('Escape room', { name: 'escape' }, view.name === 'escape'),
         link('Activities', { name: 'home', anchor: 'activities' }, view.name === 'activity'),
         link('For teachers', { name: 'teachers' }, view.name === 'teachers'),
         h('button', { class: 'supports-btn', onclick: openSupports, 'aria-haspopup': 'dialog' }, h('span', { 'aria-hidden': 'true' }, 'Aa'), ' Supports'))));
@@ -118,8 +123,10 @@ function home() {
         h('p', { class: 'lede' }, 'Five lessons and five activities about who makes decisions, how laws are made and how rights are protected.'),
         h('div', { class: 'hero-actions' },
           next ? h('button', { class: 'btn primary big', onclick: () => navigate({ name: 'lesson', id: next.id }) }, nextIndex > 0 && bestStars({ lessonId: ls[0].id }) ? `Continue: Lesson ${nextIndex + 1}` : 'Start Lesson 1', ' →') : null,
-          h('button', { class: 'btn ghost big', onclick: () => navigate({ name: 'home', anchor: 'activities' }) }, 'Play an activity'))),
+          h('button', { class: 'btn ghost big', onclick: () => navigate({ name: 'escape' }) }, 'Play the escape room'))),
       parliament()),
+
+    escapeFeature(),
 
     h('section', { class: 'block', id: 'lessons', 'aria-labelledby': 'lessons-h' },
       h('div', { class: 'block-head' }, h('h2', { id: 'lessons-h' }, 'Lessons'), h('p', {}, 'Go in order. Each lesson builds on the one before.')),
@@ -136,6 +143,25 @@ function home() {
       h('div', { class: 'strip-actions' },
         h('button', { class: 'btn ghost', onclick: () => navigate({ name: 'teachers' }) }, 'Curriculum connections'),
         h('a', { class: 'btn ghost', href: 'teacher.html' }, 'Open teacher tools'))));
+}
+
+function escapeFeature() {
+  const n = bestStars({ activityId: ESCAPE_GAME.id });
+  return h('section', { class: 'escape-feature', 'aria-labelledby': 'esc-feat-h' },
+    h('div', { class: 'escape-feature-art', 'aria-hidden': 'true' }, h('span', {}, '🗺️'), h('span', {}, '🔐'), h('span', {}, '📜'), h('span', {}, '⚖️'), h('span', {}, '🚪')),
+    h('div', { class: 'escape-feature-copy' },
+      h('p', { class: 'eyebrow' }, 'Escape room · 5 rooms'),
+      h('h2', { id: 'esc-feat-h' }, ESCAPE_GAME.title),
+      h('p', {}, 'Locked inside Parliament! Look around each room, search for clues, fill your backpack and use what you learned to unlock the doors. No timer, and hints are always there.'),
+      h('div', { class: 'hero-actions' }, n ? stars(n) : null, h('button', { class: 'btn primary big', onclick: () => navigate({ name: 'escape' }) }, n ? 'Play again' : 'Play now', ' →'))));
+}
+
+function escapeView() {
+  return h('main', { class: 'page play escape-page', id: 'main' },
+    h('div', { class: 'play-top' },
+      h('button', { class: 'text-link back', onclick: () => navigate({ name: 'home' }) }, '← Home'),
+      h('span', { class: 'play-label' }, 'Escape room')),
+    renderEscape(ESCAPE_GAME, { onExit: () => navigate({ name: 'home' }) }));
 }
 
 function parliament() {
@@ -226,7 +252,7 @@ function teachers() {
         h('p', {}, h('strong', {}, 'Understanding: '), o.understanding.map((s) => s.text).join(' '))),
       h('p', { class: 'muted' }, 'The June 2026 curriculum is a draft for optional classroom piloting in 2026–27 and may be revised. Wording is shown exactly as extracted from the source.'),
       h('h3', {}, 'What each lesson and activity covers'),
-      [...lessons(), ...activities()].map((item) => {
+      [...lessons(), ESCAPE_GAME, ...activities()].map((item) => {
         const ids = item.curriculumLinks?.statementIds || [];
         return h('details', { class: 'coverage' },
           h('summary', {}, h('strong', {}, item.title), h('span', { class: 'muted' }, ` · ${ids.length} statements`)),
@@ -302,7 +328,8 @@ function render() {
   } else if (view.name === 'activity') {
     const a = activities().find((x) => x.id === view.id);
     app.append(a ? playView(a, true) : home());
-  } else if (view.name === 'teachers') app.append(teachers());
+  } else if (view.name === 'escape') app.append(escapeView());
+  else if (view.name === 'teachers') app.append(teachers());
   else app.append(home());
   app.append(h('footer', { class: 'site-foot' }, h('p', {}, `Aligned to Grade 9 outcome ${DEMO_OUTCOME_ID}, Draft Social Studies (7–9) Curriculum, June 2026. Progress is saved in this browser only.`)));
 }
