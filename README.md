@@ -97,6 +97,19 @@ All five are linked to the official Grade 9 outcome **G9-LO6**: "Students analyz
 
 Each lesson shows **⚠ needs review** until you tick "Checked against the source document" for G9-LO6 in Curriculum → Review. After that, all five show **✔ Verified curriculum connection**.
 
+## Putting it on its own website
+
+The app is a static site: there's no server code and no database, and everything runs in the browser.
+
+1. Run `npm run export`, or `npm run export -- --zip` to also get `dist.zip`. This writes a complete site to `dist/`, including the local copies of Three.js and pdf.js, so it works without internet access apart from Google Fonts.
+2. Upload the *contents* of `dist/` to any static host:
+   - **GitHub Pages (automatic):** in the repository, go to Settings → Pages and set Source to "GitHub Actions". `.github/workflows/pages.yml` then tests, exports and publishes on every push to the default branch, at `https://<user>.github.io/<repo>/`.
+   - **Netlify or Cloudflare Pages:** drag the `dist` folder onto the dashboard, or use build command `npm run export` with output directory `dist`.
+   - **A school web server or shared drive:** copy the folder. It must be served over http(s), not opened as `file://`, because browsers block modules from files. For local use, run `npm start`.
+3. Student site: `/`. Teacher tools: `/teacher.html`. Deep links work, for example `/#mission-gov-lawmaking` or `/#quest`.
+
+Saved data lives in each browser (localStorage) and is separate for each website address. Students' work stays on the device they used. Use Dashboard → Export backup and Import backup to move it. Printing and file downloads work on your own site; the hosted artifact blocks them.
+
 ## Running
 
 The app is static HTML/JS with no build step. Data stays in the browser's local storage, so use **Dashboard → Export backup** regularly.
