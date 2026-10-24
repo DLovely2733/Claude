@@ -5,10 +5,20 @@ let pdfjsPromise = null;
 
 function loadPdfjs() {
   if (!pdfjsPromise) {
-    pdfjsPromise = import('../../vendor/pdfjs/pdf.min.mjs').then((lib) => {
-      lib.GlobalWorkerOptions.workerSrc = new URL('../../vendor/pdfjs/pdf.worker.min.mjs', import.meta.url).href;
-      return lib;
-    });
+    // Prefer the vendored copy; hosted copies that omit vendor/ use the same
+    // pdf.js release from cdnjs.
+    const CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38';
+    pdfjsPromise = import('../../vendor/pdfjs/pdf.min.mjs')
+      .then((lib) => {
+        lib.GlobalWorkerOptions.workerSrc = new URL('../../vendor/pdfjs/pdf.worker.min.mjs', import.meta.url).href;
+        return lib;
+      })
+      .catch(() =>
+        import(`${CDN}/pdf.min.mjs`).then((lib) => {
+          lib.GlobalWorkerOptions.workerSrc = `${CDN}/pdf.worker.min.mjs`;
+          return lib;
+        })
+      );
   }
   return pdfjsPromise;
 }
