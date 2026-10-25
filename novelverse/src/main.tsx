@@ -12,6 +12,7 @@ import '@fontsource/fraunces/600.css';
 import './styles/base.css';
 import './styles/ui.css';
 import './styles/screens.css';
+import './styles/engines.css';
 import { App } from './App';
 
 createRoot(document.getElementById('root')!).render(

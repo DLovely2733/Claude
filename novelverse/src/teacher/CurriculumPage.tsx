@@ -66,6 +66,8 @@ export function CurriculumPage() {
         </button>
       </section>
 
+      <OutcomeCoverage profile={profile} />
+
       <section className="panel" style={{ marginTop: '1.5rem' }}>
         <h2 className="hud accent">Import outcomes as a new profile</h2>
         <p className="small muted">Paste from your official document. One outcome per line as <span className="mono">CODE | description</span>. A line without a separator starts a new group.</p>
@@ -117,6 +119,52 @@ function RubricEditor() {
                 ))}
               </tr>
             ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+/** Which rooms address each outcome, and how much assessed evidence exists. */
+function OutcomeCoverage({ profile }: { profile: CurriculumProfile }) {
+  const missions = Object.values(useApp((s) => s.missions));
+  const responses = Object.values(useApp((s) => s.responses)).filter((r) => r.studentId !== 'teacher-preview');
+  return (
+    <section className="panel" style={{ marginTop: '1.5rem' }} aria-labelledby="cov-h">
+      <h2 id="cov-h" className="hud accent">Outcome coverage</h2>
+      <p className="small muted">Rooms that address each outcome, with logged responses and teacher-assessed responses. Gaps show where to plan next.</p>
+      <div className="table-wrap">
+        <table className="table coverage">
+          <thead>
+            <tr>
+              <th scope="col">Outcome</th>
+              {missions.map((m) => <th scope="col" key={m.id}>{m.title}{m.status !== 'published' && <span className="tiny muted"> (draft)</span>}</th>)}
+              <th scope="col">Evidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            {profile.outcomes.map((o) => {
+              let logged = 0, assessed = 0;
+              return (
+                <tr key={o.id}>
+                  <th scope="row"><span className="mono accent-text">{o.code}</span> {o.label}</th>
+                  {missions.map((m) => {
+                    const rooms = m.steps.filter((st) => st.outcomes.includes(o.id) || (m.outcomes.includes(o.id) && !st.outcomes.length));
+                    const rs = responses.filter((r) => r.missionId === m.id && rooms.some((st) => st.id === r.stepId) && r.status === 'submitted');
+                    logged += rs.length;
+                    assessed += rs.filter((r) => r.review?.finalized).length;
+                    return (
+                      <td key={m.id}>
+                        {rooms.length ? <span className="cov-cell on" title={rooms.map((x) => x.title).join(', ')}>{rooms.length} room{rooms.length > 1 ? 's' : ''}</span>
+                          : m.outcomes.includes(o.id) ? <span className="cov-cell part">mission</span> : <span className="cov-cell" aria-label="not covered">·</span>}
+                      </td>
+                    );
+                  })}
+                  <td className="small">{logged ? `${logged} logged · ${assessed} assessed` : <span className="muted">none yet</span>}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

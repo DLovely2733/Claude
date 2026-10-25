@@ -29,6 +29,7 @@ const GROUPS: { title: string; items: { key: BoolKey; label: string; help: strin
     title: 'Experience',
     items: [
       { key: 'sound', label: 'Sound effects', help: 'Soft interface sounds. Off by default.' },
+      { key: 'ambient', label: 'Ambient soundscape', help: 'A quiet background atmosphere for the novel’s world. Off by default.' },
       { key: 'mentor', label: 'Literary Mentor', help: 'A coach that asks questions about your thinking. It never writes answers for you.' },
     ],
   },
@@ -39,18 +40,21 @@ export function SettingsDrawer({ open, onClose }: { open: boolean; onClose: () =
   const set = useApp((s) => s.setSettings);
   const closeRef = useRef<HTMLButtonElement>(null);
   const returnTo = useRef<Element | null>(null);
+  const closeFn = useRef(onClose);
+  closeFn.current = onClose;
 
+  // Runs only when the drawer opens or closes, so re-renders never move focus.
   useEffect(() => {
     if (!open) return;
     returnTo.current = document.activeElement;
     closeRef.current?.focus();
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && closeFn.current();
     window.addEventListener('keydown', onKey);
     return () => {
       window.removeEventListener('keydown', onKey);
       (returnTo.current as HTMLElement | null)?.focus?.();
     };
-  }, [open, onClose]);
+  }, [open]);
 
   const webgl = typeof document !== 'undefined' && hasWebGL();
 

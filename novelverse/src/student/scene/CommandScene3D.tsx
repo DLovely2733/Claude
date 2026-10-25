@@ -2,6 +2,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import type { Hotspot } from '../../data/types';
+import { useVisible } from './useVisible';
 
 // A stylized Battle School command deck. Four consoles hold the intel the
 // student needs for the decision; the central hologram is the battleroom.
@@ -18,11 +19,14 @@ interface Props {
 }
 
 export default function CommandScene3D(props: Props) {
+  const [ref, visible] = useVisible<HTMLDivElement>();
   return (
+    <div ref={ref} style={{ position: 'absolute', inset: 0 }}>
     <Canvas
+      frameloop={visible ? 'always' : 'never'}
       className="scene-canvas"
       camera={{ position: [0, 4.2, 9], fov: 45 }}
-      dpr={[1, 1.75]}
+      dpr={[1, 1.5]}
       gl={{ antialias: true, powerPreference: 'low-power' }}
       aria-hidden="true"
     >
@@ -40,6 +44,7 @@ export default function CommandScene3D(props: Props) {
       <CameraRig active={props.active} hotspots={props.hotspots} reduced={props.reduced} />
       <Dust reduced={props.reduced} />
     </Canvas>
+    </div>
   );
 }
 

@@ -212,6 +212,8 @@ export const endersGame: Novel = {
     { id: 'v-irony', term: 'dramatic irony', kind: 'literary', definition: 'When readers know something a character does not.' },
     { id: 'v-theme', term: 'theme statement', kind: 'literary', definition: 'A complete sentence about what a text suggests about life or people. A topic like “leadership” is not yet a theme.' },
     { id: 'v-interp', term: 'interpretation', kind: 'literary', definition: 'Your reading of what something in the text means. It needs evidence to support it.' },
+    { id: 'v-objection', term: 'objection', kind: 'literary', definition: 'In a debate or trial, a formal challenge to an argument that misuses evidence.' },
+    { id: 'v-speculation', term: 'speculation', kind: 'literary', definition: 'A guess about thoughts or feelings presented as if it were a fact from the text.' },
     { id: 'v-manip', term: 'manipulation', kind: 'literary', definition: 'Controlling someone’s choices or feelings without them fully knowing, often for your own purpose.' },
   ],
   techniques: [

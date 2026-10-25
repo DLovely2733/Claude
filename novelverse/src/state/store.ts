@@ -1,10 +1,12 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type {
-  CurriculumProfile, Mission, Novel, Rubric, Settings, Student, StepResponse, TeacherReview,
+  CurriculumProfile, LiveSession, Mission, MissionTemplate, Novel, Rubric, Settings, Student, StepResponse, TeacherReview,
 } from '../data/types';
+import { BUILT_IN_TEMPLATES } from '../data/templates';
 import { endersGame } from '../data/novels/endersGame';
 import { pressurePoint } from '../data/missions/pressurePoint';
+import { tribunal } from '../data/missions/tribunal';
 import { ALBERTA_ELA_HEADINGS } from '../data/curriculum';
 import { ROSTER, DEMO_STUDENT_ID, seedResponses, responseKey } from '../data/synthetic';
 
@@ -20,6 +22,7 @@ export const DEFAULT_SETTINGS: Settings = {
   sound: false,
   scene: 'auto',
   mentor: true,
+  ambient: false,
 };
 
 export const DEFAULT_RUBRIC: Rubric = {
@@ -49,6 +52,9 @@ interface AppState {
   activeStudentId: string;
   responses: Record<string, StepResponse>;
   seenIntro: boolean;
+  templates: MissionTemplate[];
+  /** Live sessions this browser hosted, by code. */
+  sessions: Record<string, LiveSession>;
 
   setSettings: (s: Partial<Settings>) => void;
   setActiveStudent: (id: string) => void;
@@ -67,6 +73,11 @@ interface AppState {
   setActiveProfile: (id: string) => void;
   saveRubric: (r: Rubric) => void;
   saveStudentPresets: (id: string, presets: Partial<Settings>) => void;
+
+  saveTemplate: (t: MissionTemplate) => void;
+  deleteTemplate: (id: string) => void;
+  saveSession: (s: LiveSession) => void;
+  deleteSession: (code: string) => void;
 
   resetDemo: () => void;
 }
@@ -89,7 +100,7 @@ const safeStorage = {
 const initialData = () => ({
   settings: DEFAULT_SETTINGS,
   novels: { [endersGame.id]: endersGame },
-  missions: { [pressurePoint.id]: pressurePoint },
+  missions: { [pressurePoint.id]: pressurePoint, [tribunal.id]: tribunal },
   profiles: [ALBERTA_ELA_HEADINGS],
   activeProfileId: ALBERTA_ELA_HEADINGS.id,
   rubric: DEFAULT_RUBRIC,
@@ -97,6 +108,8 @@ const initialData = () => ({
   activeStudentId: DEMO_STUDENT_ID,
   responses: seedResponses(),
   seenIntro: false,
+  templates: BUILT_IN_TEMPLATES,
+  sessions: {} as Record<string, LiveSession>,
 });
 
 export const useApp = create<AppState>()(
@@ -166,11 +179,40 @@ export const useApp = create<AppState>()(
       saveStudentPresets: (id, presets) =>
         set({ roster: get().roster.map((s) => (s.id === id ? { ...s, presets } : s)) }),
 
+      saveTemplate: (t) => {
+        const exists = get().templates.some((x) => x.id === t.id);
+        set({ templates: exists ? get().templates.map((x) => (x.id === t.id ? t : x)) : [...get().templates, t] });
+      },
+      deleteTemplate: (id) => set({ templates: get().templates.filter((t) => t.id !== id || t.builtIn) }),
+      saveSession: (s) => set({ sessions: { ...get().sessions, [s.code]: s } }),
+      deleteSession: (code) => {
+        const sessions = { ...get().sessions };
+        delete sessions[code];
+        set({ sessions });
+      },
+
       resetDemo: () => set(initialData()),
     }),
     {
       name: 'novelverse:v1',
-      version: 1,
+      version: 2,
+      // Version 2 added templates, live sessions, the Tribunal demo mission
+      // and two vocabulary terms. Teachers' own edits are kept.
+      migrate: (persisted, version) => {
+        const s = persisted as Partial<AppState>;
+        if (version < 2) {
+          const fresh = initialData();
+          s.templates = fresh.templates;
+          s.sessions = {};
+          s.missions = { ...fresh.missions, ...s.missions };
+          const demo = s.novels?.['enders-game'];
+          if (demo) {
+            const have = new Set(demo.vocab.map((v) => v.id));
+            demo.vocab = [...demo.vocab, ...fresh.novels['enders-game'].vocab.filter((v) => !have.has(v.id))];
+          }
+        }
+        return s as AppState;
+      },
       storage: createJSONStorage(() => safeStorage),
     },
   ),

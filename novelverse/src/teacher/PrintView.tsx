@@ -5,6 +5,7 @@ import { Icon } from '../components/Icon';
 import { rangeLabel } from '../lib/generator';
 import { characterName, vocabById } from '../lib/knowledge';
 import type { MissionStep, Novel } from '../data/types';
+import { FORMATS } from '../student/steps/CreativeStudio';
 
 // A paper and projector alternative to every room: same thinking, no device.
 export function PrintView({ missionId }: { missionId: string }) {
@@ -105,6 +106,30 @@ function PrintStep({ step, n, novel, plain }: { step: MissionStep; n: number; no
             <thead><tr><th>Characters</th><th>Kind of connection</th><th>Chapter</th><th>Evidence</th><th>Has it changed?</th></tr></thead>
             <tbody>{Array.from({ length: 5 }, (_, i) => <tr key={i}><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>)}</tbody>
           </table>
+        </>
+      )}
+      {step.type === 'courtroom' && (
+        <>
+          <p className="paper-box"><strong>{step.caseTitle}.</strong> Charge: {step.charge}</p>
+          <p>My side (circle): Prosecution · Defence</p>
+          <table className="paper-table">
+            <thead><tr><th>Exhibit</th><th>Fact or interpretation?</th><th>What it proves</th></tr></thead>
+            <tbody>{['A', 'B', 'C'].map((x) => <tr key={x}><td>{x}</td><td>F &nbsp; / &nbsp; I</td><td></td></tr>)}</tbody>
+          </table>
+          <p><strong>Cross-examination.</strong> For each argument write S (speculation), I (ignores evidence), O (overgeneralization) or ✓ (sound), and why.</p>
+          <ol>{step.opposing.map((o) => <li key={o.id}>[{o.side}] “{o.text}” &nbsp; ____ </li>)}</ol>
+          <p>Closing argument:</p>{lines(4)}
+          <p>Out of role, my verdict ({step.verdicts.join(' / ')}) and why:</p>{lines(3)}
+        </>
+      )}
+      {step.type === 'creative' && (
+        <>
+          <p className="paper-box">{step.prompt}</p>
+          <p>Choose one: {FORMATS.filter((f) => step.formats.includes(f.id)).map((f) => f.name).join(' · ')}</p>
+          <p><strong>Success criteria:</strong></p>
+          <ul>{step.criteria.map((c) => <li key={c}>☐ {c}</li>)}</ul>
+          {lines(10)}
+          <p>Craft note: explain your choices and the evidence behind them.</p>{lines(4)}
         </>
       )}
       {step.type === 'reflection' && (

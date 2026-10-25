@@ -3,6 +3,7 @@ import { useRoute } from './lib/router';
 import { Shell } from './components/Shell';
 import { Landing } from './Landing';
 import { StudentApp } from './student/StudentApp';
+import { JoinLive } from './student/JoinLive';
 import { useApp } from './state/store';
 
 const TeacherApp = lazy(() => import('./teacher/TeacherApp'));
@@ -20,7 +21,9 @@ export function App() {
 
   return (
     <Shell skin={area === 'teacher' && !route.includes('preview') ? 'holo' : skin}>
-      {area === 'student' ? (
+      {area === 'join' ? (
+        <JoinLive code={route[1]} />
+      ) : area === 'student' ? (
         <StudentApp route={route.slice(1)} />
       ) : area === 'teacher' ? (
         <Suspense fallback={<div className="loading-screen"><span className="hud accent">Opening Mission Control…</span></div>}>

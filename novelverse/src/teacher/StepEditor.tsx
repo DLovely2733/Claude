@@ -5,6 +5,7 @@ import { Icon } from '../components/Icon';
 import { MultiPick, StringList } from './ListEditor';
 import { uid } from '../lib/id';
 import { isPlaceholder } from '../lib/generator';
+import { FORMATS } from '../student/steps/CreativeStudio';
 
 // A structured editor for any mission step. It walks the step's data, so
 // every generated word is editable without a bespoke form per engine.
@@ -21,6 +22,8 @@ const LABELS: Record<string, string> = {
   eventIds: 'Events in correct order', hints: 'Hints (shown one at a time)', options: 'Options', strong: 'Strong answer', why: 'Feedback when chosen',
   explainPrompt: 'Explain prompt', topic: 'Topic', flaw: 'Weakness', characterIds: 'Characters on the map', fromChapter: 'Map starts at chapter',
   toChapter: 'Map ends at chapter', themeId: 'Theme', prompts: 'Reflection prompts', outcomes: 'Outcomes for this room',
+  charge: 'Charge (the question on trial)', defendantId: 'Defendant', opposing: 'Opposing arguments', side: 'Argued by',
+  verdicts: 'Verdict options', formats: 'Formats students can choose', criteria: 'Success criteria (shared by every format)',
 };
 const HIDDEN = new Set(['id', 'type', 'kind']);
 const humanize = (k: string) => LABELS[k] ?? k.replace(/([A-Z])/g, ' $1').replace(/^./, (c) => c.toUpperCase());
@@ -36,13 +39,13 @@ function ObjectFields({ value, onChange, ctx }: { value: Record<string, unknown>
   return (
     <div className="obj-fields">
       {Object.entries(value).filter(([k]) => !HIDDEN.has(k)).map(([k, v]) => (
-        <Field key={k} k={k} v={v} ctx={ctx} onChange={(nv) => onChange({ ...value, [k]: nv })} />
+        <Field key={k} k={k} v={v} ctx={ctx} parent={value} onChange={(nv) => onChange({ ...value, [k]: nv })} />
       ))}
     </div>
   );
 }
 
-function Field({ k, v, onChange, ctx }: { k: string; v: unknown; onChange: (v: unknown) => void; ctx: Ctx }) {
+function Field({ k, v, onChange, ctx, parent }: { k: string; v: unknown; onChange: (v: unknown) => void; ctx: Ctx; parent: Record<string, unknown> }) {
   const profiles = useApp((s) => s.profiles);
   const label = humanize(k);
   const ph = typeof v === 'string' && isPlaceholder(v);
@@ -100,6 +103,18 @@ function Field({ k, v, onChange, ctx }: { k: string; v: unknown; onChange: (v: u
   }
   if (k === 'icon') return <Select label={label} v={v} options={['intel', 'squad', 'orders', 'log']} onChange={onChange} />;
   if (k === 'canonVerification') return <Select label={label} v={v} options={['needs-check', 'teacher-verified', 'teacher-added']} onChange={onChange} />;
+  if (k === 'flaw' && 'side' in parent) return <Select label="Judge’s ruling on this argument" v={v} options={['speculation', 'ignores-evidence', 'overgeneralization', 'sound']} onChange={onChange} />;
+  if (k === 'side') return <Select label={label} v={v} options={['prosecution', 'defence']} onChange={onChange} />;
+  if (k === 'defendantId') {
+    return (
+      <Wrap label={label}>
+        <select className="select" value={String(v)} onChange={(e) => onChange(e.target.value)}>
+          {ctx.novel.characters.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
+        </select>
+      </Wrap>
+    );
+  }
+  if (k === 'formats') return <Wrap label={label}><MultiPick value={v as string[]} options={FORMATS.map((f) => ({ value: f.id, label: f.name }))} onChange={onChange} /></Wrap>;
   if (k === 'flaw') return <Select label={label} v={v ?? ''} options={['', 'too-general', 'summary', 'absolute', 'cliche']} onChange={(x) => onChange(x || undefined)} />;
 
   if (typeof v === 'boolean') {

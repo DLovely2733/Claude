@@ -11,6 +11,7 @@ import { CurriculumPage } from './CurriculumPage';
 import { ClassPage } from './ClassPage';
 import { PrintView } from './PrintView';
 import { Projector } from './Projector';
+import { Live } from './Live';
 
 export default function TeacherApp({ route }: { route: string[] }) {
   const [section, id, sub] = route;
@@ -22,6 +23,7 @@ export default function TeacherApp({ route }: { route: string[] }) {
     { to: '/teacher', label: 'Dashboard', current: !section },
     { to: '/teacher/novels', label: 'Novels', current: section === 'novels' || section === 'novel' },
     { to: '/teacher/missions', label: 'Missions', current: section === 'missions' || section === 'mission' || section === 'build' || section === 'preview' },
+    { to: '/teacher/live', label: 'Live', current: section === 'live' },
     { to: '/teacher/review', label: 'Review', current: section === 'review' },
     { to: '/teacher/curriculum', label: 'Curriculum', current: section === 'curriculum' },
     { to: '/teacher/class', label: 'Class', current: section === 'class' },
@@ -34,9 +36,10 @@ export default function TeacherApp({ route }: { route: string[] }) {
         {section === 'novels' ? <NovelLibrary />
           : section === 'novel' && id ? <NovelEditor novelId={id} tab={sub} />
           : section === 'missions' ? <MissionList />
-          : section === 'build' ? <MissionBuilder novelId={id} />
+          : section === 'build' ? <MissionBuilder novelId={id} templateId={sub} />
           : section === 'mission' && id ? <MissionEditor missionId={id} />
           : section === 'preview' && id ? <Preview missionId={id} stepId={sub} />
+          : section === 'live' ? <Live code={id} />
           : section === 'review' ? <Review missionId={id} stepId={sub} />
           : section === 'curriculum' ? <CurriculumPage />
           : section === 'class' ? <ClassPage />

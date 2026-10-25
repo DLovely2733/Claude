@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useApp } from '../state/store';
 import { Icon } from '../components/Icon';
 import { href, navigate } from '../lib/router';
-import { generateMission, placeholdersIn, rangeLabel } from '../lib/generator';
+import { generateMission, placeholdersIn, rangeLabel, templateFromMission } from '../lib/generator';
 import { lockedMissionChapters } from '../lib/knowledge';
 import { uid } from '../lib/id';
 import type { Mission, MissionStep, StepType } from '../data/types';
@@ -22,6 +22,7 @@ export function MissionEditor({ missionId }: { missionId: string }) {
   const profiles = useApp((s) => s.profiles);
   const saveMission = useApp((s) => s.saveMission);
   const deleteMission = useApp((s) => s.deleteMission);
+  const saveTemplate = useApp((s) => s.saveTemplate);
   const [open, setOpen] = useState<string | null>(null);
   const [adding, setAdding] = useState<StepType | ''>('');
   const gaps = useMemo(() => readGaps(missionId), [missionId]);
@@ -153,11 +154,20 @@ export function MissionEditor({ missionId }: { missionId: string }) {
       </section>
 
       <div className="row between" style={{ marginTop: '2rem' }}>
+        <div className="row">
         <button className="btn ghost small" onClick={() => {
           const copy = { ...structuredClone(mission), id: uid('m'), title: `${mission.title} (copy)`, status: 'draft' as const, createdBy: 'teacher' as const };
           saveMission(copy);
           navigate(`/teacher/mission/${copy.id}`);
         }}>Duplicate</button>
+        <button className="btn ghost small" disabled={!mission.steps.length} onClick={() => {
+          const name = prompt('Template name', `${mission.title} template`);
+          if (!name) return;
+          const code = (id: string) => allOutcomes.find((o) => o.id === id)?.code;
+          saveTemplate(templateFromMission(mission, name, `${mission.steps.length} rooms · saved from “${mission.title}”`, code));
+          toast('Saved as a template. Use it from Generate a mission.');
+        }}><Icon name="layers" size={16} /> Save as template</button>
+        </div>
         <button className="btn danger small" onClick={() => { if (confirm('Delete this mission? Student responses stay in the export.')) { deleteMission(mission.id); navigate('/teacher/missions'); } }}><Icon name="trash" size={16} /> Delete mission</button>
       </div>
     </div>

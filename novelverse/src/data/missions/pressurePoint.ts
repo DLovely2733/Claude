@@ -86,7 +86,7 @@ export const pressurePoint: Mission = {
       ],
       choices: [
         {
-          id: 'c-proven', label: 'Use your proven formations. No surprises.',
+          id: 'c-proven', replay: 'hold', label: 'Use your proven formations. No surprises.',
           plain: 'Use the plan that always worked.',
           values: ['caution', 'responsibility'],
           consequence:
@@ -101,7 +101,7 @@ export const pressurePoint: Mission = {
           },
         },
         {
-          id: 'c-bean', label: 'Trust Bean’s untested tactic.',
+          id: 'c-bean', replay: 'surprise', label: 'Trust Bean’s untested tactic.',
           plain: 'Try Bean’s new idea.',
           values: ['trust', 'adaptability'],
           consequence:
@@ -116,7 +116,7 @@ export const pressurePoint: Mission = {
           },
         },
         {
-          id: 'c-protest', label: 'Go to the teachers and challenge the schedule first.',
+          id: 'c-protest', replay: 'rushed', label: 'Go to the teachers and challenge the schedule first.',
           plain: 'Complain to the teachers before fighting.',
           values: ['fairness', 'honesty'],
           consequence:
@@ -131,7 +131,7 @@ export const pressurePoint: Mission = {
           },
         },
         {
-          id: 'c-push', label: 'Push everyone harder. Winning is all that matters.',
+          id: 'c-push', replay: 'overrun', label: 'Push everyone harder. Winning is all that matters.',
           plain: 'Push your soldiers harder. Only winning matters.',
           values: ['winning', 'control'],
           consequence:

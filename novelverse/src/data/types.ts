@@ -169,6 +169,8 @@ export interface Hotspot {
 
 export interface DilemmaChoice {
   id: string;
+  /** Optional battleroom replay for the 3D consequence scene (science-fiction skin). */
+  replay?: 'hold' | 'surprise' | 'rushed' | 'overrun';
   label: string;
   plain: string;
   values: string[];
@@ -278,13 +280,49 @@ export interface ReflectionStep extends StepBase {
   prompts: string[];
 }
 
+export type ObjectionType = 'speculation' | 'ignores-evidence' | 'overgeneralization';
+
+/** An argument from the other side, for students to object to or accept. */
+export interface OpposingArgument {
+  id: string;
+  side: 'prosecution' | 'defence';
+  text: string;
+  /** The teacher's judgement of its weakness; 'sound' means no objection holds. */
+  flaw: ObjectionType | 'sound';
+  why: string;
+}
+
+export interface CourtroomStep extends StepBase {
+  type: 'courtroom';
+  caseTitle: string;
+  /** The question on trial, phrased as a charge. */
+  charge: string;
+  defendantId: string;
+  evidenceIds: string[];
+  opposing: OpposingArgument[];
+  verdicts: string[];
+}
+
+export type CreativeFormat = 'journal' | 'interview' | 'perspective' | 'newspaper' | 'profile' | 'storyboard' | 'argument' | 'analysis';
+
+export interface CreativeStep extends StepBase {
+  type: 'creative';
+  prompt: string;
+  formats: CreativeFormat[];
+  characterIds: string[];
+  /** Success criteria shared by every format, so choice never lowers the bar. */
+  criteria: string[];
+}
+
 export type MissionStep =
   | BriefingStep
   | DilemmaStep
   | EvidenceBoardStep
   | ReasoningLockStep
   | ConnectionsStep
-  | ReflectionStep;
+  | ReflectionStep
+  | CourtroomStep
+  | CreativeStep;
 
 export type StepType = MissionStep['type'];
 
@@ -362,6 +400,7 @@ export interface Settings {
   sound: boolean;
   scene: 'auto' | '3d' | '2d';
   mentor: boolean;
+  ambient: boolean;
 }
 
 export interface Revision {
@@ -388,4 +427,68 @@ export interface StepResponse {
   supports: string[];
   updatedAt: number;
   review?: TeacherReview;
+}
+
+// ---------------------------------------------------------------- Templates
+
+/** A reusable mission shape that can be applied to any novel and chapters. */
+export interface MissionTemplate {
+  id: string;
+  name: string;
+  description: string;
+  engines: StepType[];
+  readingLevel: ReadingLevel;
+  thinkingLevel: ThinkingLevel;
+  grouping: Grouping;
+  duration: Duration;
+  /** Outcome codes (not ids), so a template survives a curriculum profile change. */
+  outcomeCodes: string[];
+  /** Room titles and instructions the teacher customised, by engine. */
+  overrides: Partial<Record<StepType, { title?: string; instructions?: string; plainInstructions?: string }>>;
+  builtIn: boolean;
+}
+
+// ---------------------------------------------------------------- Live sessions
+
+export type LiveActivity = 'four-corners' | 'this-or-that' | 'showdown' | 'prediction' | 'wall' | 'courtroom';
+
+export interface LiveParticipant {
+  id: string;
+  callSign: string;
+  team: string;
+  joinedAt: number;
+}
+
+export interface LiveResponse {
+  participantId: string;
+  round: number;
+  choice?: string;
+  text?: string;
+  evidenceId?: string;
+  /** Courtroom: objection target and type. */
+  target?: string;
+  objection?: ObjectionType;
+  at: number;
+}
+
+export interface LiveSession {
+  code: string;
+  activity: LiveActivity;
+  novelId: string;
+  title: string;
+  prompt: string;
+  options: { id: string; label: string }[];
+  evidenceIds: string[];
+  /** Evidence the teacher introduced between rounds. */
+  introduced: string[];
+  phase: 'lobby' | 'open' | 'locked' | 'reveal' | 'ended';
+  round: number;
+  /** Courtroom sub-stage. */
+  stage?: 'arguments' | 'objections' | 'verdict';
+  rulings: Record<string, 'sustained' | 'overruled'>;
+  hidden: string[];
+  participants: LiveParticipant[];
+  responses: LiveResponse[];
+  createdAt: number;
+  endedAt?: number;
 }

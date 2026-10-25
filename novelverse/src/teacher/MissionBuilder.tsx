@@ -1,11 +1,12 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useApp } from '../state/store';
 import { Icon } from '../components/Icon';
 import { navigate } from '../lib/router';
 import { generateMission, DURATION_ENGINES } from '../lib/generator';
 import { lockedMissionChapters } from '../lib/knowledge';
 import type { Duration, Grouping, ReadingLevel, StepType, ThinkingLevel } from '../data/types';
-import { ENGINE_CATALOG, PLANNED_ENGINES } from './engines';
+import { ENGINE_CATALOG } from './engines';
+import { href } from '../lib/router';
 import { MultiPick } from './ListEditor';
 import { toast } from '../components/toast';
 
@@ -26,12 +27,13 @@ const DURATIONS: { id: Duration; label: string }[] = [
   { id: 10, label: '10-min activity' }, { id: 20, label: '20-min mission' }, { id: 45, label: '40–50 min lesson' }, { id: 80, label: '80-min block' },
 ];
 
-export function MissionBuilder({ novelId }: { novelId?: string }) {
+export function MissionBuilder({ novelId, templateId }: { novelId?: string; templateId?: string }) {
   const novels = useApp((s) => s.novels);
   const profiles = useApp((s) => s.profiles);
   const activeProfileId = useApp((s) => s.activeProfileId);
   const saveMission = useApp((s) => s.saveMission);
   const profile = profiles.find((p) => p.id === activeProfileId) ?? profiles[0];
+  const templates = useApp((s) => s.templates);
 
   const [nid, setNid] = useState(novelId && novels[novelId] ? novelId : Object.keys(novels)[0]);
   const novel = novels[nid];
@@ -44,12 +46,23 @@ export function MissionBuilder({ novelId }: { novelId?: string }) {
   const [reading, setReading] = useState<ReadingLevel>('standard');
   const [thinking, setThinking] = useState<ThinkingLevel>('developing');
   const [grouping, setGrouping] = useState<Grouping>('independent');
+  const [tplId, setTplId] = useState<string>('');
+  const template = templates.find((t) => t.id === tplId);
+
+  const applyTemplate = (id: string) => {
+    const t = templates.find((x) => x.id === id);
+    setTplId(id);
+    if (!t) return;
+    setEngines(t.engines); setDuration(t.duration); setReading(t.readingLevel); setThinking(t.thinkingLevel); setGrouping(t.grouping);
+    setOutcomes(profile?.outcomes.filter((o) => t.outcomeCodes.includes(o.code)).map((o) => o.id) ?? []);
+  };
+  useEffect(() => { if (templateId) applyTemplate(templateId); }, [templateId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const locked = useMemo(() => (novel ? lockedMissionChapters(novel, chapters) : []), [novel, chapters]);
   if (!novel) return <div className="wrap"><div className="empty" style={{ marginTop: '2rem' }}>Add a novel first.</div></div>;
 
   const generate = () => {
-    const { mission, gaps } = generateMission(novel, { title, chapters, engines, themeId, outcomes, readingLevel: reading, thinkingLevel: thinking, grouping, duration });
+    const { mission, gaps } = generateMission(novel, { title, chapters, engines, themeId, outcomes, readingLevel: reading, thinkingLevel: thinking, grouping, duration, overrides: template?.overrides });
     saveMission(mission);
     sessionStorage.setItem(`gaps:${mission.id}`, JSON.stringify(gaps));
     toast(gaps.length ? `Draft created with ${gaps.length} things to fill in` : 'Draft created');
@@ -63,6 +76,18 @@ export function MissionBuilder({ novelId }: { novelId?: string }) {
       <p className="text-2">NovelVerse drafts activities only from your knowledge base. Anything it cannot draft from your notes is left as a <span className="mono">[Teacher: …]</span> placeholder for you. Nothing reaches students until you review and publish it.</p>
 
       <div className="stack" style={{ ['--gap' as string]: '1.25rem', marginTop: '1.5rem' }}>
+        <section className="panel" aria-labelledby="tpl-h">
+          <h2 id="tpl-h" className="hud accent">Start from a template (optional)</h2>
+          <div className="template-grid">
+            {templates.map((t) => (
+              <button key={t.id} type="button" className={`template-card ${tplId === t.id ? 'on' : ''}`} aria-pressed={tplId === t.id} onClick={() => applyTemplate(t.id)}>
+                <span className="row between"><strong>{t.name}</strong><span className="chip tiny">{t.duration} min</span></span>
+                <span className="small text-2">{t.description}</span>
+                {!t.builtIn && <span className="chip tiny amber">yours</span>}
+              </button>
+            ))}
+          </div>
+        </section>
         <section className="panel stack">
           <div className="grid cols-2">
             <div className="field">
@@ -112,13 +137,7 @@ export function MissionBuilder({ novelId }: { novelId?: string }) {
                   </li>
                 );
               })}
-              {PLANNED_ENGINES.map((e) => (
-                <li key={e.name}>
-                  <div className="engine-option disabled" aria-disabled="true">
-                    <span className="grow"><strong>{e.name}</strong> <span className="chip tiny">planned</span><br /><span className="small muted">{e.desc}</span></span>
-                  </div>
-                </li>
-              ))}
+              <li className="small muted">Whole-class activities (Four Corners, This-or-That, Evidence Showdown, live trials) run from <a href={href('/teacher/live')}>Live</a>.</li>
             </ul>
           </fieldset>
         </section>

@@ -2,6 +2,7 @@ import { MotionConfig } from 'motion/react';
 import { useEffect, type ReactNode } from 'react';
 import { useApp } from '../state/store';
 import { setSoundEnabled } from '../lib/sound';
+import { setAmbient } from '../lib/ambient';
 import { useToasts } from './toast';
 import type { Skin } from '../data/types';
 
@@ -10,6 +11,7 @@ export function Shell({ skin = 'holo', children }: { skin?: Skin; children: Reac
   const s = useApp((st) => st.settings);
   const toasts = useToasts((t) => t.items);
   useEffect(() => setSoundEnabled(s.sound), [s.sound]);
+  useEffect(() => setAmbient(s.ambient, skin), [s.ambient, skin]);
   useEffect(() => {
     document.documentElement.style.setProperty('--scale', String(s.textScale));
   }, [s.textScale]);

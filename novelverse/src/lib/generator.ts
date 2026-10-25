@@ -1,5 +1,5 @@
 import type {
-  Mission, MissionStep, Novel, StepType, ReadingLevel, ThinkingLevel, Grouping, Duration, Lock,
+  Mission, MissionStep, MissionTemplate, Novel, StepType, ReadingLevel, ThinkingLevel, Grouping, Duration, Lock,
 } from '../data/types';
 import { uid } from './id';
 
@@ -18,6 +18,8 @@ export interface GenerateOptions {
   thinkingLevel: ThinkingLevel;
   grouping: Grouping;
   duration: Duration;
+  /** Room wording carried over from a template. */
+  overrides?: MissionTemplate['overrides'];
 }
 
 export interface GenerateResult {
@@ -38,6 +40,7 @@ export const DURATION_ENGINES: Record<Duration, StepType[]> = {
 
 export function generateMission(novel: Novel, o: GenerateOptions): GenerateResult {
   const gaps: string[] = [];
+  const opts = (t: StepType) => o.overrides?.[t];
   const inRange = new Set(o.chapters);
   const chapters = novel.chapters.filter((c) => inRange.has(c.number)).sort((a, b) => a.number - b.number);
   const events = novel.events.filter((e) => inRange.has(e.chapter)).sort((a, b) => a.chapter - b.chapter);
@@ -169,6 +172,47 @@ export function generateMission(novel: Novel, o: GenerateOptions): GenerateResul
       });
     }
 
+    if (engine === 'courtroom') {
+      const defendant = novel.characters.find((c) => events.some((e) => e.characters.includes(c.id) && e.kind !== 'event')) ?? novel.characters[0];
+      if (!defendant) gaps.push('Courtroom: add characters so one can be put on trial.');
+      if (evidence.length < 4) gaps.push(`Courtroom: only ${evidence.length} evidence card(s) in ${range}; trials need at least 4.`);
+      gaps.push('Courtroom: write the charge and the opposing arguments, and mark which ones are sound.');
+      const opp = (side: 'prosecution' | 'defence', flaw: 'speculation' | 'ignores-evidence' | 'overgeneralization' | 'sound') =>
+        ({ id: uid('op'), side, text: TEACHER(`${side} argument (${flaw === 'sound' ? 'a sound point' : `one with ${flaw}`})`), flaw, why: TEACHER('why the judge rules this way') });
+      steps.push({
+        ...base('courtroom', 'Character Courtroom', 'Build an argument from evidence, challenge weak reasoning, and weigh both sides.'),
+        type: 'courtroom',
+        instructions: 'Choose a side, enter labelled exhibits, cross-examine the other side, close your case, then give the verdict you think the evidence supports.',
+        plainInstructions: 'Pick a side. Choose evidence. Challenge weak arguments. Then say what you really think.',
+        caseTitle: `THE CLASS v. ${(defendant?.name ?? 'THE DEFENDANT').toUpperCase()}`,
+        charge: TEACHER(`the charge against ${defendant?.name ?? 'the character'}, linked to ${theme?.topic.toLowerCase() ?? 'the theme'}`),
+        defendantId: defendant?.id ?? '',
+        evidenceIds: evidence.map((e) => e.id),
+        opposing: [opp('prosecution', 'speculation'), opp('prosecution', 'sound'), opp('defence', 'ignores-evidence'), opp('defence', 'sound')],
+        verdicts: ['Responsible', 'Partly responsible', 'Not responsible'],
+      });
+    }
+
+    if (engine === 'creative') {
+      const chars = novel.characters.filter((c) => c.firstChapter <= maxCh).slice(0, 8);
+      steps.push({
+        ...base('creative', 'Creative Studio', 'Show your understanding through a creative or analytical piece, held to the same criteria.'),
+        type: 'creative',
+        instructions: 'Choose a format that suits you. Every format is assessed on the same criteria and ends with a craft note explaining your choices.',
+        plainInstructions: 'Pick a format. Show what you understand. Explain your choices.',
+        prompt: theme ? `What do ${range} suggest about ${theme.topic.toLowerCase()}?` : TEACHER('the creative prompt'),
+        formats: ['journal', 'interview', 'perspective', 'newspaper', 'profile', 'storyboard', 'argument', 'analysis'],
+        characterIds: chars.map((c) => c.id),
+        criteria: [
+          `Shows an accurate understanding of events in ${range}`,
+          'Reveals a character’s motivations or feelings, not just actions',
+          `Connects to the theme of ${theme?.topic.toLowerCase() ?? 'the unit'}`,
+          'Uses at least one piece of evidence from the novel',
+          'Explains your choices in a craft note',
+        ],
+      });
+    }
+
     if (engine === 'reflection') {
       steps.push({
         ...base('reflection', 'Reflection Log', 'Develop a theme statement and reflect on your thinking.'),
@@ -179,6 +223,11 @@ export function generateMission(novel: Novel, o: GenerateOptions): GenerateResul
         prompts: ['Which evidence changed or sharpened your thinking most?', 'How did your decision compare with what happens in the novel?'],
       });
     }
+  }
+
+  for (const s of steps) {
+    const o = opts(s.type);
+    if (o) Object.assign(s, Object.fromEntries(Object.entries(o).filter(([, v]) => v)));
   }
 
   const mission: Mission = {
@@ -208,6 +257,16 @@ export function rangeLabel(chs: number[]): string {
   if (s.length === 1) return `Chapter ${s[0]}`;
   const contiguous = s.every((n, i) => i === 0 || n === s[i - 1] + 1);
   return contiguous ? `Chapters ${s[0]}–${s[s.length - 1]}` : `Chapters ${s.join(', ')}`;
+}
+
+/** Capture a mission's shape as a reusable template. */
+export function templateFromMission(m: Mission, name: string, description: string, outcomeCode: (id: string) => string | undefined): MissionTemplate {
+  return {
+    id: uid('tpl'), name, description, builtIn: false,
+    engines: m.steps.map((s) => s.type), readingLevel: m.readingLevel, thinkingLevel: m.thinkingLevel, grouping: m.grouping, duration: m.duration,
+    outcomeCodes: m.outcomes.map(outcomeCode).filter((c): c is string => !!c),
+    overrides: Object.fromEntries(m.steps.map((s) => [s.type, { title: s.title, instructions: s.instructions, plainInstructions: s.plainInstructions }])),
+  };
 }
 
 /** Every placeholder still left in a mission, for the publish check. */

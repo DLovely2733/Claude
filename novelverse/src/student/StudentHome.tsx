@@ -102,7 +102,7 @@ function StoryMap({ novel, missionChapters, onSelect, selected }: { novel: Novel
       const y = 50 + Math.sin(i * 0.9) * 26;
       return { x, y };
     }),
-    [n],
+    [n], // eslint-disable-line react-hooks/exhaustive-deps -- layout depends only on the count
   );
   const path = points.map((p, i) => `${i ? 'L' : 'M'} ${p.x * 10} ${p.y * 2.6}`).join(' ');
   const lastOpen = chapters.reduce((acc, c, i) => (c.unlocked ? i : acc), -1);

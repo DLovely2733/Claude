@@ -8,6 +8,7 @@
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
+import { phases } from './phases.mjs';
 
 const require = createRequire(import.meta.url);
 let chromium;
@@ -46,7 +47,7 @@ try {
   check(await page.getByRole('button', { name: /Chapter 14: classified/ }).isVisible(), 'locked chapter is classified');
 
   console.log('Briefing');
-  await page.getByRole('link', { name: /Begin mission/ }).click();
+  await page.getByRole('link', { name: /Begin mission/ }).first().click();
   await page.getByRole('link', { name: /Enter room 1/ }).click();
   await page.getByRole('button', { name: /Next transmission/ }).click();
   await page.getByRole('button', { name: /Next transmission/ }).click();
@@ -210,6 +211,7 @@ try {
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
   check(!overflow, 'no horizontal page scroll on a phone-width screen');
   await shot('11-mobile-board');
+  await phases({ browser, BASE, check, OUT, root: new URL('../..', import.meta.url).pathname });
 } catch (e) {
   failed = true;
   console.error(e);

@@ -33,6 +33,7 @@ jobs:
         working-directory: novelverse
         run: |
           npm ci
+          npm run lint
           npm test
           npm run build
           cp -r dist ../dist/novelverse

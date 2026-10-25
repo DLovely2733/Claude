@@ -25,6 +25,7 @@ export function StudentApp({ route }: { route: string[] }) {
   const nav = [
     { to: '/student', label: 'Story Map', current: !section },
     { to: '/student/log', label: 'Commander’s Log', current: section === 'log' },
+    { to: '/join', label: 'Join live' },
   ];
 
   return (

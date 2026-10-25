@@ -18,6 +18,8 @@ export const INSIGHTS: Insight[] = [
   { id: 'craft', name: 'Author’s Eye', description: 'Explained the effect of an author’s choice on readers.' },
   { id: 'theme', name: 'Theme Builder', description: 'Turned a topic into a statement you can defend.' },
   { id: 'network', name: 'Network Mapper', description: 'Justified a relationship between characters with evidence.' },
+  { id: 'objection', name: 'Sustained', description: 'Spotted evidence being misused, and said exactly how.' },
+  { id: 'craft-note', name: 'Maker’s Mark', description: 'Explained the choices behind a creative piece.' },
   { id: 'second-look', name: 'Second Look', description: 'Revised your thinking after feedback.' },
 ];
 

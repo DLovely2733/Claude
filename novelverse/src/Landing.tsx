@@ -84,6 +84,7 @@ export function Landing() {
         )}
       </motion.div>
 
+      <a className="landing-join" href="#/join"><Icon name="users" size={16} /> Have a code? Join a live session</a>
       <footer className="landing-foot">
         Demonstration mode: synthetic students only. No accounts, no names, nothing sent anywhere. Progress stays in this browser.
       </footer>

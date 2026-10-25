@@ -261,6 +261,29 @@ export function describe(step: MissionStep, r: StepResponse, novel: Novel) {
     evidence = ev((d.evidenceIds as string[]) ?? []);
     reasoningText = [...rungs, ...((d.answers as string[]) ?? [])].join(' '); main = String(d.statement ?? rungs[2] ?? '');
   }
+  if (step.type === 'courtroom') {
+    const exhibits = (d.exhibits as { evidenceId: string; label: string; point: string }[]) ?? [];
+    const objections = (d.objections as Record<string, { call: string; reason: string; firstTry?: boolean }>) ?? {};
+    rows.push(['Side argued', String(d.side ?? '')]);
+    exhibits.forEach((x, i) => {
+      const e = novel.evidence.find((y) => y.id === x.evidenceId);
+      rows.push([`Exhibit ${String.fromCharCode(65 + i)}`, `${x.label}${e && e.kind !== x.label ? ' (bank says ' + e.kind + ')' : ''} · ${x.point}`]);
+    });
+    for (const o of step.opposing) {
+      const v = objections[o.id];
+      if (v) rows.push([`Cross: “${o.text.slice(0, 50)}…”`, `${v.call}${v.firstTry === false ? ' (corrected after ruling)' : v.firstTry ? ' (right first time)' : ''} · ${v.reason}`]);
+    }
+    rows.push(['Closing', String(d.closing ?? '')], ['Verdict (out of role)', String(d.verdict ?? '')], ['Verdict reasoning', String(d.verdictReason ?? '')]);
+    evidence = ev(exhibits.map((x) => x.evidenceId));
+    reasoningText = `${d.closing ?? ''} ${d.verdictReason ?? ''}`; main = `${d.side ?? ''} → ${d.verdict ?? ''}: ${d.verdictReason ?? ''}`;
+  }
+  if (step.type === 'creative') {
+    const f = (d.fields as Record<string, string>) ?? {};
+    rows.push(['Format', String(d.format ?? '')], ['Piece', Object.entries(f).filter(([k]) => !['character', 'chapter', 'event'].includes(k)).map(([, v]) => v).join(' / ')],
+      ['Craft note', String(d.craftNote ?? '')], ['Self-check', step.criteria.filter((_, i) => ((d.checks as boolean[]) ?? [])[i]).join('; ')]);
+    evidence = ev((d.evidenceIds as string[]) ?? []);
+    reasoningText = String(d.craftNote ?? ''); main = `${d.format ?? ''}: ${d.craftNote ?? ''}`;
+  }
   return { rows, evidence, reasoningText, main };
 }
 

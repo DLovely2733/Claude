@@ -14,6 +14,9 @@ import { analyzeReasoning, shortNames } from '../../lib/reasoning';
 import { play } from '../../lib/sound';
 
 const CommandScene3D = lazy(() => import('../scene/CommandScene3D'));
+const BattleReplay3D = lazy(() => import('../scene/BattleReplay3D'));
+import { BattleReplay2D } from '../scene/BattleReplay2D';
+import { Transmission } from '../../components/Transmission';
 
 type Phase = 'explore' | 'decide' | 'consequence' | 'compare';
 
@@ -88,7 +91,7 @@ export function Dilemma({ step, onDone }: { step: DilemmaStep; onDone: (insights
           <h2 id="scenario-h" className="hud accent" style={{ margin: 0 }}>Situation report</h2>
           <ReadAloud text={r.pick(step.scenario, step.plainScenario)} />
         </div>
-        <p className="scenario-text">{r.pick(step.scenario, step.plainScenario)}</p>
+        <Transmission className="scenario-text" text={r.pick(step.scenario, step.plainScenario)} />
       </section>
 
       {phase === 'explore' && (
@@ -199,6 +202,18 @@ export function Dilemma({ step, onDone }: { step: DilemmaStep; onDone: (insights
           <motion.div className="panel consequence" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}>
             <span className="chip sim">Simulated outcome</span>
             <h2 id="cons-h" style={{ marginTop: '0.6rem' }}>{r.pick(choice.label, choice.plain)}</h2>
+            {choice.replay && (
+              <figure className="replay">
+                <div className="replay-view">
+                  {mode === '3d' ? (
+                    <Suspense fallback={<BattleReplay2D kind={choice.replay} reduced={settings.reducedMotion} />}>
+                      <BattleReplay3D kind={choice.replay} reduced={settings.reducedMotion} accent={accent} />
+                    </Suspense>
+                  ) : <BattleReplay2D kind={choice.replay} reduced={settings.reducedMotion} />}
+                </div>
+                <figcaption className="tiny muted">Simulated replay of your orders in the battleroom. Your army in your colour, the enemy in amber. Not an event from the novel.</figcaption>
+              </figure>
+            )}
             <div className="row top" style={{ flexWrap: 'nowrap' }}>
               <p className="grow consequence-text">{r.pick(choice.consequence, choice.plainConsequence)}</p>
               <ReadAloud text={r.pick(choice.consequence, choice.plainConsequence)} />

@@ -1,19 +1,22 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { useMissionCtx } from './MissionContext';
-import { useOutcomeLookup } from '../state/store';
+import { useApp, useOutcomeLookup } from '../state/store';
 import { Icon } from '../components/Icon';
 import { href, navigate } from '../lib/router';
 import { STEP_META } from './stepMeta';
 import { useReading, ReadAloud } from '../components/Reading';
 import { INSIGHTS } from '../lib/insights';
 import { play } from '../lib/sound';
-import { Briefing } from './steps/Briefing';
-import { Dilemma } from './steps/Dilemma';
-import { EvidenceBoard } from './steps/EvidenceBoard';
-import { ReasoningVault } from './steps/ReasoningVault';
-import { Connections } from './steps/Connections';
-import { Reflection } from './steps/Reflection';
+// Each engine is its own chunk: students download only the rooms they open.
+const Briefing = lazy(() => import('./steps/Briefing').then((m) => ({ default: m.Briefing })));
+const Dilemma = lazy(() => import('./steps/Dilemma').then((m) => ({ default: m.Dilemma })));
+const EvidenceBoard = lazy(() => import('./steps/EvidenceBoard').then((m) => ({ default: m.EvidenceBoard })));
+const ReasoningVault = lazy(() => import('./steps/ReasoningVault').then((m) => ({ default: m.ReasoningVault })));
+const Connections = lazy(() => import('./steps/Connections').then((m) => ({ default: m.Connections })));
+const Reflection = lazy(() => import('./steps/Reflection').then((m) => ({ default: m.Reflection })));
+const Courtroom = lazy(() => import('./steps/Courtroom').then((m) => ({ default: m.Courtroom })));
+const CreativeStudio = lazy(() => import('./steps/CreativeStudio').then((m) => ({ default: m.CreativeStudio })));
 
 export function StepPlayer({ stepId }: { stepId: string }) {
   const { mission, base } = useMissionCtx();
@@ -22,6 +25,11 @@ export function StepPlayer({ stepId }: { stepId: string }) {
   const lookup = useOutcomeLookup();
   const r = useReading(mission);
   const [cleared, setCleared] = useState<string[] | null>(null);
+  const [warping, setWarping] = useState(false);
+  const reduced = useApp((s) => s.settings.reducedMotion);
+  const warpTimer = useRef<number | undefined>(undefined);
+  // A pending transition must never pull someone back after they navigate away.
+  useEffect(() => () => window.clearTimeout(warpTimer.current), []);
 
   useEffect(() => setCleared(null), [stepId]);
   if (!step) {
@@ -37,7 +45,11 @@ export function StepPlayer({ stepId }: { stepId: string }) {
     play('unlock');
     setCleared(insights);
   };
-  const advance = () => navigate(next ? `${base}/${next.id}` : base);
+  const advance = () => {
+    if (reduced) { navigate(next ? `${base}/${next.id}` : base); return; }
+    setWarping(true);
+    warpTimer.current = window.setTimeout(() => { navigate(next ? `${base}/${next.id}` : base); setWarping(false); }, 380);
+  };
   const instructions = r.instructions(step.instructions, step.plainInstructions);
   const meta = STEP_META[step.type];
 
@@ -71,16 +83,23 @@ export function StepPlayer({ stepId }: { stepId: string }) {
           </div>
         </motion.header>
 
-        <div className="step-body">
+        <Suspense fallback={<div className="scene-loading" style={{ position: 'static', minHeight: 200 }}><span className="hud accent">Loading room…</span></div>}>
+        <div className="step-body" key={step.id}>
           {step.type === 'briefing' && <Briefing step={step} onDone={onDone} />}
           {step.type === 'dilemma' && <Dilemma step={step} onDone={onDone} />}
           {step.type === 'evidence-board' && <EvidenceBoard step={step} onDone={onDone} />}
           {step.type === 'reasoning-lock' && <ReasoningVault step={step} onDone={onDone} />}
           {step.type === 'connections' && <Connections step={step} onDone={onDone} />}
           {step.type === 'reflection' && <Reflection step={step} onDone={onDone} />}
+          {step.type === 'courtroom' && <Courtroom step={step} onDone={onDone} />}
+          {step.type === 'creative' && <CreativeStudio step={step} onDone={onDone} />}
         </div>
+        </Suspense>
       </div>
 
+      <AnimatePresence>
+        {warping && <motion.div className="warp" aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }} />}
+      </AnimatePresence>
       <AnimatePresence>
         {cleared && (
           <motion.div className="cleared" role="dialog" aria-modal="true" aria-labelledby="cleared-title"
