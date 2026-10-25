@@ -1,35 +1,13 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
-import type { DilemmaChoice } from '../../data/types';
 import { useVisible } from './useVisible';
 
 // A short, looping replay of the simulated battle inside the zero-gravity
 // battleroom. Purely illustrative of the student's own choice; it is always
 // framed as a simulation, never as the novel's events.
 
-export type Replay = NonNullable<DilemmaChoice['replay']>;
-
-/** Where a soldier is at time t (0..1) for each kind of battle. */
-export function soldierPath(kind: Replay, team: 0 | 1, i: number, t: number): [number, number, number] {
-  const lane = ((i % 6) - 2.5) * 0.28;
-  const tier = (Math.floor(i / 6) - 1) * 0.35;
-  const e = t * t * (3 - 2 * t);
-  if (team === 1) {
-    // The enemy advances steadily; when overrun it is pushed back.
-    const z = kind === 'overrun' ? -1.7 + e * 0.6 : -1.7 + e * 1.4;
-    return [lane, tier, z];
-  }
-  switch (kind) {
-    case 'hold': return [lane * (1 - e * 0.4), tier, 1.7 - e * 1.6];
-    case 'surprise': {
-      const flank = i % 2 ? 1 : -1;
-      return [lane + flank * Math.sin(e * Math.PI) * 1.1, tier + Math.sin(e * Math.PI) * 0.6, 1.7 - e * 3.3];
-    }
-    case 'rushed': return [lane + Math.sin(i * 7 + e * 9) * 0.25 * (1 - e), tier, 1.7 - e * 2.2];
-    case 'overrun': return [lane * 0.5, tier * 0.5, 1.7 - e * 3.2];
-  }
-}
+import { soldierPath, type Replay } from './replayPaths';
 
 export default function BattleReplay3D({ kind, reduced, accent }: { kind: Replay; reduced: boolean; accent: string }) {
   const [ref, visible] = useVisible<HTMLDivElement>();

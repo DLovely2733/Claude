@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { soldierPath, type Replay } from './BattleReplay3D';
+import { soldierPath, type Replay } from './replayPaths';
 
 // The same simulated replay as a top-down 2D diagram, for any device.
 export function BattleReplay2D({ kind, reduced }: { kind: Replay; reduced: boolean }) {
