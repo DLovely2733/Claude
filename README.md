@@ -6,6 +6,10 @@ Official sources:
 - https://www.alberta.ca/curriculum-social-studies
 - https://curriculum.learnalberta.ca/home/en
 
+## NovelVerse (Grade 9 ELA)
+
+`novelverse/` is a separate app: an interactive novel-study platform for Grade 9 English Language Arts, with an *Ender's Game* demo. See [`novelverse/README.md`](novelverse/README.md). It is published at `/novelverse/` alongside this site.
+
 ## Canada Quest (3D)
 
 `index.html#quest` is the 3D learning world, built with three.js.

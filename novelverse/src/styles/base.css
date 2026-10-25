@@ -1,0 +1,220 @@
+/* NovelVerse design tokens.
+   Each novel picks a skin; every skin defines the same tokens so screens
+   never hard-code a colour. Accessibility modes override the tokens. */
+
+:root {
+  --scale: 1;
+  --leading: 1.55;
+  --tracking: 0;
+  --word-gap: normal;
+
+  --font-body: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-serif: 'Fraunces', Georgia, serif;
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.35s;
+
+  /* holo (science fiction command centre) is the default skin */
+  --bg: #04060d;
+  --bg-2: #070c1a;
+  --surface: rgba(13, 22, 42, 0.72);
+  --surface-2: rgba(20, 34, 62, 0.78);
+  --surface-solid: #0c1528;
+  --line: rgba(120, 200, 255, 0.16);
+  --line-strong: rgba(120, 200, 255, 0.38);
+  --text: #e7f0ff;
+  --text-2: #a8bad6;
+  --muted: #7389aa;
+  --accent: #5ee7ff;
+  --accent-ink: #001a22;
+  --accent-soft: rgba(94, 231, 255, 0.14);
+  --accent-2: #ffb547;
+  --accent-2-soft: rgba(255, 181, 71, 0.14);
+  --good: #6dffc0;
+  --good-soft: rgba(109, 255, 192, 0.13);
+  --warn: #ffcf5e;
+  --warn-soft: rgba(255, 207, 94, 0.14);
+  --bad: #ff7a93;
+  --bad-soft: rgba(255, 122, 147, 0.13);
+  --sim: #c79bff;
+  --sim-soft: rgba(199, 155, 255, 0.14);
+  --glow: 0 0 24px rgba(94, 231, 255, 0.28);
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --focus: #ffe066;
+  --backdrop:
+    radial-gradient(1200px 700px at 80% -10%, rgba(40, 110, 255, 0.18), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, rgba(0, 220, 255, 0.10), transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  --grid-line: rgba(94, 231, 255, 0.045);
+  color-scheme: dark;
+}
+
+[data-skin='noir'] {
+  --bg: #0b0907; --bg-2: #141009;
+  --surface: rgba(30, 24, 18, 0.78); --surface-2: rgba(44, 34, 24, 0.82); --surface-solid: #1c160f;
+  --line: rgba(230, 190, 130, 0.16); --line-strong: rgba(230, 190, 130, 0.38);
+  --text: #f3e8d6; --text-2: #cdb999; --muted: #9a876b;
+  --accent: #e9b65f; --accent-ink: #1c1206; --accent-soft: rgba(233, 182, 95, 0.15);
+  --accent-2: #d8473f; --accent-2-soft: rgba(216, 71, 63, 0.15);
+  --glow: 0 0 24px rgba(233, 182, 95, 0.22);
+  --font-display: 'Fraunces', Georgia, serif;
+  --backdrop: radial-gradient(800px 500px at 30% 0%, rgba(233, 182, 95, 0.12), transparent 60%), linear-gradient(180deg, var(--bg), var(--bg-2));
+  --grid-line: rgba(233, 182, 95, 0.03);
+}
+
+[data-skin='archive'] {
+  --bg: #efe6d4; --bg-2: #e6d9bf;
+  --surface: rgba(255, 250, 238, 0.82); --surface-2: rgba(250, 242, 224, 0.92); --surface-solid: #fbf5e7;
+  --line: rgba(90, 60, 30, 0.18); --line-strong: rgba(90, 60, 30, 0.4);
+  --text: #2b1d10; --text-2: #5a4430; --muted: #7c654c;
+  --accent: #8c3b1f; --accent-ink: #fff7ec; --accent-soft: rgba(140, 59, 31, 0.1);
+  --accent-2: #2f5d62; --accent-2-soft: rgba(47, 93, 98, 0.12);
+  --good: #2f7a4a; --good-soft: rgba(47, 122, 74, 0.12);
+  --warn: #9a6a00; --warn-soft: rgba(154, 106, 0, 0.12);
+  --bad: #a3263b; --bad-soft: rgba(163, 38, 59, 0.1);
+  --sim: #6b3fa0; --sim-soft: rgba(107, 63, 160, 0.1);
+  --glow: none; --shadow: 0 14px 40px rgba(70, 40, 10, 0.18);
+  --focus: #0050c8;
+  --font-display: 'Fraunces', Georgia, serif;
+  --backdrop: radial-gradient(900px 600px at 50% -10%, rgba(255, 255, 255, 0.6), transparent 60%), linear-gradient(180deg, var(--bg), var(--bg-2));
+  --grid-line: rgba(90, 60, 30, 0.04);
+  color-scheme: light;
+}
+
+[data-skin='surveillance'] {
+  --bg: #08090a; --bg-2: #101213;
+  --surface: rgba(24, 26, 28, 0.8); --surface-2: rgba(34, 37, 40, 0.84); --surface-solid: #17191b;
+  --line: rgba(255, 80, 80, 0.16); --line-strong: rgba(255, 80, 80, 0.4);
+  --text: #eceeef; --text-2: #b4b9bd; --muted: #7d8388;
+  --accent: #ff4d4d; --accent-ink: #1a0000; --accent-soft: rgba(255, 77, 77, 0.14);
+  --accent-2: #c8d1d6; --accent-2-soft: rgba(200, 209, 214, 0.12);
+  --glow: 0 0 22px rgba(255, 77, 77, 0.25);
+  --backdrop: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.015) 0 2px, transparent 2px 4px), linear-gradient(180deg, var(--bg), var(--bg-2));
+  --grid-line: rgba(255, 77, 77, 0.04);
+}
+
+[data-skin='atlas'] {
+  --bg: #0b1410; --bg-2: #0f1d16;
+  --surface: rgba(20, 38, 30, 0.78); --surface-2: rgba(28, 52, 40, 0.82); --surface-solid: #142a20;
+  --line: rgba(210, 190, 120, 0.18); --line-strong: rgba(210, 190, 120, 0.42);
+  --text: #f0ecd8; --text-2: #c9c3a0; --muted: #94907a;
+  --accent: #e3c56b; --accent-ink: #1a1404; --accent-soft: rgba(227, 197, 107, 0.15);
+  --accent-2: #7fd1a6; --accent-2-soft: rgba(127, 209, 166, 0.14);
+  --glow: 0 0 22px rgba(227, 197, 107, 0.22);
+  --font-display: 'Fraunces', Georgia, serif;
+  --backdrop: radial-gradient(900px 600px at 20% 0%, rgba(127, 209, 166, 0.12), transparent 60%), linear-gradient(180deg, var(--bg), var(--bg-2));
+  --grid-line: rgba(227, 197, 107, 0.035);
+}
+
+/* High contrast overrides every skin. */
+[data-contrast='high'] {
+  --bg: #000; --bg-2: #000;
+  --surface: #000; --surface-2: #0d0d0d; --surface-solid: #000;
+  --line: #fff; --line-strong: #fff;
+  --text: #fff; --text-2: #fff; --muted: #e6e6e6;
+  --accent: #ffe600; --accent-ink: #000; --accent-soft: rgba(255, 230, 0, 0.18);
+  --accent-2: #00e5ff; --accent-2-soft: rgba(0, 229, 255, 0.18);
+  --good: #5dff7a; --good-soft: rgba(93, 255, 122, 0.18);
+  --warn: #ffe600; --warn-soft: rgba(255, 230, 0, 0.18);
+  --bad: #ff8fa3; --bad-soft: rgba(255, 143, 163, 0.18);
+  --sim: #e2c2ff; --sim-soft: rgba(226, 194, 255, 0.18);
+  --glow: none; --shadow: none;
+  --focus: #00e5ff;
+  --backdrop: #000;
+  --grid-line: transparent;
+  color-scheme: dark;
+}
+
+[data-spacing='wide'] {
+  --leading: 1.9;
+  --tracking: 0.03em;
+  --word-gap: 0.14em;
+}
+
+/* ---------------------------------------------------------------- reset */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: calc(16px * var(--scale)); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: var(--leading);
+  letter-spacing: var(--tracking);
+  word-spacing: var(--word-gap);
+  -webkit-font-smoothing: antialiased;
+}
+#root { min-height: 100vh; }
+.app {
+  min-height: 100vh;
+  background: var(--backdrop);
+  background-attachment: fixed;
+  position: relative;
+  isolation: isolate;
+}
+.app::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 80%);
+}
+
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; margin: 0 0 0.5em; letter-spacing: -0.01em; font-weight: 600; }
+h1 { font-size: clamp(1.9rem, 4vw, 3rem); }
+h2 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0 0 0.9em; }
+a { color: var(--accent); }
+button, input, select, textarea { font: inherit; color: inherit; letter-spacing: inherit; }
+img, svg, canvas { display: block; max-width: 100%; }
+ul, ol { padding-left: 1.2em; }
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem; top: -100px;
+  z-index: 1000;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+}
+.skip-link:focus { top: 1rem; }
+
+[data-motion='reduced'] *, [data-motion='reduced'] *::before, [data-motion='reduced'] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+@media print {
+  .app, body { background: #fff !important; color: #000 !important; }
+  .app::before, .no-print { display: none !important; }
+}
