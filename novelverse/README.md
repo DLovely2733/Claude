@@ -19,6 +19,18 @@ npm run classroom    # after a build: serve the app + live-session relay on your
 
 Project status, decisions and next priorities: [`docs/PROJECT.md`](docs/PROJECT.md).
 
+## Going live
+
+**GitHub Pages (the full public site).** The workflow in `.github/workflows/pages.yml` lints, tests and builds on every push to the default branch, then publishes the app at:
+
+> https://dlovely2733.github.io/Claude/novelverse/
+
+(the Social Studies site is at the root, https://dlovely2733.github.io/Claude/). It needs a one-time switch that only the repository owner can flip: **Settings → Pages → Build and deployment → Source: GitHub Actions**. After that, re-run the latest "Deploy site to GitHub Pages" run, or push any commit.
+
+**Private preview.** A copy of the build is also published as a private claude.ai Artifact. Downloads (CSV/JSON export) and printing are blocked inside that frame, and the app says so when you try. Use the Pages site for those.
+
+**Classroom devices and the AI mentor.** These need `npm run classroom` on a school laptop (see below). Neither runs on GitHub Pages.
+
 ## What works locally vs. what needs a hosted service
 
 | Works with no server (static site) | Needs the classroom server on a school laptop (`npm run classroom`) | Needs a hosted service (not built) |

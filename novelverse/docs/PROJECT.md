@@ -48,6 +48,10 @@ How things are checked:
 | Performance | Lazy loading for each engine and 3D scene; 3D stops rendering when hidden or off-screen; DPR capped at 1.5 | Done | Build output |
 | A11y | Keyboard path, skip link, focus return, high contrast, reduced motion, plain language, read-aloud, axe scans | Done | e2e |
 
+## Deployment
+- **GitHub Pages:** CI passes lint, tests and build, but the deploy step fails until the owner enables Pages (Settings → Pages → Source: GitHub Actions). The URL will be https://dlovely2733.github.io/Claude/novelverse/.
+- **Private Artifact preview:** https://claude.ai/artifact/TLAbPGZdY8GTj7btACgUMQ (republish from `dist/` after each build). Exports and printing are blocked in that frame.
+
 ## What needs a hosted service (not built)
 Be honest with teachers about these:
 - **Internet-wide live sessions** (students on different networks, or joining from home). The relay works on a school LAN only. A hosted relay with TLS, authentication and rate limits is needed.
