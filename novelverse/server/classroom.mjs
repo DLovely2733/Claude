@@ -16,6 +16,7 @@ import { extname, join, normalize } from 'node:path';
 import { networkInterfaces } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { WebSocketServer } from 'ws';
+import { handleMentor, mentorEnabled } from './mentor.mjs';
 
 const PORT = Number(process.env.PORT ?? 8787);
 const ROOT = fileURLToPath(new URL('../dist/', import.meta.url));
@@ -32,9 +33,10 @@ const server = createServer(async (req, res) => {
   const url = new URL(req.url ?? '/', 'http://x');
   if (url.pathname.endsWith('/api/classroom')) {
     res.writeHead(200, { 'content-type': 'application/json', 'cache-control': 'no-store' });
-    res.end(JSON.stringify({ relay: true, rooms: rooms.size }));
+    res.end(JSON.stringify({ relay: true, mentor: mentorEnabled(), rooms: rooms.size }));
     return;
   }
+  if (url.pathname.endsWith('/api/mentor')) { await handleMentor(req, res); return; }
   const rel = normalize(decodeURIComponent(url.pathname)).replace(/^([/\\])+/, '').replace(/^(\.\.[/\\])+/, '');
   let file = join(ROOT, rel || 'index.html');
   if (!file.startsWith(ROOT)) { res.writeHead(403).end(); return; }
@@ -87,4 +89,5 @@ server.listen(PORT, () => {
   console.log(`  Teacher:  http://localhost:${PORT}/#/teacher/live`);
   for (const a of addrs) console.log(`  Join at:  http://${a}:${PORT}/#/join`);
   console.log('Rooms are kept in memory only. Stop the server to clear everything.');
+  console.log(mentorEnabled() ? 'AI mentor: ON (student drafts are sent to the Anthropic API).' : 'AI mentor: off (set NOVELVERSE_AI_MENTOR=on to enable, with school approval).');
 });

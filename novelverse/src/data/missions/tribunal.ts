@@ -36,6 +36,7 @@ export const tribunal: Mission = {
         { heading: 'Facts and interpretations', text: 'A fact is something that happens in the novel. An interpretation is a reading of what it means. Good lawyers use both, and never pass off one as the other.', plain: 'A fact happens in the book. An interpretation is what you think it means. Do not mix them up.' },
       ],
       vocab: ['v-interp', 'v-motivation', 'v-objection', 'v-speculation', 'v-manip'],
+      firstThought: 'is Graff a protector or a manipulator, and why do you think so?',
     },
     {
       id: 't-court',

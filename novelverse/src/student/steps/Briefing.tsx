@@ -60,10 +60,10 @@ export function Briefing({ step, onDone }: { step: BriefingStep; onDone: (insigh
               </p>
             )}
             <div className="field" style={{ marginTop: '1rem' }}>
-              <label htmlFor="first-thought">First thought: what is the biggest pressure on Ender right now?</label>
+              <label htmlFor="first-thought">First thought: {step.firstThought ?? 'what is the most important question these chapters raise?'}</label>
               <span className="help">One sentence is enough. You will look back at this at the end.</span>
               <textarea id="first-thought" className="textarea" style={{ minHeight: 80 }} value={first} onChange={(e) => setFirst(e.target.value)}
-                placeholder={r.frames ? 'The biggest pressure on Ender is ___ because ___.' : 'Your first idea…'} />
+                placeholder={r.frames ? 'I think ___ because ___.' : 'Your first idea…'} />
             </div>
             <div className="row end" style={{ marginTop: '1rem' }}>
               <button className="btn primary" disabled={!reading}

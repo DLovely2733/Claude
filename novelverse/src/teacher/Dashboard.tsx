@@ -6,6 +6,8 @@ import { unverifiedCount } from '../lib/knowledge';
 import { findPatterns, missionResponses, dilemmaTally, theoryTally, evidenceUse } from '../lib/classAnalytics';
 import { rangeLabel } from '../lib/generator';
 import type { DilemmaStep, EvidenceBoardStep } from '../data/types';
+import { LessonPlaybook } from './LessonPlaybook';
+import { ACTIVITY_INFO } from '../live/logic';
 
 export function Dashboard() {
   const missions = useApp((s) => s.missions);
@@ -18,6 +20,7 @@ export function Dashboard() {
   const active = new Set(all.map((r) => r.studentId)).size;
   const unverified = Object.values(novels).reduce((n, nv) => n + unverifiedCount(nv), 0);
   const published = Object.values(missions).filter((m) => m.status === 'published');
+  const sessions = Object.values(useApp((s) => s.sessions)).sort((a, b) => b.createdAt - a.createdAt).slice(0, 4);
 
   const stats = [
     { label: 'Missions live', value: published.length, icon: 'flag', to: '/teacher/missions' },
@@ -54,6 +57,24 @@ export function Dashboard() {
         <p className="callout warn small" style={{ marginTop: '1rem' }}>
           <strong>{unverified} novel facts are marked “needs check”.</strong> NovelVerse drafted them; confirm each one against your copy of the book in <a href={href('/teacher/novels')}>Novels</a> so students rely only on verified information.
         </p>
+      )}
+
+      {published[0] && <div style={{ marginTop: '1.5rem' }}><LessonPlaybook mission={published[0]} /></div>}
+
+      {sessions.length > 0 && (
+        <section className="panel" style={{ marginTop: '1.5rem' }} aria-labelledby="ls-h">
+          <h2 id="ls-h" className="hud accent">Recent live sessions</h2>
+          <ul className="le-list">
+            {sessions.map((s) => (
+              <li key={s.code} className="le-item">
+                <div className="le-head" style={{ padding: '0.4rem 0.7rem' }}>
+                  <span className="grow small"><strong>{ACTIVITY_INFO[s.activity].name}</strong> · {s.prompt.slice(0, 70)} · {s.participants.length} joined · {new Set(s.responses.map((r) => r.participantId)).size} responded</span>
+                  <a className="btn quiet small" href={href(`/teacher/live/${s.code}`)}>{s.phase === 'ended' ? 'Results' : 'Resume'}</a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
 
       {published.map((m) => {

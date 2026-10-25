@@ -117,5 +117,7 @@ describe('store migration', () => {
     expect(s.missions['m-tribunal']).toBeDefined();
     expect(s.templates.length).toBeGreaterThan(0);
     expect(s.novels['enders-game'].vocab.some((v) => v.id === 'v-objection')).toBe(true);
+    expect(s.novels['jekyll-hyde']).toBeDefined();
+    expect(s.missions['m-utterson']).toBeDefined();
   });
 });

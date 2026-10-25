@@ -56,8 +56,7 @@ export async function phases({ browser, BASE, check, OUT, root }) {
   await page.getByRole('switch', { name: /High contrast/ }).check();
   check(await page.locator('.app[data-contrast="high"]').count() === 1, 'high contrast applies');
   await page.keyboard.press('Escape');
-  await page.waitForTimeout(500);
-  check(await page.getByRole('dialog').count() === 0, 'Escape closes the supports drawer');
+  check(await page.getByRole('dialog').waitFor({ state: 'detached', timeout: 3000 }).then(() => true, () => false), 'Escape closes the supports drawer');
   check(await page.evaluate(() => document.activeElement?.getAttribute('aria-label') === 'Supports'), 'focus returns to the Supports button');
   await page.getByRole('button', { name: 'Supports', exact: true }).click();
   await page.getByRole('switch', { name: /High contrast/ }).uncheck();

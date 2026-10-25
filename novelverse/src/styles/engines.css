@@ -160,3 +160,9 @@ body.presenting .live-top { top: 0; }
   animation: warp 0.7s var(--ease) both; }
 @keyframes warp { from { transform: scale(0.6); } to { transform: scale(1.6); } }
 .studio .locker { max-height: 520px; overflow-y: auto; padding-right: 0.3rem; }
+
+.playbook { border-color: var(--accent-2); }
+.playbook-moves { list-style: none; padding: 0; margin: 0.8rem 0 0; display: grid; gap: 0.6rem; }
+.playbook-moves li { display: flex; gap: 0.8rem; align-items: center; padding: 0.7rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--line); flex-wrap: wrap; }
+.playbook-n { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--accent-2); color: var(--accent-2); flex: none; }
+.wrap-chip { white-space: normal; text-align: left; max-width: 100%; }

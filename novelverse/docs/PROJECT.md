@@ -2,7 +2,7 @@
 
 This is the running record for continuing development across sessions: what's done and verified, what's outstanding, the decisions behind the design, and the next priorities. **Update it at the end of every working session.**
 
-Last updated: 2026-10-25 (Phases 1–5, first pass).
+Last updated: 2026-10-25 (Phases 1–5 complete; finishing pass done).
 
 ## Guiding question
 *What would make a reluctant Grade 9 reader genuinely want to take part in tomorrow's novel study?*
@@ -16,9 +16,9 @@ Our answer so far:
 ## Verification status
 
 How things are checked:
-- `npm run typecheck`, `npm run lint` (ESLint: TypeScript, React hooks, jsx-a11y) and `npm test` (vitest, 31 tests) must all pass.
-- `npm run build && npm run e2e` drives Chromium through every feature (60 checks), including axe-core scans of 16 screens for serious or critical issues.
-- `npm run e2e` also starts the classroom server and joins from separate browser contexts.
+- `npm run typecheck`, `npm run lint` (ESLint: TypeScript, React hooks, jsx-a11y) and `npm test` (vitest, 42 tests) must all pass.
+- `npm run build && npm run e2e` drives Chromium through every feature (92 checks), including axe-core scans of 20 screens for serious or critical issues and phone-width (375px) layout checks.
+- `npm run e2e` also starts the classroom server, joins from separate browser contexts, and runs the AI mentor against a local mock of the Anthropic API.
 
 | Area | Feature | Status | How it is verified |
 |---|---|---|---|
@@ -38,7 +38,12 @@ How things are checked:
 | Live | Four Corners, This-or-That (round 2 and opinion shift), Evidence Showdown (top-3 final vote), Prediction, moderated Response Wall, Live Courtroom (team-private building, objections, rulings, verdict) | Done | Unit tests on the logic; e2e for Four Corners with shift, and Wall with moderation |
 | Live | Same-browser transport (BroadcastChannel) | Done | e2e |
 | Live | **Classroom relay server** (`npm run classroom`) for real student devices on a LAN | Done | e2e with separate browser contexts |
-| Live | Live Courtroom and Showdown in the browser | Partly verified | Unit tests only. Needs an e2e run |
+| Live | Live Courtroom (team-private building, objections, sustain, verdict) and Showdown (top-3 final) | Done | e2e |
+| Live | **Lesson playbook** on the dashboard (warm-up → mission → debate → exit ticket), plus a recent-sessions list | Done | e2e |
+| Mentor | **Optional AI mentor** (`server/mentor.mjs`): `claude-opus-5-5` through the official SDK, low effort, `fallbacks: "default"`; only unlocked knowledge sent; every reply filtered (no quotations, page numbers, answers or locked chapters); built-in mentor as fallback | Done, verified against a **mock** API | e2e with a mock Anthropic server. **Not yet run against the real API**: needs a key and school approval |
+| Content | **Second demo novel**: *Dr Jekyll and Mr Hyde* (public domain, noir), with the 6-room mission *The Utterson Files* set before the twist (Ch. 7–10 locked) | Done | Unit (integrity) and e2e |
+| Content | Plain-text file import for chapter notes, outcomes and knowledge-base JSON | Done | Visual check |
+| Teacher | Teaching patterns for the courtroom (mislabelled exhibits, missed speculation, objecting to sound evidence) and the studio (craft notes that don’t explain choices) | Done | Visual check |
 | Immersion | Typed transmissions, room "warp" transitions, ambient soundscape per skin (off by default), five skins | Done | Visual check. Audio isn't tested automatically |
 | Performance | Lazy loading for each engine and 3D scene; 3D stops rendering when hidden or off-screen; DPR capped at 1.5 | Done | Build output |
 | A11y | Keyboard path, skip link, focus return, high contrast, reduced motion, plain language, read-aloud, axe scans | Done | e2e |
@@ -47,7 +52,7 @@ How things are checked:
 Be honest with teachers about these:
 - **Internet-wide live sessions** (students on different networks, or joining from home). The relay works on a school LAN only. A hosted relay with TLS, authentication and rate limits is needed.
 - **Accounts, rosters and data that persist across devices.** Everything is in the browser's localStorage today. Real student data needs a school-approved backend with access control, data minimization, retention limits and Alberta privacy compliance (FOIP, plus school-authority policy).
-- **AI mentor or AI generation.** The interface exists (`MentorProvider` in `src/lib/mentor.ts`), but no model call is implemented or tested. It would need a server-side proxy holding the API key, grounded only in unlocked knowledge, and refusing quotations, page numbers and finished answers.
+- **AI mentor in production.** It's implemented in the classroom server and tested against a mock API. Using it for real needs an Anthropic API key on the teacher's laptop, `NOVELVERSE_AI_MENTOR=on`, and **school approval**, because it sends student drafts to an external service. It isn't available on the static GitHub Pages build. AI-generated missions aren't built; the generator is template-based.
 - **Curriculum verification.** Alberta's sites were unreachable from the build environment. Outcomes are headings only and marked *unverified* until the teacher checks them.
 
 ## Architecture decisions
@@ -59,15 +64,14 @@ Be honest with teachers about these:
 6. **Persisted store is versioned** (`version: 2`, with `migrate` in `src/state/store.ts`). Add a migration whenever you add fields or demo content.
 
 ## Known limitations and small debts
-- Showdown and Live Courtroom have no end-to-end browser test yet.
 - The 2D battle replay animates with React state. That's fine at 36 dots; switch to a canvas if it grows.
 - The theme lock in generated vaults reuses the teacher's ladder wording, so the strong option is the teacher's rung 3.
 - Toasts stack across navigation.
 - No i18n or French Immersion version yet.
 
 ## Next priorities
-1. Add e2e coverage for the live Courtroom and Showdown, and an a11y scan of the live console in present mode.
-2. A hosted relay option (Cloudflare Durable Objects or similar), plus a teacher sign-in. Keep data minimal.
-3. Teacher-uploaded excerpt documents (PDF/DOCX → chapter notes) with a copyright confirmation step.
-4. A second public-domain demo novel (for example *Dr Jekyll and Mr Hyde* in the noir skin) with a full mission.
-5. A server-side AI mentor behind `MentorProvider`, with an evaluation set of weak answers checked for "questions only".
+1. **Teacher actions:** verify the curriculum headings and the demo novels’ facts against official documents and the books, then mark them verified.
+2. Run the AI mentor against the real API with a small evaluation set of weak student answers, checking that it asks questions only, never quotes, and never spoils. Do this before any classroom use.
+3. A hosted relay option (Cloudflare Durable Objects or similar) plus teacher sign-in, keeping data minimal, for students joining from home.
+4. DOCX/PDF import of the teacher’s own notes (currently: save as .txt first), with a copyright confirmation step.
+5. AI-assisted drafting of placeholder text in the generator (dilemma consequences, opposing arguments), always teacher-reviewed.

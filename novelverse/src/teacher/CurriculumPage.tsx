@@ -5,6 +5,7 @@ import { parseOutcomes } from '../data/curriculum';
 import { uid } from '../lib/id';
 import type { CurriculumProfile } from '../data/types';
 import { toast } from '../components/toast';
+import { FileText } from '../components/FileText';
 
 export function CurriculumPage() {
   const profiles = useApp((s) => s.profiles);
@@ -74,6 +75,7 @@ export function CurriculumPage() {
         <div className="field"><label htmlFor="cp-new">New profile name</label><input id="cp-new" className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. ELA 9 — school outcomes 2026–27" /></div>
         <textarea className="textarea" style={{ marginTop: '0.5rem' }} aria-label="Outcomes to import" value={paste} onChange={(e) => setPaste(e.target.value)} />
         <div className="row end" style={{ marginTop: '0.5rem' }}>
+          <FileText label="Load outcomes from a text file" onText={(t, n) => { setPaste(t); if (!name) setName(n.replace(/\.[a-z]+$/i, '')); }} />
           <button className="btn small" disabled={!paste.trim() || !name.trim()} onClick={() => {
             const id = uid('profile');
             const outcomes = parseOutcomes(paste, id);

@@ -45,7 +45,7 @@ const MODELS: Record<MentorContext['task'], string> = {
 const FRAMES: Record<MentorContext['task'], string> = {
   justify: 'Try: “I chose ___ because in Chapter ___, ___. This shows that ___ matters to me as commander.”',
   case: 'Try: “I believe ___. When ___ happens in Chapter ___, it suggests ___. Some readers might argue ___, but ___.”',
-  explain: 'Try: “Because readers know ___ and Ender does not, the chapter feels ___.”',
+  explain: 'Try: “Because readers know ___ and the character does not, the chapter feels ___.”',
   theme: 'Try: “In Chapters ___, the novel suggests that leaders ___, but ___.”',
   reflect: 'Try: “At first I thought ___. After ___, I now think ___.”',
   connection: 'Try: “___ and ___ are connected because in Chapter ___, ___.”',

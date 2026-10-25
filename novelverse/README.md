@@ -48,6 +48,8 @@ The build is static and uses hash URLs, so `dist/` runs from any web server or s
 - **Insights:** recognise reasoning moves such as anchoring in the text, taking on the other side, or revising. There are no points, streaks, timers or leaderboards.
 - **Commander's Log:** every decision, claim and revision, plus feedback the teacher has returned.
 
+**Second demo novel:** *The Strange Case of Dr Jekyll and Mr Hyde* (public domain) in the noir theme. Its mission, **The Utterson Files** (Chapters 1–6), is an investigation set *before* the twist: an evidence board, Utterson's dilemma over the letter, a vault, *The Crown v. Gabriel Utterson*, and a reputation theme log. Chapters 7–10 stay locked.
+
 **Operation Tribunal** (also Chapters 11–13) adds two more engines:
 - **Character Courtroom:** students pick a side, enter exhibits labelled as fact or interpretation, and cross-examine the other side's arguments. They either object (speculation, ignores evidence, overgeneralization) or accept a sound point, and the judge rules with an explanation. Then they close their case and finally *step out of role* to give the verdict the evidence supports.
 - **Creative Studio:** journal, mock interview, another perspective, newspaper, character profile, storyboard, persuasive argument or analytical paragraph. Each format has its own live preview, all share the same success criteria, and each ends in a craft note, so choosing a creative format never drops the analytical writing.
@@ -83,8 +85,8 @@ The Alberta government sites could not be reached from the build environment, so
 - mark each heading verified in **Mission Control → Curriculum** after checking it, or
 - paste your own outcomes (`CODE | description`) as a new profile. This also handles any newer Alberta ELA curriculum.
 
-## Ender's Game content: please read
-All demo content is original paraphrase: there are **no quotations and no page numbers**. Every chapter summary, character, event and evidence card is marked **needs check**, and students see a "teacher check pending" badge until the teacher confirms it against the book. Chapters 14–15 are locked and left empty to avoid spoilers. The dilemma's consequences are always labelled as simulations.
+## Demo novel content: please read
+All demo content is original paraphrase: there are **no quotations and no page numbers**. Every chapter summary, character, event and evidence card is marked **needs check**, and students see a "teacher check pending" badge until the teacher confirms it against the book. Chapters 14–15 are locked and left empty to avoid spoilers. The dilemma's consequences are always labelled as simulations. The *Jekyll and Hyde* content follows the same rules: original paraphrase, marked “needs check”, with the revelation chapters locked.
 
 ## Privacy
 Demo mode uses synthetic call signs only. There are no accounts, names, emails or recordings, and nothing is sent to the internet. In live sessions run through the classroom server, messages pass through that laptop's memory on the school network and are never stored there. Students are asked not to use real names. All state lives in the browser's local storage, falling back to memory if storage is blocked. Real classroom use needs a school-approved, access-controlled backend designed around Alberta's privacy obligations for school authorities, with data minimization, retention limits and teacher-only access to identifiable work.
@@ -106,6 +108,20 @@ tests/e2e      Playwright: full playthroughs, live sessions, relay, new-unit cre
 server/        classroom.mjs: static server + in-memory WebSocket relay for live sessions
 ```
 Every engine reads the same novel knowledge base, so adding a novel requires no code changes. The 3D scene is lazy-loaded and only downloads when used.
+
+### Optional AI Literary Mentor
+When the classroom server runs with `NOVELVERSE_AI_MENTOR=on` and Anthropic API credentials, the mentor's first question comes from `claude-opus-5-5`. Sentence starters and worked models stay with the built-in mentor.
+- The server sends **only knowledge from unlocked chapters** and the student's draft.
+- Every reply is checked before a student sees it: anything with quotations, page numbers, finished answers or locked chapters is dropped, and the built-in mentor answers instead.
+- AI replies are labelled "AI".
+- **This sends student writing to an external service, so it needs school approval.** It is off by default and unavailable on the static site.
+
+```bash
+NOVELVERSE_AI_MENTOR=on ANTHROPIC_API_KEY=... npm run classroom
+```
+
+### Lesson playbook
+The dashboard turns the current unit into a lesson you can run in order: a Four Corners warm-up, the mission, a live courtroom (or evidence showdown), and an anonymous exit-ticket wall. Each step starts with one click.
 
 ### Immersion and performance
 - A 3D command deck, plus a **3D battle replay** of the student's own orders after the decision. It's always labelled as a simulation, with a 2D version and a static final frame under reduced motion.

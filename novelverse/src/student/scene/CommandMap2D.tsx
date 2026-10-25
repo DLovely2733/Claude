@@ -2,7 +2,7 @@ import type { Hotspot } from '../../data/types';
 import { Icon } from '../../components/Icon';
 
 // The 2D command deck: same hotspots, same information, any device.
-export function CommandMap2D({ hotspots, active, seen, onSelect }: { hotspots: Hotspot[]; active: string | null; seen: string[]; onSelect: (id: string) => void }) {
+export function CommandMap2D({ hotspots, active, seen, onSelect, centre = 'BATTLEROOM HOLOGRAM' }: { hotspots: Hotspot[]; active: string | null; seen: string[]; onSelect: (id: string) => void; centre?: string }) {
   return (
     <div className="map2d" role="group" aria-label="Command deck, 2D map">
       <svg viewBox="0 0 400 300" aria-hidden="true" className="map2d-svg">
@@ -18,7 +18,7 @@ export function CommandMap2D({ hotspots, active, seen, onSelect }: { hotspots: H
           <rect x="-28" y="-28" width="56" height="56" fill="none" stroke="var(--accent)" strokeWidth="2" transform="rotate(45)" />
           <rect x="-18" y="-18" width="36" height="36" fill="var(--accent)" fillOpacity="0.12" stroke="var(--accent)" />
         </g>
-        <text x="200" y="205" textAnchor="middle" fill="var(--muted)" fontSize="10" fontFamily="var(--font-mono)">BATTLEROOM HOLOGRAM</text>
+        <text x="200" y="205" textAnchor="middle" fill="var(--muted)" fontSize="10" fontFamily="var(--font-mono)">{centre}</text>
       </svg>
       {hotspots.map((h, i) => {
         const a = (i / hotspots.length) * Math.PI * 2 + Math.PI / 4;

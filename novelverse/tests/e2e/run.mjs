@@ -9,6 +9,7 @@ import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { phases } from './phases.mjs';
+import { phases2 } from './phases2.mjs';
 
 const require = createRequire(import.meta.url);
 let chromium;
@@ -212,6 +213,7 @@ try {
   check(!overflow, 'no horizontal page scroll on a phone-width screen');
   await shot('11-mobile-board');
   await phases({ browser, BASE, check, OUT, root: new URL('../..', import.meta.url).pathname });
+  await phases2({ browser, BASE, check, OUT, root: new URL('../..', import.meta.url).pathname });
 } catch (e) {
   failed = true;
   console.error(e);

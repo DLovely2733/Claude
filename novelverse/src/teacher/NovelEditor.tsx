@@ -9,6 +9,7 @@ import { SKINS, parseChapterNotes } from './NovelLibrary';
 import type { Novel, Evidence } from '../data/types';
 import { useState } from 'react';
 import { toast } from '../components/toast';
+import { FileText } from '../components/FileText';
 
 const TABS = [
   { id: 'overview', label: 'Overview' },
@@ -155,6 +156,13 @@ function Overview({ novel, set }: { novel: Novel; set: (p: Partial<Novel>) => vo
           <div className="row">
             <button className="btn ghost small" onClick={() => downloadFile(`${novel.id}.json`, JSON.stringify(novel, null, 2))}><Icon name="download" size={16} /> Export knowledge base</button>
             <button className="btn ghost small" onClick={() => setImporting(!importing)}>Import JSON</button>
+            <FileText label="Import from file" accept=".json,application/json" onText={(t) => {
+              try {
+                const data = JSON.parse(t) as Novel;
+                if (!data.chapters || !data.title) throw new Error('missing fields');
+                if (confirm(`Replace this knowledge base with “${data.title}” from the file?`)) { saveNovel({ ...data, id: novel.id }); toast('Knowledge base imported'); }
+              } catch { toast('That file is not a NovelVerse knowledge base'); }
+            }} />
           </div>
           {importing && (
             <div className="field" style={{ marginTop: '0.75rem' }}>
@@ -233,6 +241,7 @@ function Chapters({ novel, set }: { novel: Novel; set: (p: Partial<Novel>) => vo
         <h2 className="hud">Paste chapter notes</h2>
         <textarea className="textarea" value={notes} onChange={(e) => setNotes(e.target.value)} aria-label="Chapter notes" placeholder={'3 | Title | Summary in your own words\nChapter 4: Title - Summary'} />
         <div className="row end" style={{ marginTop: '0.5rem' }}>
+          <FileText label="Load notes from a text file" onText={(t) => setNotes(t)} />
           <button className="btn small" disabled={!notes.trim()} onClick={() => {
             const parsed = parseChapterNotes(notes);
             let chapters = [...novel.chapters];

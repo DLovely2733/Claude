@@ -7,6 +7,8 @@ import { BUILT_IN_TEMPLATES } from '../data/templates';
 import { endersGame } from '../data/novels/endersGame';
 import { pressurePoint } from '../data/missions/pressurePoint';
 import { tribunal } from '../data/missions/tribunal';
+import { jekyllHyde } from '../data/novels/jekyllHyde';
+import { uttersonFiles } from '../data/missions/uttersonFiles';
 import { ALBERTA_ELA_HEADINGS } from '../data/curriculum';
 import { ROSTER, DEMO_STUDENT_ID, seedResponses, responseKey } from '../data/synthetic';
 
@@ -99,8 +101,8 @@ const safeStorage = {
 
 const initialData = () => ({
   settings: DEFAULT_SETTINGS,
-  novels: { [endersGame.id]: endersGame },
-  missions: { [pressurePoint.id]: pressurePoint, [tribunal.id]: tribunal },
+  novels: { [endersGame.id]: endersGame, [jekyllHyde.id]: jekyllHyde },
+  missions: { [pressurePoint.id]: pressurePoint, [tribunal.id]: tribunal, [uttersonFiles.id]: uttersonFiles },
   profiles: [ALBERTA_ELA_HEADINGS],
   activeProfileId: ALBERTA_ELA_HEADINGS.id,
   rubric: DEFAULT_RUBRIC,
@@ -195,7 +197,7 @@ export const useApp = create<AppState>()(
     }),
     {
       name: 'novelverse:v1',
-      version: 2,
+      version: 3,
       // Version 2 added templates, live sessions, the Tribunal demo mission
       // and two vocabulary terms. Teachers' own edits are kept.
       migrate: (persisted, version) => {
@@ -210,6 +212,12 @@ export const useApp = create<AppState>()(
             const have = new Set(demo.vocab.map((v) => v.id));
             demo.vocab = [...demo.vocab, ...fresh.novels['enders-game'].vocab.filter((v) => !have.has(v.id))];
           }
+        }
+        if (version < 3) {
+          // Version 3 added the second demo novel and its mission.
+          const fresh = initialData();
+          s.novels = { [jekyllHyde.id]: fresh.novels[jekyllHyde.id], ...s.novels };
+          s.missions = { [uttersonFiles.id]: fresh.missions[uttersonFiles.id], ...s.missions };
         }
         return s as AppState;
       },

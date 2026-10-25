@@ -56,6 +56,7 @@ export const pressurePoint: Mission = {
         },
       ],
       vocab: ['v-launchy', 'v-toon', 'v-gate', 'v-motivation', 'v-inference', 'v-interp'],
+      firstThought: 'what is the biggest pressure on Ender right now?',
     },
     {
       id: 's-dilemma',

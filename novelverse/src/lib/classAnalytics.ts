@@ -1,4 +1,4 @@
-import type { Mission, Novel, StepResponse, EvidenceBoardStep, DilemmaStep } from '../data/types';
+import type { Mission, Novel, StepResponse, EvidenceBoardStep, DilemmaStep, CourtroomStep } from '../data/types';
 import { analyzeReasoning, shortNames } from './reasoning';
 
 // Class-level patterns for the teacher. These describe the thinking in the
@@ -52,6 +52,30 @@ export function findPatterns(mission: Mission, novel: Novel, responses: StepResp
         description: 'Case reports that do not address evidence against the chosen theory.',
         nextStep: 'Teach a “Some readers might argue…, but…” move and have students add one to their report.' },
         rs.filter((r) => !String(r.data.counter ?? '').trim()).map((r) => r.studentId));
+    }
+    if (step.type === 'courtroom') {
+      const c = step as CourtroomStep;
+      add({ id: `${step.id}-exh`, stepId: step.id, title: 'Exhibits labelled as the wrong kind',
+        description: 'Entered an interpretation as a fact (or the reverse) when building a case.',
+        nextStep: 'Hold up two exhibits and ask: could a reader disagree that this happened? If yes, it is an interpretation.' },
+        rs.filter((r) => ((r.data.exhibits as { evidenceId: string; label: string }[]) ?? []).some((x) => novel.evidence.find((e) => e.id === x.evidenceId)?.kind !== x.label)).map((r) => r.studentId));
+      const objs = (r: StepResponse) => (r.data.objections as Record<string, { firstTry?: boolean; call?: string }>) ?? {};
+      const flawed = c.opposing.filter((o) => o.flaw === 'speculation');
+      add({ id: `${step.id}-spec`, stepId: step.id, title: 'Missed speculation presented as fact',
+        description: 'Accepted or misread an argument that guesses at a character’s feelings.',
+        nextStep: 'Model the question “Where does the text actually say that?” on one speculative claim.' },
+        rs.filter((r) => flawed.some((o) => objs(r)[o.id]?.firstTry === false)).map((r) => r.studentId));
+      const sound = c.opposing.filter((o) => o.flaw === 'sound');
+      add({ id: `${step.id}-sound`, stepId: step.id, title: 'Objected to sound evidence',
+        description: 'Tried to dismiss an accurate point instead of answering it.',
+        nextStep: 'Teach the difference between attacking evidence and answering it: “Yes, that happened, but…”.' },
+        rs.filter((r) => sound.some((o) => objs(r)[o.id]?.firstTry === false)).map((r) => r.studentId));
+    }
+    if (step.type === 'creative') {
+      add({ id: `${step.id}-craft`, stepId: step.id, title: 'Craft notes that do not explain choices',
+        description: 'The creative piece is there, but the craft note does not connect it to the novel.',
+        nextStep: 'Share a strong craft note (with permission) and highlight its “because in Chapter…” move.' },
+        rs.filter((r) => { const sg = analyzeReasoning(String(r.data.craftNote ?? ''), names); return !sg.explains || !sg.citesEvidence; }).map((r) => r.studentId));
     }
   }
   return out.sort((a, b) => b.studentIds.length - a.studentIds.length);

@@ -23,16 +23,19 @@ export interface Transport {
   close: () => void;
 }
 
-let relayCheck: Promise<boolean> | null = null;
+let infoCheck: Promise<{ relay: boolean; mentor: boolean }> | null = null;
+
+/** What the server hosting this page offers. A static host offers nothing. */
+export function serverInfo(): Promise<{ relay: boolean; mentor: boolean }> {
+  infoCheck ??= fetch('api/classroom', { cache: 'no-store' })
+    .then((r) => (r.ok && (r.headers.get('content-type') ?? '').includes('json') ? r.json() : null))
+    .then((j) => ({ relay: !!j?.relay, mentor: !!j?.mentor }))
+    .catch(() => ({ relay: false, mentor: false }));
+  return infoCheck;
+}
 
 /** True when the app is being served by the classroom relay server. */
-export function relayAvailable(): Promise<boolean> {
-  relayCheck ??= fetch('api/classroom', { cache: 'no-store' })
-    .then((r) => (r.ok ? r.json() : null))
-    .then((j) => !!j?.relay)
-    .catch(() => false);
-  return relayCheck;
-}
+export const relayAvailable = () => serverInfo().then((i) => i.relay);
 
 export async function connect(code: string, onMessage: (m: LiveMessage) => void, onStatus?: (s: 'open' | 'closed') => void): Promise<Transport> {
   if (await relayAvailable()) return connectRelay(code, onMessage, onStatus);

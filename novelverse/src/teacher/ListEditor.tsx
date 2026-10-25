@@ -140,7 +140,7 @@ export function MultiPick({ id, value, options, onChange }: { id?: string; value
   return (
     <div id={id} className="row" style={{ gap: '0.35rem' }} role="group">
       {options.map((o) => (
-        <button key={o.value} type="button" className="chip" aria-pressed={value.includes(o.value)}
+        <button key={o.value} type="button" className="chip wrap-chip" aria-pressed={value.includes(o.value)}
           onClick={() => onChange(value.includes(o.value) ? value.filter((x) => x !== o.value) : [...value, o.value])}>
           {o.label}
         </button>

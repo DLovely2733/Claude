@@ -156,6 +156,8 @@ export interface BriefingStep extends StepBase {
   type: 'briefing';
   chunks: BriefingChunk[];
   vocab: string[];
+  /** The first-thought prompt students revisit at the end of the mission. */
+  firstThought?: string;
 }
 
 export interface Hotspot {

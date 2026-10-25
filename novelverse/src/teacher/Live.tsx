@@ -93,7 +93,7 @@ function Setup() {
           {suggestions.length > 0 && (
             <div className="row" style={{ gap: '0.35rem' }}>
               <span className="tiny muted">From your unit:</span>
-              {suggestions.slice(0, 4).map((sg) => <button key={sg} type="button" className="chip" onClick={() => setPrompt(sg)}>{sg.length > 70 ? `${sg.slice(0, 70)}…` : sg}</button>)}
+              {suggestions.slice(0, 4).map((sg) => <button key={sg} type="button" className="chip wrap-chip" onClick={() => setPrompt(sg)}>{sg.length > 70 ? `${sg.slice(0, 70)}…` : sg}</button>)}
             </div>
           )}
         </div>

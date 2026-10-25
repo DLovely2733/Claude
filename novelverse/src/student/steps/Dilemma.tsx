@@ -46,8 +46,10 @@ export function Dilemma({ step, onDone }: { step: DilemmaStep; onDone: (insights
   const ready = !!choice && values.length > 0 && evidenceIds.length > 0 && signals.words >= 8;
 
   const webgl = typeof document !== 'undefined' && hasWebGL();
+  // The 3D command deck is Battle School's; other worlds use their own 2D desk.
+  const can3d = webgl && novel.skin === 'holo';
   const [mode, setMode] = useState<'3d' | '2d'>(() =>
-    settings.scene === '2d' || !webgl ? '2d' : settings.scene === '3d' ? '3d' : window.innerWidth >= 700 ? '3d' : '2d');
+    settings.scene === '2d' || !can3d ? '2d' : settings.scene === '3d' ? '3d' : window.innerWidth >= 700 ? '3d' : '2d');
   const accent = typeof document !== 'undefined' ? getComputedStyle(document.querySelector('.app') ?? document.body).getPropertyValue('--accent').trim() || '#5ee7ff' : '#5ee7ff';
 
   const persist = (extra: Record<string, unknown>) => save({ phase, seen, choiceId, values, evidenceIds, reasoning, followUpId, compare, explored, ...extra });
@@ -97,8 +99,8 @@ export function Dilemma({ step, onDone }: { step: DilemmaStep; onDone: (insights
       {phase === 'explore' && (
         <section aria-labelledby="deck-h">
           <div className="row between" style={{ margin: '1.25rem 0 0.6rem' }}>
-            <h2 id="deck-h" style={{ margin: 0, fontSize: '1.2rem' }}>Command deck</h2>
-            {webgl && (
+            <h2 id="deck-h" style={{ margin: 0, fontSize: '1.2rem' }}>{novel.skin === 'holo' ? 'Command deck' : 'The scene'}</h2>
+            {can3d && (
               <div className="segmented" role="group" aria-label="View">
                 <button type="button" aria-pressed={mode === '3d'} onClick={() => setMode('3d')}>3D room</button>
                 <button type="button" aria-pressed={mode === '2d'} onClick={() => setMode('2d')}>2D map</button>
@@ -115,7 +117,7 @@ export function Dilemma({ step, onDone }: { step: DilemmaStep; onDone: (insights
                   </div>
                 </Suspense>
               ) : (
-                <CommandMap2D hotspots={step.hotspots} active={active} seen={seen} onSelect={select} />
+                <CommandMap2D hotspots={step.hotspots} active={active} seen={seen} onSelect={select} centre={novel.skin === 'holo' ? 'BATTLEROOM HOLOGRAM' : step.title.toUpperCase()} />
               )}
             </div>
             <div className="deck-side">

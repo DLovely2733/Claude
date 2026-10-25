@@ -7,6 +7,7 @@ import { readingFrontier, unverifiedCount } from '../lib/knowledge';
 import { uid } from '../lib/id';
 import type { Novel, Skin } from '../data/types';
 import { toast } from '../components/toast';
+import { FileText } from '../components/FileText';
 
 export const SKINS: { id: Skin; name: string; genre: string }[] = [
   { id: 'holo', name: 'Holographic command', genre: 'Science fiction' },
@@ -123,6 +124,7 @@ function AddNovel({ onClose }: { onClose: () => void }) {
         <textarea id="nv-notes" className="textarea" value={notes} onChange={(e) => setNotes(e.target.value)}
           placeholder={'One chapter per line, for example:\n1 | The Arrival | Your summary in your own words\nChapter 2: The Letter - Your summary'} />
         <span className="help">Your own summaries. They are marked “teacher added”.</span>
+        <FileText label="Load notes from a text file" onText={(t) => setNotes(t)} />
       </div>
       <div className="row end" style={{ marginTop: '1rem' }}>
         <button className="btn quiet" onClick={onClose}>Cancel</button>
