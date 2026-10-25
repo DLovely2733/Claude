@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { ask } from '../components/Dialog';
 import { useEffect, useMemo, useState } from 'react';
 import { useApp } from '../state/store';
 import { Icon } from '../components/Icon';
@@ -255,7 +256,7 @@ function Console({ code }: { code: string }) {
                     </button>
                   </>
                 )}
-                {s.phase !== 'ended' && <button className="btn ghost block" onClick={() => confirm('End this session for everyone?') && set({ phase: 'ended', endedAt: Date.now() })}>End session</button>}
+                {s.phase !== 'ended' && <button className="btn ghost block" onClick={() => ask({ title: 'End this session for everyone?', body: 'Students see that it has ended. Results stay saved in this browser.', confirmLabel: 'End session', danger: true }).then((ok) => ok && set({ phase: 'ended', endedAt: Date.now() }))}>End session</button>}
                 <button className="btn quiet small" onClick={exportCsv}><Icon name="download" size={16} /> Export responses (CSV)</button>
               </div>
             </section>

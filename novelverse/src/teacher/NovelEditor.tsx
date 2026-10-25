@@ -1,4 +1,5 @@
 import { useApp } from '../state/store';
+import { ask } from '../components/Dialog';
 import { Icon } from '../components/Icon';
 import { href, navigate } from '../lib/router';
 import { uid } from '../lib/id';
@@ -156,11 +157,11 @@ function Overview({ novel, set }: { novel: Novel; set: (p: Partial<Novel>) => vo
           <div className="row">
             <button className="btn ghost small" onClick={() => downloadFile(`${novel.id}.json`, JSON.stringify(novel, null, 2))}><Icon name="download" size={16} /> Export knowledge base</button>
             <button className="btn ghost small" onClick={() => setImporting(!importing)}>Import JSON</button>
-            <FileText label="Import from file" accept=".json,application/json" onText={(t) => {
+            <FileText label="Import from file" accept=".json,application/json" onText={async (t) => {
               try {
                 const data = JSON.parse(t) as Novel;
                 if (!data.chapters || !data.title) throw new Error('missing fields');
-                if (confirm(`Replace this knowledge base with “${data.title}” from the file?`)) { saveNovel({ ...data, id: novel.id }); toast('Knowledge base imported'); }
+                if (await ask({ title: `Replace this knowledge base with “${data.title}”?`, body: 'Everything in the current knowledge base is replaced by the file.', confirmLabel: 'Replace', danger: true })) { saveNovel({ ...data, id: novel.id }); toast('Knowledge base imported'); }
               } catch { toast('That file is not a NovelVerse knowledge base'); }
             }} />
           </div>
@@ -180,8 +181,8 @@ function Overview({ novel, set }: { novel: Novel; set: (p: Partial<Novel>) => vo
           )}
         </div>
         {novel.createdBy !== 'demo' && (
-          <button className="btn danger small" style={{ alignSelf: 'flex-start' }} onClick={() => {
-            if (confirm(`Delete ${novel.title} and its missions?`)) { deleteNovel(novel.id); navigate('/teacher/novels'); }
+          <button className="btn danger small" style={{ alignSelf: 'flex-start' }} onClick={async () => {
+            if (await ask({ title: `Delete ${novel.title}?`, body: 'Its missions are deleted too.', confirmLabel: 'Delete novel', danger: true })) { deleteNovel(novel.id); navigate('/teacher/novels'); }
           }}><Icon name="trash" size={16} /> Delete novel</button>
         )}
       </section>

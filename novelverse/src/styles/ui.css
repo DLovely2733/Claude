@@ -188,7 +188,7 @@ input[type='checkbox'], input[type='radio'] { accent-color: var(--accent); width
 
 .topbar {
   position: sticky;
-  top: 0;
+  top: env(safe-area-inset-top, 0px);
   z-index: 50;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);

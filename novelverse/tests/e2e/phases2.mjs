@@ -121,6 +121,24 @@ export async function phases2({ browser, BASE, check, OUT, root }) {
   check(await page.getByRole('heading', { name: 'Final vote' }).isVisible(), 'final vote results revealed');
   for (const v of voters) await v.close();
 
+  // ------------------------------------------------------------ in-page dialogs
+  console.log('In-page dialogs');
+  let nativeDialogs = 0;
+  page.on('dialog', (d) => { nativeDialogs += 1; d.dismiss(); });
+  await page.goto(`${BASE}#/teacher/mission/m-tribunal`);
+  await page.getByRole('button', { name: /Save as template/ }).click();
+  const dlg = page.getByRole('alertdialog');
+  check(await page.waitForFunction(() => document.activeElement?.id === 'dlg-input', null, { timeout: 2000 }).then(() => true, () => false), 'text dialog focuses its input');
+  await dlg.getByLabel('Template name').fill('Trial Day (Graff)');
+  await dlg.getByRole('button', { name: 'Save template' }).click();
+  await page.goto(`${BASE}#/teacher/missions`);
+  check(await page.locator('.template-card strong', { hasText: 'Trial Day (Graff)' }).isVisible(), 'template saved through the in-page dialog');
+  await page.locator('.template-card', { hasText: 'Trial Day (Graff)' }).getByRole('button', { name: /Delete/ }).click();
+  await page.keyboard.press('Escape');
+  await page.getByRole('alertdialog').waitFor({ state: 'detached' });
+  check(await page.locator('.template-card strong', { hasText: 'Trial Day (Graff)' }).isVisible(), 'Escape cancels a destructive dialog');
+  check(nativeDialogs === 0, 'no native browser dialogs are used');
+
   // ------------------------------------------------------------ playbook
   console.log('Lesson playbook');
   await page.goto(`${BASE}#/teacher`);

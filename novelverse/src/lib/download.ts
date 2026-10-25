@@ -1,4 +1,9 @@
+import { isEmbedded } from './embedded';
+import { toast } from '../components/toast';
+
 export function downloadFile(name: string, content: string, type = 'application/json') {
+  // Embedded previews block downloads; say so instead of silently doing nothing.
+  if (isEmbedded()) { toast('Downloads are blocked in this embedded view. Open NovelVerse on its own site to export.'); return; }
   const blob = new Blob([content], { type });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useApp, useOutcomeLookup } from '../state/store';
 import { href } from '../lib/router';
 import { Icon } from '../components/Icon';
+import { isEmbedded } from '../lib/embedded';
 import { rangeLabel } from '../lib/generator';
 import { characterName, vocabById } from '../lib/knowledge';
 import type { MissionStep, Novel } from '../data/types';
@@ -22,7 +23,9 @@ export function PrintView({ missionId }: { missionId: string }) {
         <a className="btn quiet small" href={href(`/teacher/mission/${mission.id}`)}><Icon name="back" size={16} /> Back</a>
         <button className="btn small" aria-pressed={plain} onClick={() => setPlain(!plain)}>Plain language</button>
         <button className="btn small" aria-pressed={projector} onClick={() => setProjector(!projector)}>Projector size</button>
-        <button className="btn primary small" onClick={() => window.print()}><Icon name="print" size={16} /> Print</button>
+        {isEmbedded()
+          ? <span className="small" style={{ color: '#333' }}>Printing is blocked in this embedded view. Open NovelVerse on its own site to print.</span>
+          : <button className="btn primary small" onClick={() => window.print()}><Icon name="print" size={16} /> Print</button>}
       </div>
       <article className="paper">
         <header>

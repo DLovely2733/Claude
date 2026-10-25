@@ -4,6 +4,7 @@ import { useApp } from '../state/store';
 import { setSoundEnabled } from '../lib/sound';
 import { setAmbient } from '../lib/ambient';
 import { useToasts } from './toast';
+import { DialogHost } from './Dialog';
 import type { Skin } from '../data/types';
 
 // Applies the viewer's supports and the active novel's skin to the whole app.
@@ -29,6 +30,7 @@ export function Shell({ skin = 'holo', children }: { skin?: Skin; children: Reac
           Skip to main content
         </a>
         {children}
+        <DialogHost />
         <div className="toast-host" role="status" aria-live="polite">
           {toasts.map((t) => <div key={t.id} className="toast">{t.text}</div>)}
         </div>

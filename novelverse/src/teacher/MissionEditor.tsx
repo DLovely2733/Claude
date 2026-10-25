@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { ask, askText } from '../components/Dialog';
 import { useApp } from '../state/store';
 import { Icon } from '../components/Icon';
 import { href, navigate } from '../lib/router';
@@ -144,7 +145,7 @@ export function MissionEditor({ missionId }: { missionId: string }) {
                   <a className="btn quiet small" href={href(`/teacher/preview/${mission.id}/${s.id}`)}>Preview</a>
                   <button className="btn quiet small" onClick={() => move(i, -1)} aria-label="Move room up">▲</button>
                   <button className="btn quiet small" onClick={() => move(i, 1)} aria-label="Move room down">▼</button>
-                  <button className="btn quiet small" onClick={() => confirm('Remove this room?') && set({ steps: mission.steps.filter((x) => x.id !== s.id) })} aria-label="Remove room"><Icon name="trash" size={14} /></button>
+                  <button className="btn quiet small" onClick={() => ask({ title: `Remove “${s.title}”?`, body: 'Student responses already saved for this room stay in exports.', confirmLabel: 'Remove room', danger: true }).then((ok) => ok && set({ steps: mission.steps.filter((x) => x.id !== s.id) }))} aria-label="Remove room"><Icon name="trash" size={14} /></button>
                 </div>
                 {open === s.id && <div className="le-body"><StepEditor step={s} novel={novel} onChange={setStep} /></div>}
               </li>
@@ -160,15 +161,15 @@ export function MissionEditor({ missionId }: { missionId: string }) {
           saveMission(copy);
           navigate(`/teacher/mission/${copy.id}`);
         }}>Duplicate</button>
-        <button className="btn ghost small" disabled={!mission.steps.length} onClick={() => {
-          const name = prompt('Template name', `${mission.title} template`);
+        <button className="btn ghost small" disabled={!mission.steps.length} onClick={async () => {
+          const name = await askText({ title: 'Save as a template', label: 'Template name', value: `${mission.title} template`, confirmLabel: 'Save template' });
           if (!name) return;
           const code = (id: string) => allOutcomes.find((o) => o.id === id)?.code;
           saveTemplate(templateFromMission(mission, name, `${mission.steps.length} rooms · saved from “${mission.title}”`, code));
           toast('Saved as a template. Use it from Generate a mission.');
         }}><Icon name="layers" size={16} /> Save as template</button>
         </div>
-        <button className="btn danger small" onClick={() => { if (confirm('Delete this mission? Student responses stay in the export.')) { deleteMission(mission.id); navigate('/teacher/missions'); } }}><Icon name="trash" size={16} /> Delete mission</button>
+        <button className="btn danger small" onClick={async () => { if (await ask({ title: `Delete “${mission.title}”?`, body: 'Students lose access to it. Saved responses stay in exports.', confirmLabel: 'Delete mission', danger: true })) { deleteMission(mission.id); navigate('/teacher/missions'); } }}><Icon name="trash" size={16} /> Delete mission</button>
       </div>
     </div>
   );

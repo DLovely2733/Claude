@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { ask } from '../components/Dialog';
 import { useApp } from '../state/store';
 import { INSIGHTS, insightsFrom } from '../lib/insights';
 import { Icon } from '../components/Icon';
@@ -55,8 +56,8 @@ export function CommandersLog() {
               <h2 id={`log-${m.id}`} style={{ margin: 0 }}>{m.title}</h2>
               <div className="row">
                 <a className="btn ghost small" href={href(`/student/mission/${m.id}`)}>Open mission</a>
-                <button className="btn quiet small" onClick={() => {
-                  if (confirm('Start this mission again? Your saved answers for it will be cleared.')) { reset(studentId, m.id); toast('Mission progress cleared'); }
+                <button className="btn quiet small" onClick={async () => {
+                  if (await ask({ title: `Start “${m.title}” again?`, body: 'Your saved answers for this mission will be cleared.', confirmLabel: 'Start fresh', danger: true })) { reset(studentId, m.id); toast('Mission progress cleared'); }
                 }}>Start fresh</button>
               </div>
             </div>

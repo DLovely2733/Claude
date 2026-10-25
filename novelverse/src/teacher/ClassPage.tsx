@@ -1,4 +1,5 @@
 import { useApp, DEFAULT_SETTINGS } from '../state/store';
+import { ask } from '../components/Dialog';
 import { Icon } from '../components/Icon';
 import type { Settings } from '../data/types';
 import { toast } from '../components/toast';
@@ -61,8 +62,8 @@ export function ClassPage() {
           <li>All data stays in this browser’s local storage. Nothing is sent to a server.</li>
           <li>Real classroom use needs a school-approved, access-controlled backend designed around Alberta’s privacy obligations for schools (see the project README). Do not type real student names into the demo.</li>
         </ul>
-        <button className="btn danger small" onClick={() => {
-          if (confirm('Reset the whole demo? This restores the original novel, mission and synthetic class, and clears your edits.')) { resetDemo(); toast('Demo reset'); navigate('/teacher'); }
+        <button className="btn danger small" onClick={async () => {
+          if (await ask({ title: 'Reset the whole demo?', body: 'This restores the original novels, missions and synthetic class, and clears your edits and live sessions.', confirmLabel: 'Reset demo', danger: true })) { resetDemo(); toast('Demo reset'); navigate('/teacher'); }
         }}>Reset demo data</button>
       </section>
     </div>

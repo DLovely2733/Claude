@@ -28,6 +28,7 @@ export async function phases({ browser, BASE, check, OUT, root }) {
   // ------------------------------------------------------------ keyboard + axe
   console.log('Keyboard and accessibility');
   await page.goto(BASE);
+  await page.locator('.portal').first().waitFor();
   await page.keyboard.press('Tab');
   check(await page.evaluate(() => document.activeElement?.textContent?.includes('Skip to main content')), 'first Tab reaches the skip link');
   let reached = false;
@@ -157,8 +158,8 @@ export async function phases({ browser, BASE, check, OUT, root }) {
   await page.getByRole('button', { name: 'Present' }).click();
   await shot('14-live-present');
   await page.getByRole('button', { name: 'Exit present mode' }).first().click().catch(() => page.getByRole('button', { name: 'Controls' }).click());
-  page.once('dialog', (d) => d.accept());
   await page.getByRole('button', { name: 'End session' }).click();
+  await page.getByRole('alertdialog').getByRole('button', { name: 'End session' }).click();
   await page.waitForTimeout(800);
   check(await students[1].sp.getByText('Session ended').isVisible(), 'ending the session reaches students');
   await students[1].sp.goto(`${BASE}#/join/ZZZZZ`);

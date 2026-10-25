@@ -1,4 +1,5 @@
 import { useId, useState } from 'react';
+import { ask } from '../components/Dialog';
 import type { Novel, Verification } from '../data/types';
 import { Icon } from '../components/Icon';
 import { VerifyBadge } from '../components/Reading';
@@ -34,7 +35,7 @@ export function ListEditor<T extends Item>({ title, items, fields, onChange, mak
   const pending = items.filter((i) => i.verification === 'needs-check').length;
 
   const patch = (id: string, p: Partial<T>) => onChange(items.map((i) => (i.id === id ? { ...i, ...p } : i)));
-  const remove = (id: string) => confirm('Delete this item?') && onChange(items.filter((i) => i.id !== id));
+  const remove = (id: string) => ask({ title: 'Delete this item?', confirmLabel: 'Delete', danger: true }).then((ok) => ok && onChange(items.filter((i) => i.id !== id)));
   const move = (id: string, d: number) => {
     const idx = items.findIndex((i) => i.id === id);
     const j = idx + d;
@@ -55,7 +56,7 @@ export function ListEditor<T extends Item>({ title, items, fields, onChange, mak
                 <button aria-pressed={filter === 'all'} onClick={() => setFilter('all')}>All</button>
                 <button aria-pressed={filter === 'needs-check'} onClick={() => setFilter('needs-check')}>Needs check ({pending})</button>
               </div>
-              <button className="btn ghost small" onClick={() => confirm(`Mark all ${pending} items as verified? Only do this after checking them against your copy of the book.`) &&
+              <button className="btn ghost small" onClick={async () => (await ask({ title: `Mark all ${pending} items as verified?`, body: 'Only do this after checking them against your copy of the book.', confirmLabel: 'Mark verified' })) &&
                 onChange(items.map((i) => (i.verification === 'needs-check' ? { ...i, verification: 'teacher-verified' } : i)))}>
                 Verify all
               </button>

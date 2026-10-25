@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ask } from '../components/Dialog';
 import { useApp } from '../state/store';
 import { navigate } from '../lib/router';
 import { uid } from '../lib/id';
@@ -83,7 +84,7 @@ export function MissionList() {
               <span className="tiny muted">{t.engines.length} rooms · {t.grouping} · outcomes {t.outcomeCodes.join(', ') || '—'}</span>
               <span className="row" style={{ gap: '0.3rem' }}>
                 <a className="btn small" href={href(`/teacher/build/${Object.keys(novels)[0] ?? ''}/${t.id}`)}>Use</a>
-                {!t.builtIn && <button className="btn quiet small" onClick={() => confirm(`Delete template “${t.name}”?`) && deleteTemplate(t.id)}><Icon name="trash" size={14} /> Delete</button>}
+                {!t.builtIn && <button className="btn quiet small" onClick={() => ask({ title: `Delete template “${t.name}”?`, confirmLabel: 'Delete', danger: true }).then((ok) => ok && deleteTemplate(t.id))}><Icon name="trash" size={14} /> Delete</button>}
               </span>
             </article>
           ))}
